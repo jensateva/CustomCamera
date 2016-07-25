@@ -155,10 +155,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Video Clips Ltd";
+				ORGANIZATIONNAME = "Forbidden Technologies plc";
 				TargetAttributes = {
 					20F4F2901D4644A3007B5CEF = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = NPAL8477K5;
 					};
 					20F4F29A1D4644A3007B5CEF = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -324,6 +325,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -343,6 +345,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
