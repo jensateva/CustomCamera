@@ -322,6 +322,7 @@
 		20F4F2A61D4644A3007B5CEF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -340,6 +341,7 @@
 		20F4F2A71D4644A3007B5CEF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -393,6 +395,7 @@
 				20F4F2A71D4644A3007B5CEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20F4F2A81D4644A3007B5CEF /* Build configuration list for PBXNativeTarget "customCameraTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +404,7 @@
 				20F4F2AA1D4644A3007B5CEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
