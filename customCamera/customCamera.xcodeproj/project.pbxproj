@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20F4F2951D4644A3007B5CEF /* customCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F4F2941D4644A3007B5CEF /* customCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		20F4F29C1D4644A3007B5CEF /* iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F4F2911D4644A3007B5CEF /* iOS.framework */; };
+		20F4F29C1D4644A3007B5CEF /* customCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F4F2911D4644A3007B5CEF /* customCamera.framework */; };
 		20F4F2A11D4644A3007B5CEF /* customCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2A01D4644A3007B5CEF /* customCameraTests.swift */; };
 		20F4F2AD1D4644F0007B5CEF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2AC1D4644F0007B5CEF /* Camera.swift */; };
 /* End PBXBuildFile section */
@@ -24,7 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20F4F2911D4644A3007B5CEF /* iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F4F2911D4644A3007B5CEF /* customCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = customCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F4F2941D4644A3007B5CEF /* customCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customCamera.h; sourceTree = "<group>"; };
 		20F4F2961D4644A3007B5CEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20F4F29B1D4644A3007B5CEF /* customCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = customCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20F4F29C1D4644A3007B5CEF /* iOS.framework in Frameworks */,
+				20F4F29C1D4644A3007B5CEF /* customCamera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +64,7 @@
 		20F4F2921D4644A3007B5CEF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20F4F2911D4644A3007B5CEF /* iOS.framework */,
+				20F4F2911D4644A3007B5CEF /* customCamera.framework */,
 				20F4F29B1D4644A3007B5CEF /* customCameraTests.xctest */,
 			);
 			name = Products;
@@ -111,9 +111,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		20F4F2901D4644A3007B5CEF /* iOS */ = {
+		20F4F2901D4644A3007B5CEF /* customCamera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20F4F2A51D4644A3007B5CEF /* Build configuration list for PBXNativeTarget "iOS" */;
+			buildConfigurationList = 20F4F2A51D4644A3007B5CEF /* Build configuration list for PBXNativeTarget "customCamera" */;
 			buildPhases = (
 				20F4F28C1D4644A3007B5CEF /* Sources */,
 				20F4F28D1D4644A3007B5CEF /* Frameworks */,
@@ -124,9 +124,9 @@
 			);
 			dependencies = (
 			);
-			name = iOS;
+			name = customCamera;
 			productName = customCamera;
-			productReference = 20F4F2911D4644A3007B5CEF /* iOS.framework */;
+			productReference = 20F4F2911D4644A3007B5CEF /* customCamera.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		20F4F29A1D4644A3007B5CEF /* customCameraTests */ = {
@@ -177,7 +177,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				20F4F2901D4644A3007B5CEF /* iOS */,
+				20F4F2901D4644A3007B5CEF /* customCamera */,
 				20F4F29A1D4644A3007B5CEF /* customCameraTests */,
 			);
 		};
@@ -222,7 +222,7 @@
 /* Begin PBXTargetDependency section */
 		20F4F29E1D4644A3007B5CEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 20F4F2901D4644A3007B5CEF /* iOS */;
+			target = 20F4F2901D4644A3007B5CEF /* customCamera */;
 			targetProxy = 20F4F29D1D4644A3007B5CEF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -386,7 +386,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		20F4F2A51D4644A3007B5CEF /* Build configuration list for PBXNativeTarget "iOS" */ = {
+		20F4F2A51D4644A3007B5CEF /* Build configuration list for PBXNativeTarget "customCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20F4F2A61D4644A3007B5CEF /* Debug */,
