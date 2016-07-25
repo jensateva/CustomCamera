@@ -17,7 +17,7 @@
                BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
                BuildableName = "customCamera.framework"
                BlueprintName = "customCamera"
-               ReferencedContainer = "container:customCamera.xcodeproj">
+               ReferencedContainer = "container:customCamera/customCamera.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "20F4F29A1D4644A3007B5CEF"
                BuildableName = "customCameraTests.xctest"
                BlueprintName = "customCameraTests"
-               ReferencedContainer = "container:customCamera.xcodeproj">
+               ReferencedContainer = "container:customCamera/customCamera.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
             BuildableName = "customCamera.framework"
             BlueprintName = "customCamera"
-            ReferencedContainer = "container:customCamera.xcodeproj">
+            ReferencedContainer = "container:customCamera/customCamera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
             BuildableName = "customCamera.framework"
             BlueprintName = "customCamera"
-            ReferencedContainer = "container:customCamera.xcodeproj">
+            ReferencedContainer = "container:customCamera/customCamera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
             BuildableName = "customCamera.framework"
             BlueprintName = "customCamera"
-            ReferencedContainer = "container:customCamera.xcodeproj">
+            ReferencedContainer = "container:customCamera/customCamera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
