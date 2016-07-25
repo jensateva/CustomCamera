@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
-               BuildableName = "customCamera.framework"
-               BlueprintName = "customCamera"
+               BuildableName = "iOS.framework"
+               BlueprintName = "iOS"
                ReferencedContainer = "container:customCamera.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
-            BuildableName = "customCamera.framework"
-            BlueprintName = "customCamera"
+            BuildableName = "iOS.framework"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:customCamera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
-            BuildableName = "customCamera.framework"
-            BlueprintName = "customCamera"
+            BuildableName = "iOS.framework"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:customCamera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,8 +83,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "20F4F2901D4644A3007B5CEF"
-            BuildableName = "customCamera.framework"
-            BlueprintName = "customCamera"
+            BuildableName = "iOS.framework"
+            BlueprintName = "iOS"
             ReferencedContainer = "container:customCamera.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
