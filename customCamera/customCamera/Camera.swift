@@ -86,7 +86,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
 
 
-    private func forsceneConnect()
+    public func forsceneConnect()
     {
         print("CONNECTING TO FORSCENE")
         let USERNAME = Account.Constants.FORSCENE_USERID as String
