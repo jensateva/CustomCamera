@@ -12,7 +12,7 @@
 		20F4F2951D4644A3007B5CEF /* customCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F4F2941D4644A3007B5CEF /* customCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20F4F29C1D4644A3007B5CEF /* customCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F4F2911D4644A3007B5CEF /* customCamera.framework */; };
 		20F4F2A11D4644A3007B5CEF /* customCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2A01D4644A3007B5CEF /* customCameraTests.swift */; };
-		20F4F2AD1D4644F0007B5CEF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2AC1D4644F0007B5CEF /* Camera.swift */; };
+		20F4F2AD1D4644F0007B5CEF /* ForsceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2AC1D4644F0007B5CEF /* ForsceneCamera.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,7 @@
 		20F4F29B1D4644A3007B5CEF /* customCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = customCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F4F2A01D4644A3007B5CEF /* customCameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCameraTests.swift; sourceTree = "<group>"; };
 		20F4F2A21D4644A3007B5CEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20F4F2AC1D4644F0007B5CEF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		20F4F2AC1D4644F0007B5CEF /* ForsceneCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForsceneCamera.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				20773C181D47803A005186D7 /* NetworkManager.swift */,
-				20F4F2AC1D4644F0007B5CEF /* Camera.swift */,
+				20F4F2AC1D4644F0007B5CEF /* ForsceneCamera.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20773C191D47803A005186D7 /* NetworkManager.swift in Sources */,
-				20F4F2AD1D4644F0007B5CEF /* Camera.swift in Sources */,
+				20F4F2AD1D4644F0007B5CEF /* ForsceneCamera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
