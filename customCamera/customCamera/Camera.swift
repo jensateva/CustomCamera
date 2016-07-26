@@ -87,12 +87,12 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         }
 
 
-    public func connectToForscene()
+    public func connectToForscene(username: String, password: String)
     {
         print("CONNECTING TO FORSCENE")
         let LOGIN_URL = "https://forscene.net/api/login"
-        let username = Account.Constants.FORSCENE_USERID as String
-        let password = Account.Constants.FORSCENE_PASSWORD as String
+//        let username = Account.Constants.FORSCENE_USERID as String
+//        let password = Account.Constants.FORSCENE_PASSWORD as String
 
         let parameters: [String: AnyObject] =
             [
