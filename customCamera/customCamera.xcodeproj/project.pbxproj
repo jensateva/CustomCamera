@@ -11,7 +11,7 @@
 		20773C141D475448005186D7 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20773C121D475448005186D7 /* CameraViewController.xib */; };
 		20773C171D47778B005186D7 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C161D47778B005186D7 /* Account.swift */; };
 		20773C191D47803A005186D7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C181D47803A005186D7 /* NetworkManager.swift */; };
-		20773C1A1D47867C005186D7 /* Account.swift in Headers */ = {isa = PBXBuildFile; fileRef = 20773C161D47778B005186D7 /* Account.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		20773C1A1D47867C005186D7 /* Account.swift in Headers */ = {isa = PBXBuildFile; fileRef = 20773C161D47778B005186D7 /* Account.swift */; };
 		20F4F2951D4644A3007B5CEF /* customCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F4F2941D4644A3007B5CEF /* customCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20F4F29C1D4644A3007B5CEF /* customCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F4F2911D4644A3007B5CEF /* customCamera.framework */; };
 		20F4F2A11D4644A3007B5CEF /* customCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2A01D4644A3007B5CEF /* customCameraTests.swift */; };
