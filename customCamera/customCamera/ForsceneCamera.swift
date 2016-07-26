@@ -19,7 +19,7 @@ import MobileCoreServices
 import UIKit
 import Alamofire
 
-public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 
