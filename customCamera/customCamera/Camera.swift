@@ -155,8 +155,8 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
         let task = NetworkManager.sharedManager.backgroundTask
         let folder = Account.Constants.FORSCENE_FOLDER as String
-        let accountName = Account.Constants.FORSCENE_ACCOUNTNAME as String
-        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
+     //   let accountName = Account.Constants.FORSCENE_ACCOUNTNAME as String
+        let uploadUrl = "https://pro.forscene.net/forscene/" + "jw198" + "/webupload?resultFormat=json" as String
 
         task.upload(
 
