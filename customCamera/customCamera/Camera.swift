@@ -144,82 +144,21 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
 
 
-
-
-
-
-    public func forsceneConnect(username:String, password:String)
-    {
-        print("CONNECTING TO FORSCENE")
-        let LOGIN_URL = "https://forscene.net/api/login"
-
-        let parameters: [String: AnyObject] =
-        [
-                "persistentLogin":"true",
-                "user": username,
-                "password": password
-        ]
-
-        Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
-
-            .responseJSON { response in
-                debugPrint(response)
-
-                switch response.result
-                {
-                case .Success(let JSON):
-                    print("Success with JSON: \(JSON)")
-
-                    let Dictionary = JSON .valueForKey("results") as! NSDictionary
-                    let status = Dictionary .valueForKey("status") as! String
-
-                    switch status
-                    {
-                    case ("valid"):
-
-                        let token = Dictionary .valueForKey("token")
-                       //  let persistentToken = Dictionary .valueForKey("persistentToken")
-                       // let urls = Dictionary .valueForKey("urls")
-                       // self.defaults.setObject(persistentToken, forKey: "persistentToken")
-                        self.defaults.setObject(token, forKey: "token")
-                      //  self.defaults.setObject(urls, forKey: "urls")
-                        self.defaults.setBool(true, forKey: "Registered")
-                        self.defaults.synchronize()
-
-                    case ("invalid"):
-                        print("invalid")
-
-                    default:
-                        print("Default switch")
-                    }
-
-                case .Failure(let error):
-                    print("Request failed with error: \(error)")
-                }
-        }
-    }
-
-
-
-
-
-
     private func UploadVideo(urlString:NSURL)
     {
         let TOKEN = defaults.valueForKey("token")
         let headers = ["X-Auth-Kestrel": TOKEN as! String ]
-
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
 
-        let FORSCENE_UPLOADURL = "https://pro.forscene.net/forscene/" + Account.Constants.FORSCENE_ACCOUNTNAME + "/webupload?resultFormat=json" as String
-
         let task = NetworkManager.sharedManager.backgroundTask
         let folder = Account.Constants.FORSCENE_FOLDER as String
+        let accountName = Account.Constants.FORSCENE_ACCOUNTNAME as String
+        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
         task.upload(
 
-            .POST,FORSCENE_UPLOADURL,
+            .POST,uploadUrl,
             headers: headers,
             multipartFormData: { multipartFormData in
 
