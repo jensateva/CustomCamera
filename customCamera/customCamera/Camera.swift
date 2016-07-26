@@ -53,13 +53,15 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
             imagePicker.delegate = self
             imagePicker.allowsEditing = true
             imagePicker.sourceType = .Camera
-            // imagePicker.mediaTypes = [kUTTypeMovie as String]
+            imagePicker.mediaTypes = [kUTTypeMovie as String]
             imagePicker.delegate = self
             imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
     
             dispatch_async(dispatch_get_main_queue(), {
                 targetVC.presentViewController(imagePicker, animated: true, completion: nil)
             })
+
+            forsceneConnect()
         }
 
 
