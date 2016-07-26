@@ -34,7 +34,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-    /// PUBLIC FUNCTIONS
+     let defaults = NSUserDefaults.standardUserDefaults()
 
 
     public func openCamera(targetVC: UIViewController){
@@ -122,7 +122,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                        // let urls = Dictionary .valueForKey("urls")
                        // self.defaults.setObject(persistentToken, forKey: "persistentToken")
                         self.defaults.setObject(token, forKey: "token")
-                        self.defaults.setObject(urls, forKey: "urls")
+                      //  self.defaults.setObject(urls, forKey: "urls")
                         self.defaults.setBool(true, forKey: "Registered")
                         self.defaults.synchronize()
 
@@ -152,14 +152,14 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
 
-        let FORSCENE_UPLOADURL = "https://pro.forscene.net/forscene/" + Account.Constants.FORSCENE_ACCOUNTNAME + "/webupload?resultFormat=json"
+        let FORSCENE_UPLOADURL = "https://pro.forscene.net/forscene/" + Account.Constants.FORSCENE_ACCOUNTNAME + "/webupload?resultFormat=json" as String
 
         let task = NetworkManager.sharedManager.backgroundTask
         let folder = Account.Constants.FORSCENE_FOLDER as String
 
         task.upload(
 
-            .POST,url!,
+            .POST,FORSCENE_UPLOADURL,
             headers: headers,
             multipartFormData: { multipartFormData in
 
@@ -176,13 +176,13 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
                 case .Success(let upload,  _,  _):
 
-                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
-
-                        dispatch_async(dispatch_get_main_queue())
-                        {
-                            self.fileMetaDataDictionary[urlString]?.progressBar.angle = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * (self.fileMetaDataDictionary[urlString]?.fileProportionalAngle)!
-                        }
-                    }
+//                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
+//
+//                        dispatch_async(dispatch_get_main_queue())
+//                        {
+//                            self.fileMetaDataDictionary[urlString]?.progressBar.angle = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * (self.fileMetaDataDictionary[urlString]?.fileProportionalAngle)!
+//                        }
+//                    }
 
                     //TODO: Check Json response correctly
                     upload.responseJSON { response in
