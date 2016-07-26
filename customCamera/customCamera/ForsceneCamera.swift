@@ -89,7 +89,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                 switch response.result
                 {
                 case .Success(let JSON):
-                    print("CONNECTING TO FORSCENE")
+                    print("CONNECTING TO FORSCENE...")
 
                     let Dictionary = JSON .valueForKey("results") as! NSDictionary
                     let status = Dictionary .valueForKey("status") as! String
@@ -98,12 +98,12 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                     {
                     case ("valid"):
 
-                        print("ICONNECTED WITH SUCCESS")
+                        print("CONNECTED WITH SUCCESS!")
                         let token = Dictionary .valueForKey("token")
                         self.defaults.setObject(token, forKey: "token")
                         self.defaults.setBool(true, forKey: "Registered")
                         self.defaults.setValue(accountName, forKey: "accountName")
-                        self.defaults.setValue(folderName, forKey: "App")
+                        self.defaults.setValue(folderName, forKey: "folderName")
                         self.defaults.setValue(identifier, forKey: "identifier")
                         self.defaults.synchronize()
 
