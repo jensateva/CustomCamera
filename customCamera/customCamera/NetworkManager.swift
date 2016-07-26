@@ -28,18 +28,12 @@ class NetworkManager: NSObject {
         )]
 
     lazy var backgroundTask: Alamofire.Manager = {
-        let identifier = Account.Constants.FORSCENE_BACKGROUND_IDENTIFIER
-
-        // NEW
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let identifier = defaults.valueForKey("identifier") as! String
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
         configuration.HTTPMaximumConnectionsPerHost = 4
-        print(configuration.identifier)
 
-
-        // configuration.timeoutIntervalForRequest = 120
         return Alamofire.Manager(configuration: configuration)
 
-        // ORIGINAL USE THIS AGAIN LATER WHEN WE HAVE UI TO SHOW MULTI UPLOAD WORKING AT SAME TIME
-        // return Alamofire.Manager(configuration: NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier))
     }()
 }

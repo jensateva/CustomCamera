@@ -21,6 +21,8 @@ import Alamofire
 
 public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    let defaults = NSUserDefaults.standardUserDefaults()
+
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
     }
@@ -34,20 +36,6 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-     let defaults = NSUserDefaults.standardUserDefaults()
-
-
-    public func openCamera(targetVC: UIViewController){
-        print("Calling open camera")
-        let cameraView = CameraViewController()
-        dispatch_async(dispatch_get_main_queue(), {
-        targetVC.presentViewController(cameraView, animated: true, completion: nil)
-        })
-    }
-
-
-
-
         public func openPickerCamera(targetVC: UIViewController){
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -60,8 +48,6 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
             dispatch_async(dispatch_get_main_queue(), {
                 targetVC.presentViewController(imagePicker, animated: true, completion: nil)
             })
-
-           // forsceneConnect()
         }
 
 
@@ -74,10 +60,6 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                     if stringType == kUTTypeMovie as String {
 
                         let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
-                        print(urlOfVideo)
-                         // self.UploadVideo(urlOfVideo!)
-                         // self.forsceneConnect()
-
                         self.UploadVideo(urlOfVideo!)
 
                     }
@@ -87,12 +69,10 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         }
 
 
-    public func connectToForscene(username: String, password: String)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String)
     {
         print("CONNECTING TO FORSCENE")
         let LOGIN_URL = "https://forscene.net/api/login"
-//        let username = Account.Constants.FORSCENE_USERID as String
-//        let password = Account.Constants.FORSCENE_PASSWORD as String
 
         let parameters: [String: AnyObject] =
             [
@@ -100,8 +80,6 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                 "user": username,
                 "password": password
         ]
-
-        print(parameters)
 
         Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
 
@@ -111,7 +89,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                 switch response.result
                 {
                 case .Success(let JSON):
-                    print("Success with JSON: \(JSON)")
+                    print("CONNECTING TO FORSCENE")
 
                     let Dictionary = JSON .valueForKey("results") as! NSDictionary
                     let status = Dictionary .valueForKey("status") as! String
@@ -120,24 +98,24 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                     {
                     case ("valid"):
 
+                        print("ICONNECTED WITH SUCCESS")
                         let token = Dictionary .valueForKey("token")
-                        //  let persistentToken = Dictionary .valueForKey("persistentToken")
-                        // let urls = Dictionary .valueForKey("urls")
-                        // self.defaults.setObject(persistentToken, forKey: "persistentToken")
                         self.defaults.setObject(token, forKey: "token")
-                        //  self.defaults.setObject(urls, forKey: "urls")
                         self.defaults.setBool(true, forKey: "Registered")
+                        self.defaults.setValue(accountName, forKey: "accountName")
+                        self.defaults.setValue(folderName, forKey: "App")
+                        self.defaults.setValue(identifier, forKey: "identifier")
                         self.defaults.synchronize()
 
                     case ("invalid"):
-                        print("invalid")
+                        print("INVALID CREDENTIALS")
 
                     default:
                         print("Default switch")
                     }
                     
                 case .Failure(let error):
-                    print("Request failed with error: \(error)")
+                    print("REQUEST FAILED WITH ERROR: \(error)")
                 }
         }
     }
@@ -153,11 +131,11 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
 
-        let task = NetworkManager.sharedManager.backgroundTask
-        let folder = Account.Constants.FORSCENE_FOLDER as String
-     //   let accountName = Account.Constants.FORSCENE_ACCOUNTNAME as String
-        let uploadUrl = "https://pro.forscene.net/forscene/" + "jw198" + "/webupload?resultFormat=json" as String
+        let accountName = defaults.valueForKey("accountName") as! String
+        let folderName = defaults.valueForKey("folderName") as! String
+        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
+        let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
 
             .POST,uploadUrl,
@@ -167,14 +145,13 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                 multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-                multipartFormData.appendBodyPart(data: folder .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+                multipartFormData.appendBodyPart(data: folderName .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
 
             },
 
             encodingCompletion: { encodingResult in
 
                 switch encodingResult {
-
                 case .Success(let upload,  _,  _):
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
@@ -190,7 +167,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                     //TODO: Check Json response correctly
                     upload.responseJSON { response in
 
-                        print("UPLOAD SUCCESS")
+                        print("FORSCENE UPLOAD SUCCESS")
                     }
                 case .Failure(let encodingError):
 
