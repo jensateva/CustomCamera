@@ -61,7 +61,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                 targetVC.presentViewController(imagePicker, animated: true, completion: nil)
             })
 
-            forsceneConnect()
+           // forsceneConnect()
         }
 
 
@@ -76,7 +76,7 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                         let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
                         print(urlOfVideo)
                          //self.UploadVideo(urlOfVideo!)
-                        self.forsceneConnect()
+                        //self.forsceneConnect()
 
                     }
                 }
@@ -86,18 +86,16 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
 
 
-    public func forsceneConnect()
+    public func forsceneConnect(username:String, password:String)
     {
         print("CONNECTING TO FORSCENE")
-        let USERNAME = Account.Constants.FORSCENE_USERID as String
-        let PASSWORD = Account.Constants.FORSCENE_PASSWORD as String
         let LOGIN_URL = "https://forscene.net/api/login"
 
         let parameters: [String: AnyObject] =
         [
                 "persistentLogin":"true",
-                "user": USERNAME,
-                "password": PASSWORD
+                "user": username,
+                "password": password
         ]
 
         Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
