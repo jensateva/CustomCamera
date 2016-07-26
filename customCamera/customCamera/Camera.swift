@@ -101,6 +101,8 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
                 "password": password
         ]
 
+        print(parameters)
+
         Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
 
             .responseJSON { response in
