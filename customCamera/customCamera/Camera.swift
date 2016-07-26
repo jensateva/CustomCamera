@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class Camera : UIViewController {
+public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -34,60 +34,60 @@ public class Camera : UIViewController {
     /// PUBLIC FUNCTIONS
     public func openCamera(targetVC: UIViewController){
         print("Calling open camera")
-//        let cameraView = ForbiddenCameraViewController()
-//        dispatch_async(dispatch_get_main_queue(), {
-//            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(cameraView, animated: true, completion: nil)
-//
-//        })
+
+        let cameraView = CameraViewController()
+        dispatch_async(dispatch_get_main_queue(), {
+        targetVC.presentViewController(cameraView, animated: true, completion: nil)
+        })
     }
 
-
-    //    public func openPickerCamera(){
-    //
-    //        let imagePicker = UIImagePickerController()
-    //        imagePicker.delegate = self
-    //        imagePicker.allowsEditing = true
-    //        imagePicker.sourceType = .Camera
-    //        imagePicker.mediaTypes = [kUTTypeMovie as String]
-    //        imagePicker.delegate = self
-    //        imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
-    //
-    //        dispatch_async(dispatch_get_main_queue(), {
-    //            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(imagePicker, animated: true, completion: nil)
-    //        })
-    //    }
-
-
-    //    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-    //        let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
-    //
-    //        if let type:AnyObject = mediaType {
-    //            if type is String {
-    //                let stringType = type as! String
-    //                if stringType == kUTTypeMovie as String {
-    ////                    let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
-    //                    //TODO: CHECK RACE CONDITIONS
-    ////                    self.selectedCount += 1
-    ////                    self.uploadCount += 1
-    ////                    self.chosenImages.addObject(urlOfVideo!)
-    ////                    self.createProgressBars()
-    //
-    ////                    if defaults.boolForKey("uploadToProject")
-    ////                    {
-    ////                        self.UploadVideo(urlOfVideo!, destination: "project")
-    ////                        print("UPLOAD TO PROJECT")
-    ////                    }
-    ////                    else
-    ////                    {
-    ////                        self.UploadVideo(urlOfVideo!, destination: "mobileUploads")
-    ////                        print("DEFAULT UPLOAD FOLDER")
-    ////                    }
-    //                }
-    //            }
-    //        }
-    //        picker.dismissViewControllerAnimated(true, completion: nil)
-    //    }
+        public func openPickerCamera(targetVC: UIViewController){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .Camera
+           // imagePicker.mediaTypes = [kUTTypeMovie as String]
+            imagePicker.delegate = self
+            imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
     
+            dispatch_async(dispatch_get_main_queue(), {
+                targetVC.presentViewController(imagePicker, animated: true, completion: nil)
+            })
+        }
+
+
+
+
+        public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+            let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
+    
+            if let type:AnyObject = mediaType {
+                if type is String {
+    //               let stringType = type as! String
+    //                if stringType == kUTTypeMovie as String {
+    //                    let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
+                        //TODO: CHECK RACE CONDITIONS
+    //                    self.selectedCount += 1
+    //                    self.uploadCount += 1
+    //                    self.chosenImages.addObject(urlOfVideo!)
+    //                    self.createProgressBars()
+    
+    //                    if defaults.boolForKey("uploadToProject")
+    //                    {
+    //                        self.UploadVideo(urlOfVideo!, destination: "project")
+    //                        print("UPLOAD TO PROJECT")
+    //                    }
+    //                    else
+    //                    {
+    //                        self.UploadVideo(urlOfVideo!, destination: "mobileUploads")
+    //                        print("DEFAULT UPLOAD FOLDER")
+    //                    }
+    //                }
+                }
+            }
+            picker.dismissViewControllerAnimated(true, completion: nil)
+        }
+
     
 }
 
