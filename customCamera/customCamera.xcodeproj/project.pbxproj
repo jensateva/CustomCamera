@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2040B1711D47938A00F13780 /* Account.swift in Headers */ = {isa = PBXBuildFile; fileRef = 20773C161D47778B005186D7 /* Account.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		20773C131D475448005186D7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C111D475448005186D7 /* CameraViewController.swift */; };
 		20773C141D475448005186D7 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20773C121D475448005186D7 /* CameraViewController.xib */; };
 		20773C171D47778B005186D7 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C161D47778B005186D7 /* Account.swift */; };
@@ -184,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20F4F2951D4644A3007B5CEF /* customCamera.h in Headers */,
+				2040B1711D47938A00F13780 /* Account.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -75,14 +75,76 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
                         let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
                         print(urlOfVideo)
-                         //self.UploadVideo(urlOfVideo!)
-                        //self.forsceneConnect()
+                         // self.UploadVideo(urlOfVideo!)
+                         // self.forsceneConnect()
+
+                        self.UploadVideo(urlOfVideo!)
 
                     }
                 }
             }
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
+
+
+    public func connectToForscene()
+    {
+        print("CONNECTING TO FORSCENE")
+        let LOGIN_URL = "https://forscene.net/api/login"
+        let username = Account.Constants.FORSCENE_USERID as String
+        let password = Account.Constants.FORSCENE_PASSWORD as String
+
+        let parameters: [String: AnyObject] =
+            [
+                "persistentLogin":"true",
+                "user": username,
+                "password": password
+        ]
+
+        Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
+
+            .responseJSON { response in
+                debugPrint(response)
+
+                switch response.result
+                {
+                case .Success(let JSON):
+                    print("Success with JSON: \(JSON)")
+
+                    let Dictionary = JSON .valueForKey("results") as! NSDictionary
+                    let status = Dictionary .valueForKey("status") as! String
+
+                    switch status
+                    {
+                    case ("valid"):
+
+                        let token = Dictionary .valueForKey("token")
+                        //  let persistentToken = Dictionary .valueForKey("persistentToken")
+                        // let urls = Dictionary .valueForKey("urls")
+                        // self.defaults.setObject(persistentToken, forKey: "persistentToken")
+                        self.defaults.setObject(token, forKey: "token")
+                        //  self.defaults.setObject(urls, forKey: "urls")
+                        self.defaults.setBool(true, forKey: "Registered")
+                        self.defaults.synchronize()
+
+                    case ("invalid"):
+                        print("invalid")
+
+                    default:
+                        print("Default switch")
+                    }
+                    
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
+                }
+        }
+    }
+
+
+
+
+
+
 
 
 
@@ -174,13 +236,15 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
 
                 case .Success(let upload,  _,  _):
 
-//                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
-//
+                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
+
+                        print(bytesRead)
+
 //                        dispatch_async(dispatch_get_main_queue())
 //                        {
 //                            self.fileMetaDataDictionary[urlString]?.progressBar.angle = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * (self.fileMetaDataDictionary[urlString]?.fileProportionalAngle)!
 //                        }
-//                    }
+                    }
 
                     //TODO: Check Json response correctly
                     upload.responseJSON { response in
