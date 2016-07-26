@@ -15,6 +15,9 @@
 //
 
 import Foundation
+import MobileCoreServices
+import UIKit
+import Alamofire
 
 public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -32,21 +35,25 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     /// PUBLIC FUNCTIONS
+
+
     public func openCamera(targetVC: UIViewController){
         print("Calling open camera")
-
         let cameraView = CameraViewController()
         dispatch_async(dispatch_get_main_queue(), {
         targetVC.presentViewController(cameraView, animated: true, completion: nil)
         })
     }
 
+
+
+
         public func openPickerCamera(targetVC: UIViewController){
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.allowsEditing = true
             imagePicker.sourceType = .Camera
-           // imagePicker.mediaTypes = [kUTTypeMovie as String]
+            // imagePicker.mediaTypes = [kUTTypeMovie as String]
             imagePicker.delegate = self
             imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
     
@@ -56,37 +63,139 @@ public class Camera : UIViewController, UIImagePickerControllerDelegate, UINavig
         }
 
 
-
-
         public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
     
             if let type:AnyObject = mediaType {
                 if type is String {
-    //               let stringType = type as! String
-    //                if stringType == kUTTypeMovie as String {
-    //                    let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
-                        //TODO: CHECK RACE CONDITIONS
-    //                    self.selectedCount += 1
-    //                    self.uploadCount += 1
-    //                    self.chosenImages.addObject(urlOfVideo!)
-    //                    self.createProgressBars()
-    
-    //                    if defaults.boolForKey("uploadToProject")
-    //                    {
-    //                        self.UploadVideo(urlOfVideo!, destination: "project")
-    //                        print("UPLOAD TO PROJECT")
-    //                    }
-    //                    else
-    //                    {
-    //                        self.UploadVideo(urlOfVideo!, destination: "mobileUploads")
-    //                        print("DEFAULT UPLOAD FOLDER")
-    //                    }
-    //                }
+                   let stringType = type as! String
+                    if stringType == kUTTypeMovie as String {
+
+                        let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
+                        print(urlOfVideo)
+                         //self.UploadVideo(urlOfVideo!)
+                        self.forsceneConnect()
+
+                    }
                 }
             }
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
+
+
+
+    private func forsceneConnect()
+    {
+        print("CONNECTING TO FORSCENE")
+        let USERNAME = Account.Constants.FORSCENE_USERID as String
+        let PASSWORD = Account.Constants.FORSCENE_PASSWORD as String
+        let LOGIN_URL = "https://forscene.net/api/login"
+
+        let parameters: [String: AnyObject] =
+        [
+                "persistentLogin":"true",
+                "user": USERNAME,
+                "password": PASSWORD
+        ]
+
+        Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
+
+            .responseJSON { response in
+                debugPrint(response)
+
+                switch response.result
+                {
+                case .Success(let JSON):
+                    print("Success with JSON: \(JSON)")
+
+                    let Dictionary = JSON .valueForKey("results") as! NSDictionary
+                    let status = Dictionary .valueForKey("status") as! String
+
+                    switch status
+                    {
+                    case ("valid"):
+
+                        let token = Dictionary .valueForKey("token")
+                       //  let persistentToken = Dictionary .valueForKey("persistentToken")
+                       // let urls = Dictionary .valueForKey("urls")
+                       // self.defaults.setObject(persistentToken, forKey: "persistentToken")
+                        self.defaults.setObject(token, forKey: "token")
+                        self.defaults.setObject(urls, forKey: "urls")
+                        self.defaults.setBool(true, forKey: "Registered")
+                        self.defaults.synchronize()
+
+                    case ("invalid"):
+                        print("invalid")
+
+                    default:
+                        print("Default switch")
+                    }
+
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
+                }
+        }
+    }
+
+
+
+
+
+
+    private func UploadVideo(urlString:NSURL)
+    {
+        let TOKEN = defaults.valueForKey("token")
+        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
+
+        let today = NSDate.distantPast()
+        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
+
+        let FORSCENE_UPLOADURL = "https://pro.forscene.net/forscene/" + Account.Constants.FORSCENE_ACCOUNTNAME + "/webupload?resultFormat=json"
+
+        let task = NetworkManager.sharedManager.backgroundTask
+        let folder = Account.Constants.FORSCENE_FOLDER as String
+
+        task.upload(
+
+            .POST,url!,
+            headers: headers,
+            multipartFormData: { multipartFormData in
+
+                multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
+                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
+                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
+                multipartFormData.appendBodyPart(data: folder .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+
+            },
+
+            encodingCompletion: { encodingResult in
+
+                switch encodingResult {
+
+                case .Success(let upload,  _,  _):
+
+                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
+
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            self.fileMetaDataDictionary[urlString]?.progressBar.angle = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * (self.fileMetaDataDictionary[urlString]?.fileProportionalAngle)!
+                        }
+                    }
+
+                    //TODO: Check Json response correctly
+                    upload.responseJSON { response in
+
+                        print("UPLOAD SUCCESS")
+                    }
+                case .Failure(let encodingError):
+
+                    print(encodingError)
+
+                }
+            }
+        )
+    }
+
 
     
 }
