@@ -124,7 +124,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
 
 
 
-    private func UploadVideo(urlString:NSURL)
+    public func UploadVideo(urlString:NSURL)
     {
         let TOKEN = defaults.valueForKey("token")
         let headers = ["X-Auth-Kestrel": TOKEN as! String ]
