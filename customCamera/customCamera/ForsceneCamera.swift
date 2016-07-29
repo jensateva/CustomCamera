@@ -158,10 +158,14 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
 
                         print(bytesRead)
 
-//                        dispatch_async(dispatch_get_main_queue())
-//                        {
-//                            self.fileMetaDataDictionary[urlString]?.progressBar.angle = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * (self.fileMetaDataDictionary[urlString]?.fileProportionalAngle)!
-//                        }
+                        // Not Tested
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            let progressBar = UIProgressView()
+                            progressBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 2)
+                            self.view.addSubview(progressBar)
+                            progressBar.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+                        }
                     }
 
                     //TODO: Check Json response correctly
