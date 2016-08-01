@@ -44,7 +44,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         let storyboard = UIStoryboard(name: storyboardName, bundle: storyboardBundle)
 
         // Find the VC
-        let vc = storyboard.instantiateViewControllerWithIdentifier("ViewController")
+        let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
         dispatch_async(dispatch_get_main_queue(), {
             targetVC.presentViewController(vc, animated: true, completion: nil)
         })
