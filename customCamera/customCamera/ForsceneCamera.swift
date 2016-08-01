@@ -36,6 +36,20 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         }
     }
 
+    public func openCustomCamera(targetVC: UIViewController, frameRate : Int32){
+
+        // Find the storyboard
+        let storyboardName = "Custom"
+        let storyboardBundle = NSBundle(forClass: ForsceneCamera.self)
+        let storyboard = UIStoryboard(name: storyboardName, bundle: storyboardBundle)
+
+        // Find the VC
+        let vc = storyboard.instantiateViewControllerWithIdentifier("ViewController")
+        dispatch_async(dispatch_get_main_queue(), {
+            targetVC.presentViewController(vc, animated: true, completion: nil)
+        })
+    }
+
         public func openPickerCamera(targetVC: UIViewController){
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
