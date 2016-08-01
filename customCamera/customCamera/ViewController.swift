@@ -12,6 +12,7 @@ import MediaPlayer
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     @IBOutlet weak var exitCameraButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -53,6 +54,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Engine.startSession()
+
+        let defaults = NSUserDefaults()
+        let logo = defaults.valueForKey("logo") as! String
+        self.logoImage.image = UIImage(named: logo)
 
         Engine.blockCompletionProgress = { progress in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -181,6 +186,14 @@ class ViewController: UIViewController {
         self.switchButton.alpha = 1.0
         self.settingsButton.alpha = 1.0
         self.setupPortraitView()
+    }
+
+    func hideLogo(){
+         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        self.logoImage.alpha = 0.0
+            }, completion: { finished in
+
+         })
     }
 
     func blurOff(){
