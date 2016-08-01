@@ -60,7 +60,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="S2M-xM-PqS">
                                         <rect key="frame" x="40" y="490" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <state key="normal" image="cross.png">
+                                        <state key="normal" image="exitCamera.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -346,6 +346,7 @@
     </scenes>
     <resources>
         <image name="cross.png" width="240" height="240"/>
+        <image name="exitCamera.png" width="90" height="90"/>
         <image name="flip.png" width="90" height="90"/>
         <image name="icon_detection.png" width="128" height="128"/>
         <image name="icon_focusmode.png" width="128" height="128"/>

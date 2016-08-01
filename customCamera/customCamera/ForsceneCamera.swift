@@ -22,6 +22,7 @@ import Alamofire
 public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
+    let Engine = CameraEngine()
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -36,7 +37,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         }
     }
 
-    public func openCustomCamera(targetVC: UIViewController, frameRate : Int32){
+    public func openCustomCamera(targetVC: UIViewController){
 
         // Find the storyboard
         let storyboardName = "Custom"
@@ -83,8 +84,13 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         }
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, frameRate : String, multirecord: Bool)
     {
+         print("SETTING FRAMERATE : \(frameRate)")
+        let desiredFrameRate = Int32(frameRate)
+        Engine.changeFrameRate(desiredFrameRate!)
+
+
         print("CONNECTING TO FORSCENE")
         let LOGIN_URL = "https://forscene.net/api/login"
 
@@ -119,6 +125,10 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                         self.defaults.setValue(accountName, forKey: "accountName")
                         self.defaults.setValue(folderName, forKey: "folderName")
                         self.defaults.setValue(identifier, forKey: "identifier")
+                        self.defaults.setBool(multirecord, forKey: "multirecord")
+
+
+
                         self.defaults.synchronize()
 
                     case ("invalid"):

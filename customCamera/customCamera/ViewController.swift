@@ -280,13 +280,22 @@ class ViewController: UIViewController {
     }
 
     @IBAction func approveVideo(sender: UIButton) {
-        self.animateBackTorecord()
-        self.dismissViewControllerAnimated(true) { 
-            "User approved a video you could show upload status on main UI"
-            self.UploadVideo(self.lastRecordedMovie)
-        }
-       // self.CameraLibrary.UploadVideo(lastRecordedMovie)
 
+        self.UploadVideo(self.lastRecordedMovie)
+        self.animateBackTorecord()
+
+        let defaults = NSUserDefaults()
+        if defaults.boolForKey("multirecord")
+        {
+            "Multirecord is set to True we will display upload bar on Camera UI"
+        }
+        else
+        {
+        self.dismissViewControllerAnimated(true) {
+            self.animateBackTorecord()
+            "User approved a video you could show upload status on main UI"
+        }
+      }
     }
 
     private func UploadVideo(urlString:NSURL)
@@ -324,13 +333,10 @@ class ViewController: UIViewController {
 
                         print(bytesRead)
 
-                        // Not Tested
+                        // Show upload progress if user is multi recording
                         dispatch_async(dispatch_get_main_queue())
                         {
-                            let progressBar = UIProgressView()
-                            progressBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 2)
-                            self.view.addSubview(progressBar)
-                            progressBar.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+                            self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
                         }
                     }
 
