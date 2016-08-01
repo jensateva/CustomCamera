@@ -67,6 +67,17 @@
                                             <action selector="exitCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="9db-Sp-5Wb"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jM1-Kw-7kR">
+                                        <rect key="frame" x="40" y="490" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <state key="normal" image="settigns.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="TT5-1w-U2T"/>
+                                            <action selector="revealSettings:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="KH0-js-wNt"/>
+                                        </connections>
+                                    </button>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" id="uDp-1e-qsK">
                                         <rect key="frame" x="115" y="465" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -311,6 +322,7 @@
                     <connections>
                         <outlet property="approveButtonsVIew" destination="YTP-lI-50O" id="guj-W1-rky"/>
                         <outlet property="doneButton" destination="RQi-Qt-drc" id="CDc-pd-B2n"/>
+                        <outlet property="exitCameraButton" destination="S2M-xM-PqS" id="3fR-TV-GFy"/>
                         <outlet property="faceDetection" destination="z8o-Wl-uSq" id="IUt-8J-4uX"/>
                         <outlet property="focusModeButton" destination="MFO-M4-Q2D" id="khC-J8-nMq"/>
                         <outlet property="frameRateButton" destination="y79-01-Y9A" id="a8D-2P-TFI"/>
@@ -330,6 +342,7 @@
                         <outlet property="recordButtonBlurView" destination="uDp-1e-qsK" id="5dV-ed-7X0"/>
                         <outlet property="settingsButton" destination="i4d-ak-K2Q" id="Y7O-8a-xTz"/>
                         <outlet property="settingsContainer" destination="PMM-zl-lkC" id="TGR-3T-edN"/>
+                        <outlet property="settingsIcon" destination="jM1-Kw-7kR" id="kcb-yr-BAy"/>
                         <outlet property="settingsView" destination="mj2-jW-dFC" id="MGg-Na-SKl"/>
                         <outlet property="switchButton" destination="tQP-zU-dCb" id="MNR-on-ybm"/>
                         <outlet property="torchMode" destination="MYU-nE-yqp" id="wUi-v1-zIH"/>
@@ -355,6 +368,7 @@
         <image name="icon_torch.png" width="128" height="128"/>
         <image name="play.png" width="240" height="240"/>
         <image name="record_start.png" width="240" height="240"/>
+        <image name="settigns.png" width="90" height="90"/>
         <image name="tick.png" width="240" height="240"/>
     </resources>
 </document>

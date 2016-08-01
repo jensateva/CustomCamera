@@ -12,6 +12,8 @@ import MediaPlayer
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var settingsIcon: UIButton!
+    @IBOutlet weak var exitCameraButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var iconDetection: UIImageView!
     @IBOutlet weak var iconTorch: UIImageView!
@@ -159,7 +161,16 @@ class ViewController: UIViewController {
         {
             self.labelDuration.hidden = true
             self.settingsButton.hidden = false
+            self.settingsIcon.hidden = true
         }
+
+        if defaults.boolForKey("hideExitButton")
+        {
+            self.labelDuration.hidden = false
+            self.settingsButton.hidden = true
+            self.settingsIcon.hidden = false
+        }
+
 
         self.labelDuration.text = "00:00"
         self.recordButtonBlurView.layer.cornerRadius = self.recordButtonBlurView.frame.size.width / 2
@@ -369,7 +380,7 @@ class ViewController: UIViewController {
     func animateBackTorecord(){
 
         self.blurOff()
-        
+
         let defaults = NSUserDefaults()
         if defaults.boolForKey("showCustomSettings")
         {

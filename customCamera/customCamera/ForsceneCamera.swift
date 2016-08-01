@@ -85,9 +85,12 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
 
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool)
     {
+        if frameRate > 23
+        {
         lockFrameRate(frameRate)
+        }
         customSettings(showCustomSettings)
         print("CONNECTING TO FORSCENE")
         let LOGIN_URL = "https://forscene.net/api/login"
@@ -124,7 +127,8 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                         self.defaults.setValue(folderName, forKey: "folderName")
                         self.defaults.setValue(identifier, forKey: "identifier")
                         self.defaults.setBool(multirecord, forKey: "multirecord")
-                         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
+                        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
+                        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
                         self.defaults.synchronize()
 
                     case ("invalid"):
