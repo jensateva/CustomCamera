@@ -84,11 +84,10 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         }
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, frameRate : String, multirecord: Bool)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, frameRate : Int32, multirecord: Bool)
     {
-         print("SETTING FRAMERATE : \(frameRate)")
-        let desiredFrameRate = Int32(frameRate)
-        Engine.changeFrameRate(desiredFrameRate!)
+        print("SETTING FRAMERATE : \(frameRate)")
+        Engine.changeFrameRate(frameRate)
 
 
         print("CONNECTING TO FORSCENE")
@@ -181,8 +180,6 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
                         print(bytesRead)
-
-                        // Not Tested
                         dispatch_async(dispatch_get_main_queue())
                         {
                             let progressBar = UIProgressView()
@@ -196,6 +193,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                     upload.responseJSON { response in
 
                         print("FORSCENE UPLOAD SUCCESS")
+                        
                     }
                 case .Failure(let encodingError):
 

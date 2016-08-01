@@ -300,6 +300,7 @@ class ViewController: UIViewController {
 
     private func UploadVideo(urlString:NSURL)
     {
+        self.uploadProgress.progress = 0.0
         let defaults = NSUserDefaults()
         let TOKEN = defaults.valueForKey("token")
         let headers = ["X-Auth-Kestrel": TOKEN as! String ]
@@ -344,10 +345,12 @@ class ViewController: UIViewController {
                     upload.responseJSON { response in
 
                         print("FORSCENE UPLOAD SUCCESS")
+                        self.uploadProgress.progress = 0.0
                     }
                 case .Failure(let encodingError):
                     
                     print(encodingError)
+                    self.uploadProgress.progress = 0.0
                     
                 }
             }
