@@ -45,7 +45,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var uploadProgress: UIProgressView!
 
     var lastRecordedMovie = NSURL()
-
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
 
@@ -268,6 +267,7 @@ class ViewController: UIViewController {
             self.switchButton.alpha = 0.0
             self.settingsButton.alpha = 0.0
             self.settingsIcon.alpha = 0.0
+            self.exitCameraButton.alpha = 0.0
 
             }, completion: { finished in
         })
@@ -329,6 +329,10 @@ class ViewController: UIViewController {
         self.dismissViewControllerAnimated(true) {
             self.animateBackTorecord()
             "User approved a video you could show upload status on main UI"
+            let progressBar = UIProgressView()
+            let vc = self.CameraLibrary.currentView
+            vc.view.addSubview(progressBar)
+
         }
       }
     }

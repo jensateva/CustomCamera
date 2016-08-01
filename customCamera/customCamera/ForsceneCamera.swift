@@ -23,6 +23,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
+    var currentView = UIViewController()
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -39,6 +40,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     public func openCustomCamera(targetVC: UIViewController, animated:Bool){
 
+        currentView = targetVC
         // Find the storyboard
         let storyboardName = "Custom"
         let storyboardBundle = NSBundle(forClass: ForsceneCamera.self)
