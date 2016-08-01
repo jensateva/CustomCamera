@@ -60,11 +60,11 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="S2M-xM-PqS">
                                         <rect key="frame" x="40" y="490" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <state key="normal" image="settigns.png">
+                                        <state key="normal" image="cross.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="revealSettings:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="gVN-mu-grc"/>
+                                            <action selector="exitCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="9db-Sp-5Wb"/>
                                         </connections>
                                     </button>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" id="uDp-1e-qsK">
@@ -354,7 +354,6 @@
         <image name="icon_torch.png" width="128" height="128"/>
         <image name="play.png" width="240" height="240"/>
         <image name="record_start.png" width="240" height="240"/>
-        <image name="settigns.png" width="90" height="90"/>
         <image name="tick.png" width="240" height="240"/>
     </resources>
 </document>
