@@ -586,9 +586,9 @@ class ViewController: UIViewController {
 
 
     func PlayPreviewMoview (url : NSURL){
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "MPMoviePlayerPlaybackStateDidChange:",
                                                          name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
-
 
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
 
