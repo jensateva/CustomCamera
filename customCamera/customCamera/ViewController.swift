@@ -169,6 +169,7 @@ class ViewController: UIViewController {
             self.labelDuration.hidden = false
             self.settingsButton.hidden = true
             self.settingsIcon.hidden = false
+            self.exitCameraButton.hidden = true
         }
 
 

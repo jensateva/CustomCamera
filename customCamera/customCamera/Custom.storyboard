@@ -33,6 +33,9 @@
                                                 <state key="normal" title="Settings">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="revealSettings:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="aNW-CL-1gN"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q8u-00-lsf">
                                                 <rect key="frame" x="113" y="0.0" width="94" height="50"/>
@@ -74,7 +77,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="exitCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="TT5-1w-U2T"/>
                                             <action selector="revealSettings:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="KH0-js-wNt"/>
                                         </connections>
                                     </button>
