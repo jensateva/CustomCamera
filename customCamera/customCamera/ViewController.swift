@@ -111,6 +111,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         Engine.rotationCamera = true
         self.blurOff()
+        self.hideLogo()
         self.showCameraControlls()
     }
 
@@ -189,7 +190,7 @@ class ViewController: UIViewController {
     }
 
     func hideLogo(){
-         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+         UIView.animateWithDuration(0.3, delay: 0.2, options: .CurveEaseOut, animations: {
         self.logoImage.alpha = 0.0
             }, completion: { finished in
 
