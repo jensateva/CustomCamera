@@ -253,6 +253,7 @@ class ViewController: UIViewController {
 
             self.switchButton.alpha = 0.0
             self.settingsButton.alpha = 0.0
+            self.settingsIcon.alpha = 0.0
 
             }, completion: { finished in
         })
@@ -392,6 +393,7 @@ class ViewController: UIViewController {
         self.labelDuration.text = "00:00"
          UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
+            self.settingsIcon.alpha = 1.0
             self.videoView.alpha = 0.0
             self.videoView.hidden = false
             self.switchButton.alpha = 1.0
