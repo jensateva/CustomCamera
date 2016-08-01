@@ -19,7 +19,7 @@ import MobileCoreServices
 import UIKit
 import Alamofire
 
-public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
@@ -111,8 +111,6 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         }
     }
 
-
-
     private func lockFrameRate(frameRate : Int32){
         print("SETTING FRAMERATE : \(frameRate)")
         Engine.changeFrameRate(frameRate)
@@ -123,66 +121,5 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         self.defaults.setBool(customControlls, forKey: "customControlls")
     }
 
-
-
-//    public func UploadVideo(urlString:NSURL)
-//    {
-//        let TOKEN = defaults.valueForKey("token")
-//        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
-//        let today = NSDate.distantPast()
-//        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
-//
-//        let accountName = defaults.valueForKey("accountName") as! String
-//        let folderName = defaults.valueForKey("folderName") as! String
-//        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
-//
-//        let task = NetworkManager.sharedManager.backgroundTask
-//        task.upload(
-//
-//            .POST,uploadUrl,
-//            headers: headers,
-//            multipartFormData: { multipartFormData in
-//
-//                multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
-//                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
-//                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-//                multipartFormData.appendBodyPart(data: folderName .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
-//
-//            },
-//
-//            encodingCompletion: { encodingResult in
-//
-//                switch encodingResult {
-//                case .Success(let upload,  _,  _):
-//
-//                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
-//
-//                        print(bytesRead)
-//                        dispatch_async(dispatch_get_main_queue())
-//                        {
-//                            let progressBar = UIProgressView()
-//                            progressBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 2)
-//                            self.view.addSubview(progressBar)
-//                            progressBar.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
-//                        }
-//                    }
-//
-//                    //TODO: Check Json response correctly
-//                    upload.responseJSON { response in
-//
-//                        print("FORSCENE UPLOAD SUCCESS")
-//                        
-//                    }
-//                case .Failure(let encodingError):
-//
-//                    print(encodingError)
-//
-//                }
-//            }
-//        )
-//    }
-
-
-    
 }
 
