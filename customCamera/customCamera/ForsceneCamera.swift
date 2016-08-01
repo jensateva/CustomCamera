@@ -37,7 +37,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         }
     }
 
-    public func openCustomCamera(targetVC: UIViewController){
+    public func openCustomCamera(targetVC: UIViewController, animated:Bool){
 
         // Find the storyboard
         let storyboardName = "Custom"
@@ -47,42 +47,9 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         // Find the VC
         let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
         dispatch_async(dispatch_get_main_queue(), {
-            targetVC.presentViewController(vc, animated: true, completion: nil)
+            targetVC.presentViewController(vc, animated: animated, completion: nil)
         })
     }
-
-//        public func openPickerCamera(targetVC: UIViewController){
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.delegate = self
-//            imagePicker.allowsEditing = true
-//            imagePicker.sourceType = .Camera
-//            imagePicker.mediaTypes = [kUTTypeMovie as String]
-//            imagePicker.delegate = self
-//            imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
-//    
-//            dispatch_async(dispatch_get_main_queue(), {
-//                targetVC.presentViewController(imagePicker, animated: true, completion: nil)
-//            })
-//        }
-
-
-//        public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//            let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
-//    
-//            if let type:AnyObject = mediaType {
-//                if type is String {
-//                   let stringType = type as! String
-//                    if stringType == kUTTypeMovie as String {
-//
-//                        let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
-//                        self.UploadVideo(urlOfVideo!)
-//
-//                    }
-//                }
-//            }
-//            picker.dismissViewControllerAnimated(true, completion: nil)
-//        }
-
 
 
     public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool)
