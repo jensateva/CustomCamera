@@ -33,8 +33,6 @@
 		202F3C2E1D4F704B0055F9A6 /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 202F3C201D4F704B0055F9A6 /* tick.png */; };
 		202F3C301D4F705E0055F9A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F3C2F1D4F705E0055F9A6 /* ViewController.swift */; };
 		202F3C321D4F70B80055F9A6 /* Custom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202F3C311D4F70B80055F9A6 /* Custom.storyboard */; };
-		202F3C351D4F71A40055F9A6 /* ForsceneCustomCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F3C331D4F71A40055F9A6 /* ForsceneCustomCameraVC.swift */; };
-		202F3C361D4F71A40055F9A6 /* ForsceneCustomCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202F3C341D4F71A40055F9A6 /* ForsceneCustomCameraVC.xib */; };
 		202F3C3A1D4F7E3D0055F9A6 /* exitCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 202F3C391D4F7E3D0055F9A6 /* exitCamera.png */; };
 		20773C191D47803A005186D7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C181D47803A005186D7 /* NetworkManager.swift */; };
 		20773C381D478F0F005186D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20773C2B1D478ED6005186D7 /* Alamofire.framework */; };
@@ -130,8 +128,6 @@
 		202F3C201D4F704B0055F9A6 /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
 		202F3C2F1D4F705E0055F9A6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		202F3C311D4F70B80055F9A6 /* Custom.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Custom.storyboard; sourceTree = "<group>"; };
-		202F3C331D4F71A40055F9A6 /* ForsceneCustomCameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForsceneCustomCameraVC.swift; sourceTree = "<group>"; };
-		202F3C341D4F71A40055F9A6 /* ForsceneCustomCameraVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForsceneCustomCameraVC.xib; sourceTree = "<group>"; };
 		202F3C391D4F7E3D0055F9A6 /* exitCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitCamera.png; sourceTree = "<group>"; };
 		20773C181D47803A005186D7 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		20773C201D478ED6005186D7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -262,8 +258,6 @@
 				202F3BFD1D4F6FEF0055F9A6 /* CameraEngine */,
 				202F3C2F1D4F705E0055F9A6 /* ViewController.swift */,
 				202F3C311D4F70B80055F9A6 /* Custom.storyboard */,
-				202F3C331D4F71A40055F9A6 /* ForsceneCustomCameraVC.swift */,
-				202F3C341D4F71A40055F9A6 /* ForsceneCustomCameraVC.xib */,
 				20773C181D47803A005186D7 /* NetworkManager.swift */,
 				20F4F2AC1D4644F0007B5CEF /* ForsceneCamera.swift */,
 			);
@@ -423,7 +417,6 @@
 			files = (
 				202F3C211D4F704B0055F9A6 /* cross.png in Resources */,
 				202F3C111D4F6FF00055F9A6 /* Info.plist in Resources */,
-				202F3C361D4F71A40055F9A6 /* ForsceneCustomCameraVC.xib in Resources */,
 				202F3C2A1D4F704B0055F9A6 /* record_recording.png in Resources */,
 				202F3C2B1D4F704B0055F9A6 /* record_start.png in Resources */,
 				202F3C221D4F704B0055F9A6 /* flip.png in Resources */,
@@ -457,7 +450,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				20773C191D47803A005186D7 /* NetworkManager.swift in Sources */,
-				202F3C351D4F71A40055F9A6 /* ForsceneCustomCameraVC.swift in Sources */,
 				202F3C0C1D4F6FF00055F9A6 /* CameraEngineDeviceInput.swift in Sources */,
 				20F4F2AD1D4644F0007B5CEF /* ForsceneCamera.swift in Sources */,
 				202F3C0B1D4F6FF00055F9A6 /* CameraEngineDevice.swift in Sources */,
@@ -597,6 +589,7 @@
 				);
 				INFOPLIST_FILE = customCamera/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.forscene.customCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -621,6 +614,7 @@
 				);
 				INFOPLIST_FILE = customCamera/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.forscene.customCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";

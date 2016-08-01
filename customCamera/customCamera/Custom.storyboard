@@ -26,6 +26,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i4d-ak-K2Q">
+                                                <rect key="frame" x="94" y="0.0" width="131" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                                <state key="normal" title="Settings">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q8u-00-lsf">
                                                 <rect key="frame" x="113" y="0.0" width="94" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,14 +44,6 @@
                                                 <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <size key="shadowOffset" width="1" height="1"/>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3WX-yH-XrR">
-                                                <rect key="frame" x="238" y="0.0" width="82" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.12941810340000001" colorSpace="calibratedWhite"/>
                                     </view>
@@ -92,8 +92,8 @@
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="0bE-wr-4Uw">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="progressTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="trackTintColor" white="0.0" alpha="0.32373383620689655" colorSpace="calibratedWhite"/>
                                     </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -328,7 +328,7 @@
                         <outlet property="playerStartStopButton" destination="iCd-bb-f0N" id="5os-kx-RNl"/>
                         <outlet property="recordButton" destination="lFr-fV-Ou8" id="lbv-vZ-b1A"/>
                         <outlet property="recordButtonBlurView" destination="uDp-1e-qsK" id="5dV-ed-7X0"/>
-                        <outlet property="settingsButton" destination="S2M-xM-PqS" id="fTI-00-C0L"/>
+                        <outlet property="settingsButton" destination="i4d-ak-K2Q" id="Y7O-8a-xTz"/>
                         <outlet property="settingsContainer" destination="PMM-zl-lkC" id="TGR-3T-edN"/>
                         <outlet property="settingsView" destination="mj2-jW-dFC" id="MGg-Na-SKl"/>
                         <outlet property="switchButton" destination="tQP-zU-dCb" id="MNR-on-ybm"/>

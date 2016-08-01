@@ -8,11 +8,11 @@
 
 import UIKit
 import AVFoundation
-//import CameraEngine
 import MediaPlayer
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var iconDetection: UIImageView!
     @IBOutlet weak var iconTorch: UIImageView!
     @IBOutlet weak var iconFocus: UIImageView!
@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var iconResolution: UIImageView!
     @IBOutlet weak var playbackBlur: UIVisualEffectView!
     @IBOutlet weak var approveButtonsVIew: UIView!
-    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var switchButton: UIButton!
     @IBOutlet weak var recordButtonBlurView: UIVisualEffectView!
     @IBOutlet weak var videoControlls: UIView!
@@ -155,7 +154,13 @@ class ViewController: UIViewController {
 
     func setUpView(){
 
-       // UIApplication.sharedApplication().statusBarHidden = true
+        let defaults = NSUserDefaults()
+        if defaults.boolForKey("showCustomSettings")
+        {
+            self.labelDuration.hidden = true
+            self.settingsButton.hidden = false
+        }
+
         self.labelDuration.text = "00:00"
         self.recordButtonBlurView.layer.cornerRadius = self.recordButtonBlurView.frame.size.width / 2
         self.recordButtonBlurView.layer.masksToBounds = true
@@ -225,6 +230,9 @@ class ViewController: UIViewController {
     }
 
     func animateRecording(){
+
+            self.labelDuration.hidden = false
+            self.settingsButton.hidden = true
 
         let image = UIImage(named: "record_recording.png") as UIImage?
         self.recordButton.setImage(image, forState: .Normal)
@@ -361,6 +369,14 @@ class ViewController: UIViewController {
     func animateBackTorecord(){
 
         self.blurOff()
+        
+        let defaults = NSUserDefaults()
+        if defaults.boolForKey("showCustomSettings")
+        {
+            self.labelDuration.hidden = true
+            self.settingsButton.hidden = false
+        }
+
         self.labelDuration.text = "00:00"
          UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 

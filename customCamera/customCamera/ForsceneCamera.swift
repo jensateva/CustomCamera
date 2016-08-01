@@ -51,45 +51,44 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         })
     }
 
-        public func openPickerCamera(targetVC: UIViewController){
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.allowsEditing = true
-            imagePicker.sourceType = .Camera
-            imagePicker.mediaTypes = [kUTTypeMovie as String]
-            imagePicker.delegate = self
-            imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
-    
-            dispatch_async(dispatch_get_main_queue(), {
-                targetVC.presentViewController(imagePicker, animated: true, completion: nil)
-            })
-        }
+//        public func openPickerCamera(targetVC: UIViewController){
+//            let imagePicker = UIImagePickerController()
+//            imagePicker.delegate = self
+//            imagePicker.allowsEditing = true
+//            imagePicker.sourceType = .Camera
+//            imagePicker.mediaTypes = [kUTTypeMovie as String]
+//            imagePicker.delegate = self
+//            imagePicker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
+//    
+//            dispatch_async(dispatch_get_main_queue(), {
+//                targetVC.presentViewController(imagePicker, animated: true, completion: nil)
+//            })
+//        }
 
 
-        public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-            let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
-    
-            if let type:AnyObject = mediaType {
-                if type is String {
-                   let stringType = type as! String
-                    if stringType == kUTTypeMovie as String {
+//        public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+//            let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
+//    
+//            if let type:AnyObject = mediaType {
+//                if type is String {
+//                   let stringType = type as! String
+//                    if stringType == kUTTypeMovie as String {
+//
+//                        let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
+//                        self.UploadVideo(urlOfVideo!)
+//
+//                    }
+//                }
+//            }
+//            picker.dismissViewControllerAnimated(true, completion: nil)
+//        }
 
-                        let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
-                        self.UploadVideo(urlOfVideo!)
-
-                    }
-                }
-            }
-            picker.dismissViewControllerAnimated(true, completion: nil)
-        }
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, frameRate : Int32, multirecord: Bool)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool)
     {
-        print("SETTING FRAMERATE : \(frameRate)")
-        Engine.changeFrameRate(frameRate)
-
-
+        lockFrameRate(frameRate)
+        customSettings(showCustomSettings)
         print("CONNECTING TO FORSCENE")
         let LOGIN_URL = "https://forscene.net/api/login"
 
@@ -103,7 +102,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
         Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
 
             .responseJSON { response in
-                debugPrint(response)
+               // debugPrint(response)
 
                 switch response.result
                 {
@@ -125,9 +124,7 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
                         self.defaults.setValue(folderName, forKey: "folderName")
                         self.defaults.setValue(identifier, forKey: "identifier")
                         self.defaults.setBool(multirecord, forKey: "multirecord")
-
-
-
+                         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
                         self.defaults.synchronize()
 
                     case ("invalid"):
@@ -145,64 +142,74 @@ public class ForsceneCamera : UIViewController, UIImagePickerControllerDelegate,
 
 
 
-
-
-    public func UploadVideo(urlString:NSURL)
-    {
-        let TOKEN = defaults.valueForKey("token")
-        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
-        let today = NSDate.distantPast()
-        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
-
-        let accountName = defaults.valueForKey("accountName") as! String
-        let folderName = defaults.valueForKey("folderName") as! String
-        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
-
-        let task = NetworkManager.sharedManager.backgroundTask
-        task.upload(
-
-            .POST,uploadUrl,
-            headers: headers,
-            multipartFormData: { multipartFormData in
-
-                multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
-                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
-                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-                multipartFormData.appendBodyPart(data: folderName .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
-
-            },
-
-            encodingCompletion: { encodingResult in
-
-                switch encodingResult {
-                case .Success(let upload,  _,  _):
-
-                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
-
-                        print(bytesRead)
-                        dispatch_async(dispatch_get_main_queue())
-                        {
-                            let progressBar = UIProgressView()
-                            progressBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 2)
-                            self.view.addSubview(progressBar)
-                            progressBar.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
-                        }
-                    }
-
-                    //TODO: Check Json response correctly
-                    upload.responseJSON { response in
-
-                        print("FORSCENE UPLOAD SUCCESS")
-                        
-                    }
-                case .Failure(let encodingError):
-
-                    print(encodingError)
-
-                }
-            }
-        )
+    private func lockFrameRate(frameRate : Int32){
+        print("SETTING FRAMERATE : \(frameRate)")
+        Engine.changeFrameRate(frameRate)
     }
+
+    private func customSettings(customControlls : Bool){
+        print("SHOW CUSTOM SETTING : \(customControlls)")
+        self.defaults.setBool(customControlls, forKey: "customControlls")
+    }
+
+
+
+//    public func UploadVideo(urlString:NSURL)
+//    {
+//        let TOKEN = defaults.valueForKey("token")
+//        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
+//        let today = NSDate.distantPast()
+//        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
+//
+//        let accountName = defaults.valueForKey("accountName") as! String
+//        let folderName = defaults.valueForKey("folderName") as! String
+//        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
+//
+//        let task = NetworkManager.sharedManager.backgroundTask
+//        task.upload(
+//
+//            .POST,uploadUrl,
+//            headers: headers,
+//            multipartFormData: { multipartFormData in
+//
+//                multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
+//                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
+//                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
+//                multipartFormData.appendBodyPart(data: folderName .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+//
+//            },
+//
+//            encodingCompletion: { encodingResult in
+//
+//                switch encodingResult {
+//                case .Success(let upload,  _,  _):
+//
+//                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
+//
+//                        print(bytesRead)
+//                        dispatch_async(dispatch_get_main_queue())
+//                        {
+//                            let progressBar = UIProgressView()
+//                            progressBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 2)
+//                            self.view.addSubview(progressBar)
+//                            progressBar.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+//                        }
+//                    }
+//
+//                    //TODO: Check Json response correctly
+//                    upload.responseJSON { response in
+//
+//                        print("FORSCENE UPLOAD SUCCESS")
+//                        
+//                    }
+//                case .Failure(let encodingError):
+//
+//                    print(encodingError)
+//
+//                }
+//            }
+//        )
+//    }
 
 
     

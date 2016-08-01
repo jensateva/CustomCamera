@@ -435,10 +435,10 @@ public extension CameraEngine {
             let framerate = CMTimeMake(1, framerate)
             currentDevice.activeVideoMaxFrameDuration = framerate
             currentDevice.activeVideoMinFrameDuration = framerate
-            print(currentDevice.activeFormat.videoSupportedFrameRateRanges)
-            print(currentDevice.activeFormat)
-            print(currentDevice.activeVideoMaxFrameDuration)
-            print(currentDevice.activeVideoMinFrameDuration)
+//            print(currentDevice.activeFormat.videoSupportedFrameRateRanges)
+//            print(currentDevice.activeFormat)
+//            print(currentDevice.activeVideoMaxFrameDuration)
+//            print(currentDevice.activeVideoMinFrameDuration)
             currentDevice.unlockForConfiguration()
         }
 
