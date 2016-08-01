@@ -52,7 +52,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
     }
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
     {
         if frameRate > 23
         {
@@ -96,6 +96,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         self.defaults.setBool(multirecord, forKey: "multirecord")
                         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
                         self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
+                        self.defaults.setValue(logo, forKeyPath: "logo")
                         self.defaults.synchronize()
 
                     case ("invalid"):

@@ -318,6 +318,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="0.049946120689999998" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SLu-lB-Uj5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -334,6 +339,7 @@
                         <outlet property="iconResolution" destination="6DA-bk-wHm" id="Zy8-0A-Qi3"/>
                         <outlet property="iconTorch" destination="1BG-TR-wWV" id="dlW-Bd-SUD"/>
                         <outlet property="labelDuration" destination="q8u-00-lsf" id="kqr-Ns-4Mt"/>
+                        <outlet property="logoImage" destination="SLu-lB-Uj5" id="tVT-wZ-eve"/>
                         <outlet property="overlayBlur" destination="rvu-cA-gPC" id="lDo-N5-5e1"/>
                         <outlet property="playButton" destination="dpF-1u-DxN" id="FMn-an-3i5"/>
                         <outlet property="playButtonBlurView" destination="Bfa-Ln-hKn" id="N2A-Xy-P0P"/>
