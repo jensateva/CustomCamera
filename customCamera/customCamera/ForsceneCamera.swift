@@ -67,8 +67,8 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
 
         // Pass the tag
-        let CameraVC = ViewController()
-        CameraVC.tagTextField.text = "Song"
+       // let CameraVC = ViewController()
+       // CameraVC.tagTextField.text = "Song"
 
         dispatch_async(dispatch_get_main_queue(), {
             targetVC.presentViewController(vc, animated: animated, completion: nil)
