@@ -342,6 +342,7 @@ class ViewController: UIViewController {
     {
         self.uploadProgress.progress = 0.0
         let defaults = NSUserDefaults()
+        let url = defaults.valueForKey("urls")?.stringByDeletingLastPathComponent
         let TOKEN = defaults.valueForKey("token")
         let headers = ["X-Auth-Kestrel": TOKEN as! String ]
         let today = NSDate.distantPast()
@@ -349,7 +350,7 @@ class ViewController: UIViewController {
 
         let accountName = defaults.valueForKey("accountName") as! String
         let folderName = defaults.valueForKey("folderName") as! String
-        let uploadUrl = "https://pro.forscene.net/forscene/" + accountName + "/webupload?resultFormat=json" as String
+        let uploadUrl =  url! + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
@@ -407,6 +408,21 @@ class ViewController: UIViewController {
         {
             self.labelDuration.hidden = true
             self.settingsButton.hidden = false
+        }
+
+        if defaults.boolForKey("showCustomSettings")
+        {
+            self.labelDuration.hidden = true
+            self.settingsButton.hidden = false
+            self.settingsIcon.hidden = true
+        }
+
+        if defaults.boolForKey("hideExitButton")
+        {
+            self.labelDuration.hidden = false
+            self.settingsButton.hidden = true
+            self.settingsIcon.hidden = false
+            self.exitCameraButton.hidden = true
         }
 
         self.labelDuration.text = "00:00"
