@@ -19,11 +19,13 @@ import MobileCoreServices
 import UIKit
 import Alamofire
 
+
 public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
     var currentView = UIViewController()
+    let CameraVC = ViewController()
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -64,8 +66,8 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         // Find the VC
         let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
 
-        // pass the tag
-        vc.tagTextField.text = tag
+        // Pass the tag
+        CameraVC.tagTextField = tag
         dispatch_async(dispatch_get_main_queue(), {
             targetVC.presentViewController(vc, animated: animated, completion: nil)
         })
