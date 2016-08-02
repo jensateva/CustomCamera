@@ -53,6 +53,24 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         })
     }
 
+    public func openCustomCameraWithTag(targetVC: UIViewController, animated:Bool, tag:String){
+
+        currentView = targetVC
+        // Find the storyboard
+        let storyboardName = "Custom"
+        let storyboardBundle = NSBundle(forClass: ForsceneCamera.self)
+        let storyboard = UIStoryboard(name: storyboardName, bundle: storyboardBundle)
+
+        // Find the VC
+        let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
+
+        // pass the tag
+        vc.tagTextField.text = tag
+        dispatch_async(dispatch_get_main_queue(), {
+            targetVC.presentViewController(vc, animated: animated, completion: nil)
+        })
+    }
+
 
     public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
     {

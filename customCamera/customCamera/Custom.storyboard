@@ -22,6 +22,13 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.12847521549999999" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SBg-Zx-sy2">
+                                        <rect key="frame" x="8" y="58" width="304" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" id="khR-8l-jBX">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -353,6 +360,7 @@
                         <outlet property="settingsIcon" destination="jM1-Kw-7kR" id="kcb-yr-BAy"/>
                         <outlet property="settingsView" destination="mj2-jW-dFC" id="MGg-Na-SKl"/>
                         <outlet property="switchButton" destination="tQP-zU-dCb" id="MNR-on-ybm"/>
+                        <outlet property="tagTextField" destination="SBg-Zx-sy2" id="1SC-Xg-ZwK"/>
                         <outlet property="torchMode" destination="MYU-nE-yqp" id="wUi-v1-zIH"/>
                         <outlet property="uploadProgress" destination="0bE-wr-4Uw" id="KLH-fc-Ptb"/>
                         <outlet property="videoControlls" destination="a6Q-iA-qEH" id="Pwo-Up-k3A"/>

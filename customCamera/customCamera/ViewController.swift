@@ -12,6 +12,7 @@ import MediaPlayer
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tagTextField: UILabel!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     @IBOutlet weak var exitCameraButton: UIButton!
