@@ -12,7 +12,6 @@ import MediaPlayer
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var tagTextField: UILabel!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     @IBOutlet weak var exitCameraButton: UIButton!
@@ -330,8 +329,9 @@ class ViewController: UIViewController {
         self.dismissViewControllerAnimated(true) {
             self.animateBackTorecord()
             "User approved a video you could show upload status on main UI"
+
             let progressBar = UIProgressView()
-            let vc = self.CameraLibrary.currentView
+            let vc = currentView
             vc.view.addSubview(progressBar)
 
         }
@@ -432,6 +432,7 @@ class ViewController: UIViewController {
             self.videoView.alpha = 0.0
             self.videoView.hidden = false
             self.switchButton.alpha = 1.0
+            self.exitCameraButton.alpha = 1.0
             self.settingsButton.alpha = 1.0
             self.videoControlls.alpha = 1.0
             self.videoControlls.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)

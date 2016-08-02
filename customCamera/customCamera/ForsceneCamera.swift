@@ -19,13 +19,12 @@ import MobileCoreServices
 import UIKit
 import Alamofire
 
+var currentView = UIViewController()
 
 public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
-    var currentView = UIViewController()
-
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
