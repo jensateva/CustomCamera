@@ -353,6 +353,8 @@ class ViewController: UIViewController {
         let folderName = defaults.valueForKey("folderName") as! String
         let uploadUrl =  url + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
+        print(uploadUrl)
+
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
 
