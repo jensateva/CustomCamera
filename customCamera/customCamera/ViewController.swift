@@ -327,6 +327,7 @@ class ViewController: UIViewController {
         }
         else
         {
+            
         self.dismissViewControllerAnimated(true) {
             self.animateBackTorecord()
             "User approved a video you could show upload status on main UI"
