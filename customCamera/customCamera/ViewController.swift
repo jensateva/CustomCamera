@@ -323,6 +323,7 @@ class ViewController: UIViewController {
         if defaults.boolForKey("multirecord")
         {
             "Multirecord is set to True we will display upload bar on Camera UI"
+             self.uploadProgress.progress = 0.0
         }
         else
         {
@@ -340,7 +341,6 @@ class ViewController: UIViewController {
 
     private func UploadVideo(urlString:NSURL)
     {
-        self.uploadProgress.progress = 0.0
         let defaults = NSUserDefaults()
         let url = defaults.valueForKey("urls")?.stringByDeletingLastPathComponent
         let TOKEN = defaults.valueForKey("token")
