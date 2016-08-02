@@ -25,7 +25,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
     var currentView = UIViewController()
-    let CameraVC = ViewController()
+   // let CameraVC = ViewController()
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -57,20 +57,20 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     public func openCustomCameraWithTag(targetVC: UIViewController, animated:Bool, tag:String){
 
-        currentView = targetVC
-        // Find the storyboard
-        let storyboardName = "Custom"
-        let storyboardBundle = NSBundle(forClass: ForsceneCamera.self)
-        let storyboard = UIStoryboard(name: storyboardName, bundle: storyboardBundle)
-
-        // Find the VC
-        let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
-
-        // Pass the tag
-        CameraVC.tagTextField.text = "Song"
-        dispatch_async(dispatch_get_main_queue(), {
-            targetVC.presentViewController(vc, animated: animated, completion: nil)
-        })
+//        currentView = targetVC
+//        // Find the storyboard
+//        let storyboardName = "Custom"
+//        let storyboardBundle = NSBundle(forClass: ForsceneCamera.self)
+//        let storyboard = UIStoryboard(name: storyboardName, bundle: storyboardBundle)
+//
+//        // Find the VC
+//        let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
+//
+//        // Pass the tag
+//        CameraVC.tagTextField.text = "Song"
+//        dispatch_async(dispatch_get_main_queue(), {
+//            targetVC.presentViewController(vc, animated: animated, completion: nil)
+//        })
     }
 
 
