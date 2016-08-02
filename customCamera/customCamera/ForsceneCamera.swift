@@ -90,7 +90,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         print("CONNECTED WITH SUCCESS!")
                         let token = Dictionary .valueForKey("token")
-                        let urls = Dictionary.valueForKey("urls")
+                        let urls = Dictionary.valueForKey("urls")?.stringByDeletingLastPathComponent
                         self.defaults.setObject(token, forKey: "token")
                         self.defaults.setBool(true, forKey: "Registered")
                         self.defaults.setValue(accountName, forKey: "accountName")
