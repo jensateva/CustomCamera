@@ -327,7 +327,7 @@ class ViewController: UIViewController {
         }
         else
         {
-            
+
         self.dismissViewControllerAnimated(true) {
             self.animateBackTorecord()
             "User approved a video you could show upload status on main UI"
@@ -351,7 +351,7 @@ class ViewController: UIViewController {
 
         let accountName = defaults.valueForKey("accountName") as! String
         let folderName = defaults.valueForKey("folderName") as! String
-        let uploadUrl =  url! + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
+        let uploadUrl =  url! + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
