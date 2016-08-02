@@ -343,7 +343,7 @@ class ViewController: UIViewController {
     private func UploadVideo(urlString:NSURL)
     {
         let defaults = NSUserDefaults()
-        let url = defaults.valueForKey("urls")?.stringByDeletingLastPathComponent
+        let url = defaults.valueForKey("urls") as! String
         let TOKEN = defaults.valueForKey("token")
         let headers = ["X-Auth-Kestrel": TOKEN as! String ]
         let today = NSDate.distantPast()
@@ -351,7 +351,7 @@ class ViewController: UIViewController {
 
         let accountName = defaults.valueForKey("accountName") as! String
         let folderName = defaults.valueForKey("folderName") as! String
-        let uploadUrl =  url! + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
+        let uploadUrl =  url + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
