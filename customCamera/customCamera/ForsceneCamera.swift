@@ -63,6 +63,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         lockFrameRate(frameRate)
 
         self.defaults.setValue(accountName, forKey: "accountName")
+        self.defaults.setValue(identifier, forKey: "identifier")
         self.defaults.setValue(folderName, forKey: "folderName")
         self.defaults.setBool(multirecord, forKey: "multirecord")
         self.defaults.setInteger(frameRate, forKey: "frameRate")
@@ -71,6 +72,8 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setValue(logo, forKey: "logo")
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
+
+
 
         let parameters: [String: AnyObject] =
             [
