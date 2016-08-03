@@ -707,23 +707,32 @@ class ViewController: UIViewController {
             let position = touch.locationInView(self.view)
 
             Engine.focus(position)
+            self.showTouch(position)
         }
     }
 
     
     func showTouch(position : CGPoint){
-        focus.alpha = 1.0
+
         self.focus.frame = CGRectMake(position.x, position.y, 0, 0)
 
-        UIView.animateWithDuration(1.0, delay: 0.5, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
 
-     self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
-
+         self.focus.alpha = 1.0
+         self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
     }), completion: { finished in
 
+
+        UIView.animateWithDuration(0.4, delay: 2.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+
+            self.focus.alpha = 0.0
+            self.focus.frame = CGRectMake(position.x , position.y, 0, 0)
+        }), completion: { finished in
+
+ })
  })
 
-    }
+}
 
     
     @objc func onTwoFingerPinch(recognizer: UIPinchGestureRecognizer) {
