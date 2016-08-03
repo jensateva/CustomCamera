@@ -19,12 +19,14 @@ import MobileCoreServices
 import UIKit
 import Alamofire
 
+
 var currentView = UIViewController()
 
 public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
+    let settings = cameraSettings()
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -54,6 +56,20 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         })
     }
 
+//    struct connectionSettings {
+//        var username: String
+//        var password: String
+//        var accountName: String
+//        var folder: String
+//        var identifier: String
+//        var multirecord: Bool
+//        var framerate: Int32
+//        var showCustomSettings: Bool
+//        var hideExitButton: Bool
+//        var logo: String
+//    }
+
+
     public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
     {
         if frameRate > 23
@@ -61,7 +77,19 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         lockFrameRate(frameRate)
         }
         customSettings(showCustomSettings)
-        print("CONNECTING TO FORSCENE")
+
+
+        settings.username = username
+        settings.password = password
+        settings.accountName = accountName
+        settings.folder = folderName
+        settings.identifier = identifier
+        settings.multirecord = multirecord
+        settings.framerate = frameRate
+        settings.showCustomSettings = showCustomSettings
+        settings.hideExitButton = hideExitButton
+        settings.logo = logo
+
 
         print("username : \(username)")
         print("password : \(password)")
@@ -72,20 +100,28 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         print("framerate :\(frameRate)")
         print("showSettings :\(showCustomSettings)")
         print("hideExitButton : \(hideExitButton)")
+        print("logo : \(logo)")
 
-        let LOGIN_URL = "https://forscene.net/api/login"
+        self.defaults.setValue(accountName, forKey: "accountName")
+        self.defaults.setValue(folderName, forKey: "folderName")
+        self.defaults.setValue(identifier, forKey: "identifier")
+        self.defaults.setBool(multirecord, forKey: "multirecord")
+        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
+        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
+        self.defaults.setValue(logo, forKeyPath: "logo")
+
 
         let parameters: [String: AnyObject] =
             [
                 "persistentLogin":"true",
                 "user": username,
                 "password": password
-        ]
+           ]
 
-        Alamofire.request(.POST, LOGIN_URL, parameters: parameters, encoding: .JSON)
+
+        Alamofire.request(.POST, settings.LOGINURL, parameters: parameters, encoding: .JSON)
 
             .responseJSON { response in
-               // debugPrint(response)
 
                 switch response.result
                 {
@@ -101,18 +137,16 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         print("CONNECTED WITH SUCCESS!")
                         let token = Dictionary .valueForKey("token")
-                        let urls = Dictionary.valueForKey("urls")?.stringByDeletingLastPathComponent
                         self.defaults.setObject(token, forKey: "token")
-                        self.defaults.setBool(true, forKey: "Registered")
-                        self.defaults.setValue(accountName, forKey: "accountName")
-                        self.defaults.setValue(folderName, forKey: "folderName")
-                        self.defaults.setValue(identifier, forKey: "identifier")
-                        self.defaults.setBool(multirecord, forKey: "multirecord")
+                        let urls = Dictionary.valueForKey("urls")?.stringByDeletingLastPathComponent
                         self.defaults.setValue(urls, forKey: "urls")
-                        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
-                        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
-                        self.defaults.setValue(logo, forKeyPath: "logo")
                         self.defaults.synchronize()
+                        print("uploadurl : \(urls)")
+
+                        self.settings.token = Dictionary.valueForKey("token") as! String
+                        self.settings.url = (Dictionary.valueForKey("urls")?.stringByDeletingLastPathComponent)!
+
+
 
                     case ("invalid"):
                         print("INVALID CREDENTIALS")
@@ -128,12 +162,10 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
     }
 
     private func lockFrameRate(frameRate : Int32){
-        print("SETTING FRAMERATE : \(frameRate)")
         Engine.changeFrameRate(frameRate)
     }
 
     private func customSettings(customControlls : Bool){
-        print("SHOW CUSTOM SETTING : \(customControlls)")
         self.defaults.setBool(customControlls, forKey: "customControlls")
     }
 

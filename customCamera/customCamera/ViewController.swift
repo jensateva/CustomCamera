@@ -47,6 +47,7 @@ class ViewController: UIViewController {
     var lastRecordedMovie = NSURL()
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
+    let settings = cameraSettings()
 
     var moviePlayer : MPMoviePlayerViewController?
 
@@ -353,12 +354,14 @@ class ViewController: UIViewController {
         let folderName = defaults.valueForKey("folderName") as! String
         let uploadUrl =  url + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
+        let UPLOADURL = settings.uplodURL()
+
         print(uploadUrl)
 
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
 
-            .POST,uploadUrl,
+            .POST,UPLOADURL,
             headers: headers,
             multipartFormData: { multipartFormData in
 
