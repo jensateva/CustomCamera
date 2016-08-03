@@ -191,11 +191,11 @@ class ViewController: UIViewController {
     }
 
     func hideLogo(){
-         UIView.animateWithDuration(0.3, delay: 0.2, options: .CurveEaseOut, animations: {
-        self.logoImage.alpha = 0.0
+        UIView.animateWithDuration(0.3, delay: 0.2, options: .CurveEaseOut, animations: {
+            self.logoImage.alpha = 0.0
             }, completion: { finished in
 
-         })
+        })
     }
 
     func blurOff(){
@@ -251,15 +251,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func exitCamera(sender: UIButton) {
-        self.dismissViewControllerAnimated(true) { 
+        self.dismissViewControllerAnimated(true) {
             print("Forscene Camera Dismissed")
         }
     }
 
     func animateRecording(){
 
-            self.labelDuration.hidden = false
-            self.settingsButton.hidden = true
+        self.labelDuration.hidden = false
+        self.settingsButton.hidden = true
 
         let image = UIImage(named: "record_recording.png") as UIImage?
         self.recordButton.setImage(image, forState: .Normal)
@@ -281,7 +281,7 @@ class ViewController: UIViewController {
         let image = UIImage(named: "record_start.png") as UIImage?
         self.recordButton.setImage(image, forState: .Normal)
 
-      UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.videoControlls.alpha = 0.0
             self.approveButtonsVIew.frame = CGRectMake(0, self.view.frame.size.height - 120, self.view.frame.size.width, 140)
@@ -394,10 +394,10 @@ class ViewController: UIViewController {
                         self.uploadProgress.progress = 0.0
                     }
                 case .Failure(let encodingError):
-                    
+
                     print(encodingError)
                     self.uploadProgress.progress = 0.0
-                    
+
                 }
             }
         )
@@ -431,7 +431,7 @@ class ViewController: UIViewController {
         }
 
         self.labelDuration.text = "00:00"
-         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.settingsIcon.alpha = 1.0
             self.videoView.alpha = 0.0
@@ -456,15 +456,15 @@ class ViewController: UIViewController {
     @IBAction func revealSettings(sender: UIButton) {
         blurOn()
 
-         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
-        self.settingsView.alpha = 1.0
-        self.settingsView.hidden = false
-        self.videoControlls.alpha = 0.0
+            self.settingsView.alpha = 1.0
+            self.settingsView.hidden = false
+            self.videoControlls.alpha = 0.0
 
             }, completion: { finished in
 
-         })
+        })
     }
 
     @IBAction func hideSettings(sender: UIButton)
@@ -610,10 +610,12 @@ class ViewController: UIViewController {
 
                 self.lastRecordedMovie = url!
 
-                if self.settings.saveOriginal{
-                      CameraEngineFileManager.saveVideo(url!, blockCompletion: { (success, error) -> (Void) in
-                          print("error saving video : \(error)")
-                      })
+                if self.defaults.boolForKey("saveOriginal") {
+
+                    CameraEngineFileManager.saveVideo(url!, blockCompletion: { (success, error) -> (Void) in
+                        print("ERROR SAVING VIDEO : \(error)")
+                        print("VIDEO SAVED : \(success)")
+                    })
                 }
 
 
@@ -641,8 +643,8 @@ class ViewController: UIViewController {
             // player.moviePlayer.shouldAutoplay = false
             player.view.sizeToFit()
             player.moviePlayer.scalingMode = .AspectFit
-            player.moviePlayer.view.backgroundColor = self.settings.brandColour
-            player.moviePlayer.backgroundView.backgroundColor = self.settings.brandColour
+            player.moviePlayer.view.backgroundColor = defaults.valueForKey("brandColour") as! UIColor
+            player.moviePlayer.backgroundView.backgroundColor = defaults.valueForKey("brandColour") as! UIColor
             player.moviePlayer.controlStyle = .None
             self.playbackContainer.addSubview(player.view)
         }
@@ -681,12 +683,12 @@ class ViewController: UIViewController {
             self.playbackBlurOn()
         }
     }
-
-
+    
+    
     @IBAction func playMovie(sender: UIButton) {
         startStopMovie()
     }
-
+    
     func startStopMovie(){
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
         {
@@ -700,14 +702,14 @@ class ViewController: UIViewController {
             self.moviePlayer?.moviePlayer.pause()
         }
     }
-
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = event!.allTouches()!.first {
             let position = touch.locationInView(self.view)
             Engine.focus(position)
         }
     }
-
+    
     @objc func onTwoFingerPinch(recognizer: UIPinchGestureRecognizer) {
         let maxZoom: CGFloat = 6.0
         let pinchVelocityDividerFactor: CGFloat = 5.0

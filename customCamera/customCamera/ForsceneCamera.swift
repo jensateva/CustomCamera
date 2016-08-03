@@ -59,7 +59,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, brandColour: UIColor, saveOriginal : Bool)
     {
         lockFrameRate(frameRate)
 
@@ -73,6 +73,9 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setValue(logo, forKey: "logo")
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
 
+        self.defaults.setValue(brandColour, forKey: "brandColour")
+        self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
+
         settings.accountName = accountName
         settings.folder = folderName
 
@@ -82,7 +85,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                 "persistentLogin":"true",
                 "user": username,
                 "password": password
-           ]
+        ]
 
 
         Alamofire.request(.POST, settings.LOGINURL, parameters: parameters, encoding: .JSON)
@@ -117,21 +120,21 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                     default:
                         print("Default switch")
                     }
-                    
+
                 case .Failure(let error):
                     print("REQUEST FAILED WITH ERROR: \(error)")
                 }
         }
     }
-
+    
     private func lockFrameRate(frameRate : Int){
         let frameRateInt32 = Int32(frameRate)
         Engine.changeFrameRate(frameRateInt32)
     }
-
+    
     private func customSettings(customControlls : Bool){
         self.defaults.setBool(customControlls, forKey: "customControlls")
     }
-
+    
 }
 
