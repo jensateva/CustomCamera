@@ -319,27 +319,30 @@ class ViewController: UIViewController {
 
         print("APPROVE BUTTON CLICKED")
         print(lastRecordedMovie)
-        //  self.UploadVideo(self.lastRecordedMovie)
+        self.UploadVideo(self.lastRecordedMovie)
 
-        if settings.multirecord
-        {
-            print("Multirecord is set to True we will display upload bar on Camera UI")
-            self.uploadProgress.progress = 0.0
-            self.animateBackTorecord()
-        }
-        else
-        {
 
-            self.dismissViewControllerAnimated(true) {
-                self.animateBackTorecord()
-                print("User approved a video you could show upload status on main UI")
+//        if settings.multirecord
+//        {
+//            print("Multirecord is set to True we will display upload bar on Camera UI")
+//            self.uploadProgress.progress = 0.0
+//            self.animateBackTorecord()
+//        }
+//        else
+//        {
+//
+//            self.dismissViewControllerAnimated(true) {
+//                self.animateBackTorecord()
+//                print("User approved a video you could show upload status on main UI")
+//
+//                let progressBar = UIProgressView()
+//                let vc = currentView
+//                vc.view.addSubview(progressBar)
+//                
+//            }
+//        }
 
-                let progressBar = UIProgressView()
-                let vc = currentView
-                vc.view.addSubview(progressBar)
-                
-            }
-        }
+
     }
 
 
@@ -613,10 +616,12 @@ class ViewController: UIViewController {
 
                 self.lastRecordedMovie = url!
 
+                if self.settings.saveOriginal{
+                      CameraEngineFileManager.saveVideo(url!, blockCompletion: { (success, error) -> (Void) in
+                          print("error saving video : \(error)")
+                      })
+                }
 
-                //  CameraEngineFileManager.saveVideo(url!, blockCompletion: { (success, error) -> (Void) in
-                //      print("error saving video : \(error)")
-                //  })
 
             })
         }
