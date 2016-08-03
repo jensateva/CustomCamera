@@ -85,7 +85,9 @@ class ViewController: UIViewController {
 
             (faceObject as AVMetadataObject).bounds
 
-            print((faceObject as AVMetadataObject).bounds)
+            self.focus.alpha = 1.0
+            self.focus.bounds = (faceObject as AVMetadataObject).bounds
+            self.focus.alpha = 0.0
         }
 
         Engine.blockCompletionCodeDetection = { codeObject in
@@ -458,8 +460,8 @@ class ViewController: UIViewController {
     @IBAction func switchCamera(sender: AnyObject) {
         self.Engine.switchCurrentDevice()
 
-        UIView.animateWithDuration(0.25, animations:{
-           self.switchButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2));
+        UIView.animateWithDuration(0.35, animations:{
+           self.switchButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI));
         })
     }
 
