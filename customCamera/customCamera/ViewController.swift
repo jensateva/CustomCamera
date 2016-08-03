@@ -13,6 +13,7 @@ import Foundation
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var focus: UIImageView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     @IBOutlet weak var exitCameraButton: UIButton!
@@ -64,11 +65,9 @@ class ViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.labelDuration.hidden = false
 
-                // TODO - Add Frames per second after seconds
                 let time = Int(progress)
                 let minutes = Int(time) / 60 % 60
                 let seconds = Int(time) % 60
-                //let milliSeconds = Int(time) % 60
                 let secondsString = (String(format: "%02d", seconds))
                 let minutesString = (String(format: "%02d", minutes))
                 self.labelDuration.text = minutesString.stringByAppendingString(":").stringByAppendingString(secondsString)
@@ -191,9 +190,15 @@ class ViewController: UIViewController {
     }
 
     func hideLogo(){
+
         UIView.animateWithDuration(0.3, delay: 0.2, options: .CurveEaseOut, animations: {
+
+            self.logoImage.frame = CGRectMake(-100, -80, self.view.frame.size.width + 200 , self.view.frame.size.height + 160)
             self.logoImage.alpha = 0.0
+
             }, completion: { finished in
+
+           self.logoImage.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
 
         })
     }
@@ -318,7 +323,7 @@ class ViewController: UIViewController {
 
     @IBAction func approve(sender: UIButton) {
 
-        print("APPROVE BUTTON CLICKED")
+        print("Video approved")
         print(lastRecordedMovie)
         self.UploadVideo(lastRecordedMovie)
 
@@ -346,8 +351,7 @@ class ViewController: UIViewController {
 
     private func UploadVideo(urlString:NSURL)
     {
-        print("START UPLOAD")
-        print(urlString)
+        print("Starting upload...")
 
         let TOKEN = defaults.valueForKey("token") as! String
         let UPLOADURL = defaults.valueForKey("uploadurl") as! String
@@ -378,9 +382,7 @@ class ViewController: UIViewController {
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-                        print(bytesRead)
-
-                        // Show upload progress if user is multi recording
+                        print("Uploading :\(Float(totalBytesRead) / Float(totalBytesExpectedToRead) * 100)")
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
@@ -390,13 +392,15 @@ class ViewController: UIViewController {
                     //TODO: Check Json response correctly
                     upload.responseJSON { response in
 
-                        print("FORSCENE UPLOAD SUCCESS")
+                        print("Successfully uploaded!")
                         self.uploadProgress.progress = 0.0
+                        self.uploadProgress.alpha = 0.0
                     }
                 case .Failure(let encodingError):
 
                     print(encodingError)
                     self.uploadProgress.progress = 0.0
+                    self.uploadProgress.alpha = 0.0
 
                 }
             }
@@ -587,7 +591,7 @@ class ViewController: UIViewController {
 
     @IBAction func startRecord(sender: UIButton)
     {
-        print("START RECORD")
+        print("Recording video...")
         if Engine.isRecording == false {
 
             dispatch_async(dispatch_get_main_queue()){
@@ -613,12 +617,10 @@ class ViewController: UIViewController {
                 if self.defaults.boolForKey("saveOriginal") {
 
                     CameraEngineFileManager.saveVideo(url!, blockCompletion: { (success, error) -> (Void) in
-                        print("ERROR SAVING VIDEO : \(error)")
-                        print("VIDEO SAVED : \(success)")
+                        print("Error saving the video : \(error)")
+                        print("Original video saved : \(success)")
                     })
                 }
-
-
             })
         }
         else
@@ -629,7 +631,6 @@ class ViewController: UIViewController {
         }
     }
 
-
     func PlayPreviewMoview (url : NSURL){
 
         NSNotificationCenter.defaultCenter().addObserver(
@@ -637,10 +638,8 @@ class ViewController: UIViewController {
             name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
 
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
-
         if let player = self.moviePlayer {
             player.view.frame = self.view.bounds
-            // player.moviePlayer.shouldAutoplay = false
             player.view.sizeToFit()
             player.moviePlayer.scalingMode = .AspectFit
             player.moviePlayer.view.backgroundColor = UIColor.blackColor()
@@ -706,9 +705,26 @@ class ViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = event!.allTouches()!.first {
             let position = touch.locationInView(self.view)
+
             Engine.focus(position)
         }
     }
+
+    
+    func showTouch(position : CGPoint){
+        focus.alpha = 1.0
+        self.focus.frame = CGRectMake(position.x, position.y, 0, 0)
+
+        UIView.animateWithDuration(1.0, delay: 0.5, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+
+     self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
+
+    }), completion: { finished in
+
+ })
+
+    }
+
     
     @objc func onTwoFingerPinch(recognizer: UIPinchGestureRecognizer) {
         let maxZoom: CGFloat = 6.0

@@ -90,7 +90,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                 switch response.result
                 {
                 case .Success(let JSON):
-                    print("CONNECTING TO FORSCENE...")
+                    print("Connecting to Forscene...")
 
                     let Dictionary = JSON .valueForKey("results") as! NSDictionary
                     let status = Dictionary .valueForKey("status") as! String
@@ -99,7 +99,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                     {
                     case ("valid"):
 
-                        print("CONNECTED WITH SUCCESS!")
+                        print("Connected with success!")
 
                         let url = Dictionary.valueForKey("urls") as! NSArray
                         let uploadurl = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
@@ -110,14 +110,14 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
 
                     case ("invalid"):
-                        print("INVALID CREDENTIALS")
+                        print("Iinvalid credentials")
 
                     default:
                         print("Default switch")
                     }
 
                 case .Failure(let error):
-                    print("REQUEST FAILED WITH ERROR: \(error)")
+                    print("Failed with error: \(error)")
                 }
         }
     }

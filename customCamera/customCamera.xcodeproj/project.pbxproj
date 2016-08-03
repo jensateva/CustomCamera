@@ -37,6 +37,7 @@
 		20773C191D47803A005186D7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C181D47803A005186D7 /* NetworkManager.swift */; };
 		20773C381D478F0F005186D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20773C2B1D478ED6005186D7 /* Alamofire.framework */; };
 		208DD0941D51E1EE00474427 /* cameraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DD0931D51E1EE00474427 /* cameraSettings.swift */; };
+		20EB77561D523BC60074DC6D /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = 20EB77551D523BC60074DC6D /* focus.png */; };
 		20F4F2951D4644A3007B5CEF /* customCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F4F2941D4644A3007B5CEF /* customCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20F4F29C1D4644A3007B5CEF /* customCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F4F2911D4644A3007B5CEF /* customCamera.framework */; };
 		20F4F2A11D4644A3007B5CEF /* customCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2A01D4644A3007B5CEF /* customCameraTests.swift */; };
@@ -133,6 +134,7 @@
 		20773C181D47803A005186D7 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		20773C201D478ED6005186D7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		208DD0931D51E1EE00474427 /* cameraSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cameraSettings.swift; sourceTree = "<group>"; };
+		20EB77551D523BC60074DC6D /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = focus.png; sourceTree = "<group>"; };
 		20F4F2911D4644A3007B5CEF /* customCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = customCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F4F2941D4644A3007B5CEF /* customCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customCamera.h; sourceTree = "<group>"; };
 		20F4F2961D4644A3007B5CEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		202F3C121D4F70330055F9A6 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				20EB77551D523BC60074DC6D /* focus.png */,
 				202F3C391D4F7E3D0055F9A6 /* exitCamera.png */,
 				202F3C131D4F704B0055F9A6 /* cross.png */,
 				202F3C141D4F704B0055F9A6 /* flip.png */,
@@ -430,6 +433,7 @@
 				202F3C261D4F704B0055F9A6 /* icon_framerate.png in Resources */,
 				202F3C2C1D4F704B0055F9A6 /* settigns.png in Resources */,
 				202F3C241D4F704B0055F9A6 /* icon_detection.png in Resources */,
+				20EB77561D523BC60074DC6D /* focus.png in Resources */,
 				202F3C321D4F70B80055F9A6 /* Custom.storyboard in Resources */,
 				202F3C291D4F704B0055F9A6 /* play.png in Resources */,
 				202F3C2D1D4F704B0055F9A6 /* stop.png in Resources */,

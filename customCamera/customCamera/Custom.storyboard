@@ -323,6 +323,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="focus.png" id="qCl-u1-7JV">
+                                <rect key="frame" x="122" y="249" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -331,6 +335,7 @@
                         <outlet property="doneButton" destination="RQi-Qt-drc" id="CDc-pd-B2n"/>
                         <outlet property="exitCameraButton" destination="S2M-xM-PqS" id="3fR-TV-GFy"/>
                         <outlet property="faceDetection" destination="z8o-Wl-uSq" id="IUt-8J-4uX"/>
+                        <outlet property="focus" destination="qCl-u1-7JV" id="7QB-hI-jSS"/>
                         <outlet property="focusModeButton" destination="MFO-M4-Q2D" id="khC-J8-nMq"/>
                         <outlet property="frameRateButton" destination="y79-01-Y9A" id="a8D-2P-TFI"/>
                         <outlet property="iconDetection" destination="6sc-WK-Eek" id="lRs-mN-ukr"/>
@@ -369,6 +374,7 @@
         <image name="cross.png" width="240" height="240"/>
         <image name="exitCamera.png" width="90" height="90"/>
         <image name="flip.png" width="90" height="90"/>
+        <image name="focus.png" width="640" height="640"/>
         <image name="icon_detection.png" width="128" height="128"/>
         <image name="icon_focusmode.png" width="128" height="128"/>
         <image name="icon_framerate.png" width="128" height="128"/>
