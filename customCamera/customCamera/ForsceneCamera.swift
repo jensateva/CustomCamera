@@ -88,6 +88,14 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         print("hideExitButton : \(settings.hideExitButton)")
         print("logo : \(settings.logo)")
 
+        let HEADERS = settings.headers()
+        let UPLOADURL = settings.uplodURL()
+        let FOLDER = settings.folder
+
+        print(UPLOADURL)
+        print(HEADERS)
+        print(FOLDER)
+
 
         let parameters: [String: AnyObject] =
             [

@@ -61,15 +61,15 @@ class ViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.labelDuration.hidden = false
 
+                // TODO - Add Frames per second after seconds
                 let time = Int(progress)
                 let minutes = Int(time) / 60 % 60
                 let seconds = Int(time) % 60
+                //let milliSeconds = Int(time) % 60
                 let secondsString = (String(format: "%02d", seconds))
                 let minutesString = (String(format: "%02d", minutes))
                 self.labelDuration.text = minutesString.stringByAppendingString(":").stringByAppendingString(secondsString)
-
             })
-            print("progress duration : \(progress)")
         }
 
         // ADD ZOOM GESTURE
@@ -317,10 +317,7 @@ class ViewController: UIViewController {
 
         print("APPROVE BUTTON CLICKED")
         print(lastRecordedMovie)
-
-        let fileToUpload = String(lastRecordedMovie)
-        print("File To Upload :\(fileToUpload)")
-        self.UploadVideo(self.lastRecordedMovie)
+        self.UploadVideo(lastRecordedMovie)
 
 
         if settings.multirecord
