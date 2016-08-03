@@ -317,6 +317,7 @@ class ViewController: UIViewController {
 
     @IBAction func approveVideo(sender: UIButton) {
 
+        print("APPROVE BUTTON CLICKED")
         self.UploadVideo(self.lastRecordedMovie)
 
         if settings.multirecord
@@ -342,16 +343,8 @@ class ViewController: UIViewController {
 
     private func UploadVideo(urlString:NSURL)
     {
-//        let defaults = NSUserDefaults()
-//        let url = defaults.valueForKey("urls") as! String
-//        let TOKEN = defaults.valueForKey("token")
-//        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
-        let today = NSDate.distantPast()
-        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
-
-//        let accountName = defaults.valueForKey("accountName") as! String
-//        let folderName = defaults.valueForKey("folderName") as! String
-//        let uploadUrl =  url + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
+        print("START UPLOAD")
+        print(urlString)
 
         let HEADERS = settings.headers()
         let UPLOADURL = settings.uplodURL()
@@ -360,6 +353,9 @@ class ViewController: UIViewController {
         print(UPLOADURL)
         print(HEADERS)
         print(FOLDER)
+
+        let today = NSDate.distantPast()
+        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
 
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(

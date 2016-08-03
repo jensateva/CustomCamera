@@ -23,6 +23,7 @@ class cameraSettings: NSObject {
     var showCustomSettings: Bool = false
     var hideExitButton: Bool = false
     var logo: String = ""
+    var saveOriginal: Bool = false
 
     // SET FROM LOGIN RESPONCE
     var url : NSArray = []
@@ -35,7 +36,7 @@ class cameraSettings: NSObject {
     return UPLOADURL
     }
 
-    
+
     func headers() -> [String : String]{
 
         ["]X-Auth-Kesterl" : token]
