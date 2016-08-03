@@ -631,8 +631,8 @@ class ViewController: UIViewController {
 
     func PlayPreviewMoview (url : NSURL){
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
-                                                         name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
+      //  NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
+      //                                                   name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
 
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
 
@@ -649,38 +649,38 @@ class ViewController: UIViewController {
     }
 
 
-    func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
-    {
-        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
-        {
-            print("playing")
-            let image = UIImage(named: "stop.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
-            self.overlayBlur.alpha = 0.0
-            self.playbackBlurOff()
-        }
-        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
-        {
-            print("stopped")
-            let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
-            self.playbackBlurOn()
-        }
-        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
-        {
-            print("paused")
-            let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
-            self.playbackBlurOn()
-        }
-        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
-        {
-            print("interupted")
-            let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
-            self.playbackBlurOn()
-        }
-    }
+//    func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
+//    {
+//        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
+//        {
+//            print("playing")
+//            let image = UIImage(named: "stop.png") as UIImage?
+//            self.playerStartStopButton.setImage(image, forState: .Normal)
+//            self.overlayBlur.alpha = 0.0
+//            self.playbackBlurOff()
+//        }
+//        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
+//        {
+//            print("stopped")
+//            let image = UIImage(named: "play.png") as UIImage?
+//            self.playerStartStopButton.setImage(image, forState: .Normal)
+//            self.playbackBlurOn()
+//        }
+//        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
+//        {
+//            print("paused")
+//            let image = UIImage(named: "play.png") as UIImage?
+//            self.playerStartStopButton.setImage(image, forState: .Normal)
+//            self.playbackBlurOn()
+//        }
+//        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
+//        {
+//            print("interupted")
+//            let image = UIImage(named: "play.png") as UIImage?
+//            self.playerStartStopButton.setImage(image, forState: .Normal)
+//            self.playbackBlurOn()
+//        }
+//    }
 
 
     @IBAction func playMovie(sender: UIButton) {

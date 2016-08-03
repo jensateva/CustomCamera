@@ -77,25 +77,16 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         settings.hideExitButton = hideExitButton
         settings.logo = logo
 
-
-        print("username : \(username)")
-        print("password : \(password)")
-        print("account : \(accountName)")
-        print("folder : \(folderName)")
-        print("identifier : \(identifier)")
-        print("multirecord : \(multirecord)")
-        print("framerate :\(frameRate)")
-        print("showSettings :\(showCustomSettings)")
-        print("hideExitButton : \(hideExitButton)")
-        print("logo : \(logo)")
-
-//        self.defaults.setValue(accountName, forKey: "accountName")
-//        self.defaults.setValue(folderName, forKey: "folderName")
-//        self.defaults.setValue(identifier, forKey: "identifier")
-//        self.defaults.setBool(multirecord, forKey: "multirecord")
-//        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
-//        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
-//        self.defaults.setValue(logo, forKeyPath: "logo")
+        print("username : \(settings.username)")
+        print("password : \(settings.password)")
+        print("account : \(settings.accountName)")
+        print("folder : \(settings.folder)")
+        print("identifier : \(settings.identifier)")
+        print("multirecord : \(settings.multirecord)")
+        print("framerate :\(settings.framerate)")
+        print("showSettings :\(settings.showCustomSettings)")
+        print("hideExitButton : \(settings.hideExitButton)")
+        print("logo : \(settings.logo)")
 
 
         let parameters: [String: AnyObject] =
