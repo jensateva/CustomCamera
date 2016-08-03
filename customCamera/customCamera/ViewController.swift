@@ -343,32 +343,36 @@ class ViewController: UIViewController {
 
     private func UploadVideo(urlString:NSURL)
     {
-        let defaults = NSUserDefaults()
-        let url = defaults.valueForKey("urls") as! String
-        let TOKEN = defaults.valueForKey("token")
-        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
+//        let defaults = NSUserDefaults()
+//        let url = defaults.valueForKey("urls") as! String
+//        let TOKEN = defaults.valueForKey("token")
+//        let headers = ["X-Auth-Kestrel": TOKEN as! String ]
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
 
-        let accountName = defaults.valueForKey("accountName") as! String
-        let folderName = defaults.valueForKey("folderName") as! String
-        let uploadUrl =  url + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
+//        let accountName = defaults.valueForKey("accountName") as! String
+//        let folderName = defaults.valueForKey("folderName") as! String
+//        let uploadUrl =  url + "/" + "/forscene/" + accountName + "/webupload?resultFormat=json" as String
 
+        let HEADERS = settings.headers()
         let UPLOADURL = settings.uplodURL()
+        let FOLDER = settings.folder
 
-        print(uploadUrl)
+        print(UPLOADURL)
+        print(HEADERS)
+        print(FOLDER)
 
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
 
             .POST,UPLOADURL,
-            headers: headers,
+            headers: HEADERS,
             multipartFormData: { multipartFormData in
 
                 multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-                multipartFormData.appendBodyPart(data: folderName .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+                multipartFormData.appendBodyPart(data: FOLDER .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
 
             },
 

@@ -89,13 +89,13 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         print("hideExitButton : \(hideExitButton)")
         print("logo : \(logo)")
 
-        self.defaults.setValue(accountName, forKey: "accountName")
-        self.defaults.setValue(folderName, forKey: "folderName")
-        self.defaults.setValue(identifier, forKey: "identifier")
-        self.defaults.setBool(multirecord, forKey: "multirecord")
-        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
-        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
-        self.defaults.setValue(logo, forKeyPath: "logo")
+//        self.defaults.setValue(accountName, forKey: "accountName")
+//        self.defaults.setValue(folderName, forKey: "folderName")
+//        self.defaults.setValue(identifier, forKey: "identifier")
+//        self.defaults.setBool(multirecord, forKey: "multirecord")
+//        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
+//        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
+//        self.defaults.setValue(logo, forKeyPath: "logo")
 
 
         let parameters: [String: AnyObject] =
@@ -127,13 +127,12 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         print(response)
 
-                        let token = Dictionary .valueForKey("token")
-                        self.defaults.setObject(token, forKey: "token")
-                        let urls = Dictionary.valueForKey("urls")
-
-                        self.defaults.setValue(urls, forKey: "urls")
-                        self.defaults.synchronize()
-                        print("uploadurl : \(urls)")
+//                        let token = Dictionary .valueForKey("token")
+//                        self.defaults.setObject(token, forKey: "token")
+//                        let urls = Dictionary.valueForKey("urls")
+//                        self.defaults.setValue(urls, forKey: "urls")
+//                        self.defaults.synchronize()
+//                        print("uploadurl : \(urls)")
 
                         self.settings.token = Dictionary.valueForKey("token") as! String
                         self.settings.url = Dictionary.valueForKey("urls") as! NSArray
