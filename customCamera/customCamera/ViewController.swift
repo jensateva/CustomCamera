@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import MediaPlayer
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -48,13 +49,18 @@ class ViewController: UIViewController {
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
 
-    var settings = NSObject()
+    var settings = cameraSettings()
 
     var moviePlayer : MPMoviePlayerViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Engine.startSession()
+
+        // UNARCHIVE
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("settings") as? NSData {
+            let settings = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+        }
 
         self.logoImage.image = UIImage(named: settings.logo)
 

@@ -52,20 +52,17 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         // Find the VC
         let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
         dispatch_async(dispatch_get_main_queue(), {
-            vc.settings = self.settings
             targetVC.presentViewController(vc, animated: animated, completion: nil)
         })
     }
 
 
+
+
     public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
     {
-        if frameRate > 23
-        {
         lockFrameRate(frameRate)
-        }
         customSettings(showCustomSettings)
-
 
         settings.username = username
         settings.password = password
@@ -78,6 +75,21 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         settings.hideExitButton = hideExitButton
         settings.logo = logo
 
+
+        // ARHCIVE
+        let data = NSKeyedArchiver.archivedDataWithRootObject(settings)
+        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "settings")
+
+        // UNARCHIVE
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("settings") as? NSData {
+            let SavedSettings = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+
+            print(SavedSettings)
+        }
+
+
+
+
         print("username : \(settings.username)")
         print("password : \(settings.password)")
         print("account : \(settings.accountName)")
@@ -88,8 +100,6 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         print("showSettings :\(settings.showCustomSettings)")
         print("hideExitButton : \(settings.hideExitButton)")
         print("logo : \(settings.logo)")
-
-
 
 
         let parameters: [String: AnyObject] =
@@ -130,6 +140,11 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         print("HEADERS : \(HEADERS)")
                         print("FOLDER : \(FOLDER)")
                         print("URL : \(UPLOADURL)")
+
+                        self.defaults.setValue(HEADERS, forKey: "HEADERS")
+                        self.defaults.setValue(FOLDER, forKey: "FOLDER")
+                        self.defaults.setValue(UPLOADURL, forKey: "UPLOADURL")
+                        self.defaults.synchronize()
 
 
                     case ("invalid"):

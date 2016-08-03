@@ -16,7 +16,7 @@ class cameraSettings: NSObject {
     var username: String = ""
     var password: String = ""
     var accountName: String = ""
-    var folder: String = ""
+    var folder: String = "App"
     var identifier: String = ""
     var multirecord: Bool = false
     var framerate: Int32 = 30
@@ -29,26 +29,19 @@ class cameraSettings: NSObject {
     var saveOriginal: Bool = false
     var brandColour : UIColor = UIColor.blackColor()
 
-
     // SET FROM LOGIN RESPONCE
     var url : NSArray = []
     var token : String = ""
-
-
-
 
     func uplodURL() -> String{
     let UPLOADURL = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
     return UPLOADURL
     }
 
-
-
     func headers() -> [String : String]{
        let headers = ["X-Auth-Kesterl" : token]
         return headers
     }
 
+
 }
-
-
