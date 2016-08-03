@@ -62,6 +62,17 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         }
         customSettings(showCustomSettings)
         print("CONNECTING TO FORSCENE")
+
+        print("username : \(username)")
+        print("password : \(password)")
+        print("account : \(accountName)")
+        print("folder : \(folderName)")
+        print("identifier : \(identifier)")
+        print("multirecord : \(multirecord)")
+        print("framerate :\(frameRate)")
+        print("showSettings :\(showCustomSettings)")
+        print("hideExitButton : \(hideExitButton)")
+
         let LOGIN_URL = "https://forscene.net/api/login"
 
         let parameters: [String: AnyObject] =
