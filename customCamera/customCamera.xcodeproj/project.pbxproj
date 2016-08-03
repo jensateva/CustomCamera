@@ -37,6 +37,7 @@
 		20773C191D47803A005186D7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C181D47803A005186D7 /* NetworkManager.swift */; };
 		20773C381D478F0F005186D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20773C2B1D478ED6005186D7 /* Alamofire.framework */; };
 		208DD0941D51E1EE00474427 /* cameraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DD0931D51E1EE00474427 /* cameraSettings.swift */; };
+		208DD09D1D52067A00474427 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DD09C1D52067A00474427 /* API.swift */; };
 		20F4F2951D4644A3007B5CEF /* customCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F4F2941D4644A3007B5CEF /* customCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20F4F29C1D4644A3007B5CEF /* customCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F4F2911D4644A3007B5CEF /* customCamera.framework */; };
 		20F4F2A11D4644A3007B5CEF /* customCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F2A01D4644A3007B5CEF /* customCameraTests.swift */; };
@@ -133,6 +134,7 @@
 		20773C181D47803A005186D7 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		20773C201D478ED6005186D7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		208DD0931D51E1EE00474427 /* cameraSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cameraSettings.swift; sourceTree = "<group>"; };
+		208DD09C1D52067A00474427 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		20F4F2911D4644A3007B5CEF /* customCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = customCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F4F2941D4644A3007B5CEF /* customCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customCamera.h; sourceTree = "<group>"; };
 		20F4F2961D4644A3007B5CEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				202F3C311D4F70B80055F9A6 /* Custom.storyboard */,
 				20773C181D47803A005186D7 /* NetworkManager.swift */,
 				20F4F2AC1D4644F0007B5CEF /* ForsceneCamera.swift */,
+				208DD09C1D52067A00474427 /* API.swift */,
 				208DD0931D51E1EE00474427 /* cameraSettings.swift */,
 			);
 			name = Sources;
@@ -460,6 +463,7 @@
 				202F3C301D4F705E0055F9A6 /* ViewController.swift in Sources */,
 				202F3C0E1D4F6FF00055F9A6 /* CameraEngineGifEncoder.swift in Sources */,
 				202F3C101D4F6FF00055F9A6 /* CameraEngineVideoEncoder.swift in Sources */,
+				208DD09D1D52067A00474427 /* API.swift in Sources */,
 				202F3C0A1D4F6FF00055F9A6 /* CameraEngineCaptureOutput.swift in Sources */,
 				202F3C0F1D4F6FF00055F9A6 /* CameraEngineMetadataOutput.swift in Sources */,
 				202F3C0D1D4F6FF00055F9A6 /* CameraEngineFileManager.swift in Sources */,
