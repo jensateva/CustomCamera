@@ -25,12 +25,12 @@ class cameraSettings: NSObject {
     var logo: String = ""
 
     // SET FROM LOGIN RESPONCE
-    var url : String = ""
+    var url : NSArray = []
     var token : String = ""
 
     // FUNCTIONS
     func uplodURL() -> String{
-    let UPLOADURL = url + "/" + accountName + "/webupload?resultFormat=json"
+    let UPLOADURL = (url[0] as! String) + "/" + accountName + "/webupload?resultFormat=json"
     return UPLOADURL
     }
 
