@@ -52,6 +52,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         // Find the VC
         let vc = storyboard.instantiateViewControllerWithIdentifier("ForsceneCamera")
         dispatch_async(dispatch_get_main_queue(), {
+            vc.settings = self.settings
             targetVC.presentViewController(vc, animated: animated, completion: nil)
         })
     }

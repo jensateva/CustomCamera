@@ -47,7 +47,8 @@ class ViewController: UIViewController {
     var lastRecordedMovie = NSURL()
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
-    let settings = cameraSettings()
+
+    var settings = NSObject()
 
     var moviePlayer : MPMoviePlayerViewController?
 
