@@ -319,7 +319,10 @@ class ViewController: UIViewController {
 
         print("APPROVE BUTTON CLICKED")
         print(lastRecordedMovie)
-        self.UploadVideo(self.lastRecordedMovie)
+
+        let fileToUpload = String(lastRecordedMovie)
+        print("File To Upload :\(fileToUpload)")
+ //       self.UploadVideo(self.lastRecordedMovie)
 
 
 //        if settings.multirecord
