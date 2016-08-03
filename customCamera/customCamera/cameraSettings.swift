@@ -24,27 +24,29 @@ class cameraSettings: NSObject {
     var hideExitButton: Bool = false
     var logo: String = ""
 
+
     // OTHER SETTINGS
     var saveOriginal: Bool = false
     var brandColour : UIColor = UIColor.blackColor()
+
 
     // SET FROM LOGIN RESPONCE
     var url : NSArray = []
     var token : String = ""
 
-    // FUNCTIONS
-    func uplodURL() -> String{
 
+
+
+    func uplodURL() -> String{
     let UPLOADURL = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
     return UPLOADURL
     }
 
 
+
     func headers() -> [String : String]{
-
-        ["]X-Auth-Kesterl" : token]
-
-        return headers()
+       let headers = ["]X-Auth-Kesterl" : token]
+        return headers
     }
 
 }
