@@ -318,7 +318,10 @@ class ViewController: UIViewController {
     @IBAction func approveVideo(sender: UIButton) {
 
         print("APPROVE BUTTON CLICKED")
-        self.UploadVideo(self.lastRecordedMovie)
+        print(lastRecordedMovie)
+
+
+      //  self.UploadVideo(self.lastRecordedMovie)
 
         if settings.multirecord
         {

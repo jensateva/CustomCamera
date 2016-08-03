@@ -203,7 +203,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="tick.png"/>
                                         <connections>
-                                            <action selector="approveVideo:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="cc9-4P-sGB"/>
+                                            <action selector="approveVideo:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="v5c-z4-oly"/>
                                         </connections>
                                     </button>
                                 </subviews>
