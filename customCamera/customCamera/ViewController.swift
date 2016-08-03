@@ -714,16 +714,19 @@ class ViewController: UIViewController {
     
     func showTouch(position : CGPoint){
 
+        if Engine.accessibilityElementIsFocused() {
+            print("I HAVE FOCUS")
+        }
+
         self.focus.frame = CGRectMake(position.x, position.y, 0, 0)
 
-        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 5.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
 
          self.focus.alpha = 1.0
          self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
     }), completion: { finished in
 
-
-        UIView.animateWithDuration(0.4, delay: 2.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+        UIView.animateWithDuration(0.35, delay: 1.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
 
             self.focus.alpha = 0.0
             self.focus.frame = CGRectMake(position.x , position.y, 0, 0)
@@ -739,6 +742,7 @@ class ViewController: UIViewController {
         let maxZoom: CGFloat = 6.0
         let pinchVelocityDividerFactor: CGFloat = 5.0
         if recognizer.state == .Changed {
+             self.focus.alpha = 0.0
             let desiredZoomFactor = min(maxZoom, Engine.cameraZoomFactor + atan2(recognizer.velocity, pinchVelocityDividerFactor))
             Engine.cameraZoomFactor = desiredZoomFactor
         }

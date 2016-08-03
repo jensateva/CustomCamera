@@ -435,10 +435,6 @@ public extension CameraEngine {
             let framerate = CMTimeMake(1, framerate)
             currentDevice.activeVideoMaxFrameDuration = framerate
             currentDevice.activeVideoMinFrameDuration = framerate
-//            print(currentDevice.activeFormat.videoSupportedFrameRateRanges)
-//            print(currentDevice.activeFormat)
-//            print(currentDevice.activeVideoMaxFrameDuration)
-//            print(currentDevice.activeVideoMinFrameDuration)
             currentDevice.unlockForConfiguration()
         }
 
@@ -447,6 +443,26 @@ public extension CameraEngine {
         }
       }
     }
+
+
+//    public func changeBitRate(framerate :Int32) {
+//
+//        if let currentDevice = self.cameraDevice.currentDevice {
+//
+//            do{
+//                try currentDevice.lockForConfiguration()
+//               // let framerate = CMTimeMake(1, framerate)
+//                currentDevice.
+//                currentDevice.activeVideoMinFrameDuration = framerate
+//                currentDevice.unlockForConfiguration()
+//            }
+//
+//            catch {
+//                fatalError("[CameraEngine] error lock configuration device")
+//            }
+//        }
+//    }
+
 
     
     public func focus(atPoint: CGPoint) {
