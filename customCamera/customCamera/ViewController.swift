@@ -318,20 +318,19 @@ class ViewController: UIViewController {
     @IBAction func approveVideo(sender: UIButton) {
 
         self.UploadVideo(self.lastRecordedMovie)
-        self.animateBackTorecord()
 
-        let defaults = NSUserDefaults()
-        if defaults.boolForKey("multirecord")
+        if settings.multirecord
         {
-            "Multirecord is set to True we will display upload bar on Camera UI"
-             self.uploadProgress.progress = 0.0
+            print("Multirecord is set to True we will display upload bar on Camera UI")
+            self.uploadProgress.progress = 0.0
+            self.animateBackTorecord()
         }
         else
         {
 
         self.dismissViewControllerAnimated(true) {
             self.animateBackTorecord()
-            "User approved a video you could show upload status on main UI"
+            print("User approved a video you could show upload status on main UI")
 
             let progressBar = UIProgressView()
             let vc = currentView
