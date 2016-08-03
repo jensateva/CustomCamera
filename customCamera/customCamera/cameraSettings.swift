@@ -23,7 +23,10 @@ class cameraSettings: NSObject {
     var showCustomSettings: Bool = false
     var hideExitButton: Bool = false
     var logo: String = ""
+
+    // OTHER SETTINGS
     var saveOriginal: Bool = false
+    var brandColour : UIColor = UIColor.blackColor()
 
     // SET FROM LOGIN RESPONCE
     var url : NSArray = []

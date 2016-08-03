@@ -318,10 +318,10 @@ class ViewController: UIViewController {
     @IBAction func approve(sender: UIButton) {
 
         print("APPROVE BUTTON CLICKED")
-        print(lastRecordedMovie)
+ //       print(lastRecordedMovie)
 
-        let fileToUpload = String(lastRecordedMovie)
-        print("File To Upload :\(fileToUpload)")
+ //       let fileToUpload = String(lastRecordedMovie)
+  //      print("File To Upload :\(fileToUpload)")
  //       self.UploadVideo(self.lastRecordedMovie)
 
 
@@ -639,8 +639,9 @@ class ViewController: UIViewController {
 
     func PlayPreviewMoview (url : NSURL){
 
-      //  NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
-      //                                                   name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
+            name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
 
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
 
@@ -649,46 +650,46 @@ class ViewController: UIViewController {
             // player.moviePlayer.shouldAutoplay = false
             player.view.sizeToFit()
             player.moviePlayer.scalingMode = .AspectFit
-            player.moviePlayer.view.backgroundColor = UIColor.whiteColor()
-            player.moviePlayer.backgroundView.backgroundColor = UIColor.whiteColor()
+            player.moviePlayer.view.backgroundColor = self.settings.brandColour
+            player.moviePlayer.backgroundView.backgroundColor = self.settings.brandColour
             player.moviePlayer.controlStyle = .None
             self.playbackContainer.addSubview(player.view)
         }
     }
 
 
-//    func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
-//    {
-//        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
-//        {
-//            print("playing")
-//            let image = UIImage(named: "stop.png") as UIImage?
-//            self.playerStartStopButton.setImage(image, forState: .Normal)
-//            self.overlayBlur.alpha = 0.0
-//            self.playbackBlurOff()
-//        }
-//        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
-//        {
-//            print("stopped")
-//            let image = UIImage(named: "play.png") as UIImage?
-//            self.playerStartStopButton.setImage(image, forState: .Normal)
-//            self.playbackBlurOn()
-//        }
-//        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
-//        {
-//            print("paused")
-//            let image = UIImage(named: "play.png") as UIImage?
-//            self.playerStartStopButton.setImage(image, forState: .Normal)
-//            self.playbackBlurOn()
-//        }
-//        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
-//        {
-//            print("interupted")
-//            let image = UIImage(named: "play.png") as UIImage?
-//            self.playerStartStopButton.setImage(image, forState: .Normal)
-//            self.playbackBlurOn()
-//        }
-//    }
+    func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
+    {
+        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
+        {
+            print("playing")
+            let image = UIImage(named: "stop.png") as UIImage?
+            self.playerStartStopButton.setImage(image, forState: .Normal)
+            self.overlayBlur.alpha = 0.0
+            self.playbackBlurOff()
+        }
+        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
+        {
+            print("stopped")
+            let image = UIImage(named: "play.png") as UIImage?
+            self.playerStartStopButton.setImage(image, forState: .Normal)
+            self.playbackBlurOn()
+        }
+        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
+        {
+            print("paused")
+            let image = UIImage(named: "play.png") as UIImage?
+            self.playerStartStopButton.setImage(image, forState: .Normal)
+            self.playbackBlurOn()
+        }
+        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
+        {
+            print("interupted")
+            let image = UIImage(named: "play.png") as UIImage?
+            self.playerStartStopButton.setImage(image, forState: .Normal)
+            self.playbackBlurOn()
+        }
+    }
 
 
     @IBAction func playMovie(sender: UIButton) {
