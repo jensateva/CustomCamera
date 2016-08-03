@@ -138,6 +138,9 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         self.settings.token = Dictionary.valueForKey("token") as! String
                         self.settings.url = Dictionary.valueForKey("urls") as! NSArray
 
+                        let UPLOADURL = self.settings.uplodURL()
+                        print("Settings Class : \(UPLOADURL)")
+
 
                     case ("invalid"):
                         print("INVALID CREDENTIALS")
