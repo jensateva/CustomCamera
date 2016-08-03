@@ -56,19 +56,6 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         })
     }
 
-//    struct connectionSettings {
-//        var username: String
-//        var password: String
-//        var accountName: String
-//        var folder: String
-//        var identifier: String
-//        var multirecord: Bool
-//        var framerate: Int32
-//        var showCustomSettings: Bool
-//        var hideExitButton: Bool
-//        var logo: String
-//    }
-
 
     public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
     {
@@ -136,6 +123,10 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                     case ("valid"):
 
                         print("CONNECTED WITH SUCCESS!")
+
+
+                        print(response)
+                        
                         let token = Dictionary .valueForKey("token")
                         self.defaults.setObject(token, forKey: "token")
                         let urls = Dictionary.valueForKey("urls")?.stringByDeletingLastPathComponent
