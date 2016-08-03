@@ -19,14 +19,13 @@ import MobileCoreServices
 import UIKit
 import Alamofire
 
-
 var currentView = UIViewController()
 
 public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
-    let settings = cameraSettings()
+       let LOGINURL = "https://forscene.net/api/login"
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -67,18 +66,12 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setValue(folderName, forKey: "folderName")
         self.defaults.setBool(multirecord, forKey: "multirecord")
         self.defaults.setInteger(frameRate, forKey: "frameRate")
-
         self.defaults.setValue(showCustomSettings, forKey: "showCustomSettings")
         self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
         self.defaults.setValue(logo, forKey: "logo")
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
-
         self.defaults.setValue(brandColour, forKey: "brandColour")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
-
-        settings.accountName = accountName
-        settings.folder = folderName
-
 
         let parameters: [String: AnyObject] =
             [
@@ -88,7 +81,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         ]
 
 
-        Alamofire.request(.POST, settings.LOGINURL, parameters: parameters, encoding: .JSON)
+        Alamofire.request(.POST, LOGINURL, parameters: parameters, encoding: .JSON)
 
             .responseJSON { response in
 
