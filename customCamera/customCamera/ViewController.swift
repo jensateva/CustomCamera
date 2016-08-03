@@ -315,13 +315,11 @@ class ViewController: UIViewController {
         self.animateBackTorecord()
     }
 
-    @IBAction func approveVideo(sender: UIButton) {
+    @IBAction func approve(sender: UIButton) {
 
         print("APPROVE BUTTON CLICKED")
         print(lastRecordedMovie)
-
-
-      //  self.UploadVideo(self.lastRecordedMovie)
+        //  self.UploadVideo(self.lastRecordedMovie)
 
         if settings.multirecord
         {
@@ -332,17 +330,19 @@ class ViewController: UIViewController {
         else
         {
 
-        self.dismissViewControllerAnimated(true) {
-            self.animateBackTorecord()
-            print("User approved a video you could show upload status on main UI")
+            self.dismissViewControllerAnimated(true) {
+                self.animateBackTorecord()
+                print("User approved a video you could show upload status on main UI")
 
-            let progressBar = UIProgressView()
-            let vc = currentView
-            vc.view.addSubview(progressBar)
-
+                let progressBar = UIProgressView()
+                let vc = currentView
+                vc.view.addSubview(progressBar)
+                
+            }
         }
-      }
     }
+
+
 
     private func UploadVideo(urlString:NSURL)
     {
