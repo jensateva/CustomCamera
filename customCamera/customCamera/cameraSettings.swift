@@ -45,7 +45,7 @@ class cameraSettings: NSObject {
 
 
     func headers() -> [String : String]{
-       let headers = ["]X-Auth-Kesterl" : token]
+       let headers = ["X-Auth-Kesterl" : token]
         return headers
     }
 

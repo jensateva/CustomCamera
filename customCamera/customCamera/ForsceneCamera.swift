@@ -123,13 +123,12 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         self.settings.url = Dictionary.valueForKey("urls") as! NSArray
 
                         let UPLOADURL = self.settings.uplodURL()
-                        print("Settings Class : \(UPLOADURL)")
-
                         let HEADERS = self.settings.headers()
                         let FOLDER = self.settings.folder
 
-                        print("Settings Headers : \(HEADERS)")
-                        print("Settings Class : \(FOLDER)")
+                        print("HEADERS : \(HEADERS)")
+                        print("FOLDER : \(FOLDER)")
+                        print("URL : \(UPLOADURL)")
 
 
                     case ("invalid"):
