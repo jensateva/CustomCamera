@@ -75,21 +75,6 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         settings.hideExitButton = hideExitButton
         settings.logo = logo
 
-
-        // ARHCIVE
-        let data = NSKeyedArchiver.archivedDataWithRootObject(settings)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "settings")
-
-        // UNARCHIVE
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("settings") as? NSData {
-            let SavedSettings = NSKeyedUnarchiver.unarchiveObjectWithData(data)
-
-            print(SavedSettings)
-        }
-
-
-
-
         print("username : \(settings.username)")
         print("password : \(settings.password)")
         print("account : \(settings.accountName)")
@@ -136,14 +121,20 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         let UPLOADURL = self.settings.uplodURL()
                         let HEADERS = self.settings.headers()
                         let FOLDER = self.settings.folder
+                        let LOGO = self.settings.logo
+                        let MULTIRECORD = self.settings.multirecord
 
                         print("HEADERS : \(HEADERS)")
                         print("FOLDER : \(FOLDER)")
                         print("URL : \(UPLOADURL)")
+                        print("LOGO : \(LOGO)")
 
-                        self.defaults.setValue(HEADERS, forKey: "HEADERS")
+                        self.defaults.dictionaryForKey("HEADERS")
                         self.defaults.setValue(FOLDER, forKey: "FOLDER")
                         self.defaults.setValue(UPLOADURL, forKey: "UPLOADURL")
+                        self.defaults.setValue(LOGO, forKey: "LOGO")
+                        self.defaults.setBool(MULTIRECORD, forKey: "MULTIRECORD")
+
                         self.defaults.synchronize()
 
 

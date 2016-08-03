@@ -48,8 +48,8 @@ class ViewController: UIViewController {
     var lastRecordedMovie = NSURL()
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
+    let defaults = NSUserDefaults()
 
-    var settings = cameraSettings()
 
     var moviePlayer : MPMoviePlayerViewController?
 
@@ -57,12 +57,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         Engine.startSession()
 
-        // UNARCHIVE
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("settings") as? NSData {
-            let settings = NSKeyedUnarchiver.unarchiveObjectWithData(data)
-        }
-
-        self.logoImage.image = UIImage(named: settings.logo)
+        let image = defaults.valueForKey("LOGO") as! String
+        self.logoImage.image = UIImage(named:image)
 
         Engine.blockCompletionProgress = { progress in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -326,8 +322,7 @@ class ViewController: UIViewController {
         print(lastRecordedMovie)
         self.UploadVideo(lastRecordedMovie)
 
-
-        if settings.multirecord
+        if defaults.boolForKey("MULTIRECORD")
         {
             print("Multirecord is set to True we will display upload bar on Camera UI")
             self.uploadProgress.progress = 0.0
@@ -354,13 +349,9 @@ class ViewController: UIViewController {
         print("START UPLOAD")
         print(urlString)
 
-        let HEADERS = settings.headers()
-        let UPLOADURL = settings.uplodURL()
-        let FOLDER = settings.folder
-
-        print(UPLOADURL)
-        print(HEADERS)
-        print(FOLDER)
+        let HEADERS = defaults.dictionaryForKey("HEADERS") as! [String : String]
+        let UPLOADURL = defaults.valueForKey("UPLOADURL") as! String
+        let FOLDER = defaults.valueForKey("FOLDER") as! String
 
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
