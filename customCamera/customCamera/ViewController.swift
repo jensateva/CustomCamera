@@ -84,6 +84,8 @@ class ViewController: UIViewController {
             print("face Object")
 
             (faceObject as AVMetadataObject).bounds
+
+            print((faceObject as AVMetadataObject).bounds)
         }
 
         Engine.blockCompletionCodeDetection = { codeObject in
@@ -455,6 +457,10 @@ class ViewController: UIViewController {
 
     @IBAction func switchCamera(sender: AnyObject) {
         self.Engine.switchCurrentDevice()
+
+        UIView.animateWithDuration(0.25, animations:{
+           self.switchButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2));
+        })
     }
 
     @IBAction func revealSettings(sender: UIButton) {
@@ -603,14 +609,14 @@ class ViewController: UIViewController {
             dateFormatter.dateFormat = "dd-MM-yyyy_HH:mm:ss"
             let dateStr = dateFormatter.stringFromDate(date)
             let videoFileName =  dateStr + "_Forscene.mp4"
-            print(videoFileName)
+            // print(videoFileName)
 
             guard let url = CameraEngineFileManager.documentPath(videoFileName) else {
                 return
             }
 
             Engine.startRecordingVideo(url, blockCompletion: { (url, error) -> (Void) in
-                print("url movie : \(url)")
+               // print("url movie : \(url)")
 
                 self.lastRecordedMovie = url!
 
@@ -714,22 +720,18 @@ class ViewController: UIViewController {
     
     func showTouch(position : CGPoint){
 
-        if Engine.accessibilityElementIsFocused() {
-            print("I HAVE FOCUS")
-        }
+       self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
 
-        self.focus.frame = CGRectMake(position.x, position.y, 0, 0)
-
-        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 5.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 4.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
 
          self.focus.alpha = 1.0
          self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
     }), completion: { finished in
 
-        UIView.animateWithDuration(0.35, delay: 1.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+        UIView.animateWithDuration(0.35, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
 
             self.focus.alpha = 0.0
-            self.focus.frame = CGRectMake(position.x , position.y, 0, 0)
+            self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
         }), completion: { finished in
 
  })
