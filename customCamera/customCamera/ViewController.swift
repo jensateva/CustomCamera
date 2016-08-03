@@ -322,7 +322,7 @@ class ViewController: UIViewController {
         print(lastRecordedMovie)
         self.UploadVideo(lastRecordedMovie)
 
-        if defaults.boolForKey("MULTIRECORD")
+        if defaults.boolForKey("multirecord")
         {
             print("Multirecord is set to True we will display upload bar on Camera UI")
             self.uploadProgress.progress = 0.0
@@ -349,9 +349,10 @@ class ViewController: UIViewController {
         print("START UPLOAD")
         print(urlString)
 
-        let HEADERS = defaults.dictionaryForKey("HEADERS") as! [String : String]
-        let UPLOADURL = defaults.valueForKey("UPLOADURL") as! String
-        let FOLDER = defaults.valueForKey("FOLDER") as! String
+        let TOKEN = defaults.valueForKey("token") as! String
+        let UPLOADURL = defaults.valueForKey("uploadurl") as! String
+        let FOLDER = defaults.valueForKey("folderName") as! String
+        let HEADERS = ["X-Auth-Kestrel":TOKEN]
 
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)

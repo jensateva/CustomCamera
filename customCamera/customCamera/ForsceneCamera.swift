@@ -59,32 +59,22 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int32, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String)
     {
         lockFrameRate(frameRate)
-        customSettings(showCustomSettings)
 
-        settings.username = username
-        settings.password = password
+        self.defaults.setValue(accountName, forKey: "accountName")
+        self.defaults.setValue(folderName, forKey: "folderName")
+        self.defaults.setBool(multirecord, forKey: "multirecord")
+        self.defaults.setInteger(frameRate, forKey: "frameRate")
+
+        self.defaults.setValue(showCustomSettings, forKey: "showCustomSettings")
+        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
+        self.defaults.setValue(logo, forKey: "logo")
+        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
+
         settings.accountName = accountName
         settings.folder = folderName
-        settings.identifier = identifier
-        settings.multirecord = multirecord
-        settings.framerate = frameRate
-        settings.showCustomSettings = showCustomSettings
-        settings.hideExitButton = hideExitButton
-        settings.logo = logo
-
-        print("username : \(settings.username)")
-        print("password : \(settings.password)")
-        print("account : \(settings.accountName)")
-        print("folder : \(settings.folder)")
-        print("identifier : \(settings.identifier)")
-        print("multirecord : \(settings.multirecord)")
-        print("framerate :\(settings.framerate)")
-        print("showSettings :\(settings.showCustomSettings)")
-        print("hideExitButton : \(settings.hideExitButton)")
-        print("logo : \(settings.logo)")
 
 
         let parameters: [String: AnyObject] =
@@ -113,28 +103,11 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         print("CONNECTED WITH SUCCESS!")
 
-                       // print(response)
-
-                        self.settings.token = Dictionary.valueForKey("token") as! String
-                        self.settings.url = Dictionary.valueForKey("urls") as! NSArray
-
-                        let UPLOADURL = self.settings.uplodURL()
-                        let HEADERS = self.settings.headers()
-                        let FOLDER = self.settings.folder
-                        let LOGO = self.settings.logo
-                        let MULTIRECORD = self.settings.multirecord
-
-                        print("HEADERS : \(HEADERS)")
-                        print("FOLDER : \(FOLDER)")
-                        print("URL : \(UPLOADURL)")
-                        print("LOGO : \(LOGO)")
-
-                        self.defaults.dictionaryForKey("HEADERS")
-                        self.defaults.setValue(FOLDER, forKey: "FOLDER")
-                        self.defaults.setValue(UPLOADURL, forKey: "UPLOADURL")
-                        self.defaults.setValue(LOGO, forKey: "LOGO")
-                        self.defaults.setBool(MULTIRECORD, forKey: "MULTIRECORD")
-
+                        let url = Dictionary.valueForKey("urls") as! NSArray
+                        let uploadurl = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
+                        let token = Dictionary.valueForKey("token")
+                        self.defaults.setValue(uploadurl, forKey: "uploadurl")
+                        self.defaults.setValue(token, forKey: "token")
                         self.defaults.synchronize()
 
 
@@ -151,8 +124,9 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         }
     }
 
-    private func lockFrameRate(frameRate : Int32){
-        Engine.changeFrameRate(frameRate)
+    private func lockFrameRate(frameRate : Int){
+        let frameRateInt32 = Int32(frameRate)
+        Engine.changeFrameRate(frameRateInt32)
     }
 
     private func customSettings(customControlls : Bool){
