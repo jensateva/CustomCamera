@@ -55,9 +55,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         Engine.startSession()
 
-        let defaults = NSUserDefaults()
-        let logo = defaults.valueForKey("logo") as! String
-        self.logoImage.image = UIImage(named: logo)
+        self.logoImage.image = UIImage(named: settings.logo)
 
         Engine.blockCompletionProgress = { progress in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
