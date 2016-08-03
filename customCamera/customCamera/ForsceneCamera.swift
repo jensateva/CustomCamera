@@ -88,13 +88,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         print("hideExitButton : \(settings.hideExitButton)")
         print("logo : \(settings.logo)")
 
-        let HEADERS = settings.headers()
-        let UPLOADURL = settings.uplodURL()
-        let FOLDER = settings.folder
 
-        print(UPLOADURL)
-        print(HEADERS)
-        print(FOLDER)
 
 
         let parameters: [String: AnyObject] =
@@ -123,21 +117,18 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         print("CONNECTED WITH SUCCESS!")
 
-
-                        print(response)
-
-//                        let token = Dictionary .valueForKey("token")
-//                        self.defaults.setObject(token, forKey: "token")
-//                        let urls = Dictionary.valueForKey("urls")
-//                        self.defaults.setValue(urls, forKey: "urls")
-//                        self.defaults.synchronize()
-//                        print("uploadurl : \(urls)")
+                       // print(response)
 
                         self.settings.token = Dictionary.valueForKey("token") as! String
                         self.settings.url = Dictionary.valueForKey("urls") as! NSArray
 
                         let UPLOADURL = self.settings.uplodURL()
+                        let HEADERS = self.settings.headers()
+                        let FOLDER = self.settings.folder
+
                         print("Settings Class : \(UPLOADURL)")
+                        print("Settings Headers : \(HEADERS)")
+                        print("Settings Class : \(FOLDER)")
 
 
                     case ("invalid"):
