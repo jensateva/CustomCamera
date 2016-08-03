@@ -82,14 +82,10 @@ class ViewController: UIViewController {
         // FACE DETECTION
         Engine.blockCompletionFaceDetection = { faceObject in
             print("face Object")
-
             (faceObject as AVMetadataObject).bounds
-
-            self.focus.alpha = 1.0
-            self.focus.bounds = (faceObject as AVMetadataObject).bounds
-            self.focus.alpha = 0.0
         }
 
+        // QRCODE DETECTION
         Engine.blockCompletionCodeDetection = { codeObject in
             print("code object value : \(codeObject.stringValue)")
         }
@@ -328,8 +324,16 @@ class ViewController: UIViewController {
     @IBAction func approve(sender: UIButton) {
 
         print("Video approved")
-        print(lastRecordedMovie)
+       // print(lastRecordedMovie)
+
+        if defaults.boolForKey("uploadVideo")
+        {
         self.UploadVideo(lastRecordedMovie)
+        }
+        else
+        {
+           // SEND URL TO VIEW
+        }
 
         if defaults.boolForKey("multirecord")
         {
@@ -356,6 +360,8 @@ class ViewController: UIViewController {
     private func UploadVideo(urlString:NSURL)
     {
         print("Starting upload...")
+        uploadProgress.hidden = false
+        uploadProgress.alpha = 1.0
 
         let TOKEN = defaults.valueForKey("token") as! String
         let UPLOADURL = defaults.valueForKey("uploadurl") as! String
@@ -386,7 +392,7 @@ class ViewController: UIViewController {
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-                        print("Uploading :\(Float(totalBytesRead) / Float(totalBytesExpectedToRead) * 100)")
+                        print("Uploading :\(Int(totalBytesRead) / Int(totalBytesExpectedToRead) * 100)")
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
@@ -468,6 +474,7 @@ class ViewController: UIViewController {
     @IBAction func revealSettings(sender: UIButton) {
         blurOn()
 
+        focus.hidden = true
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.settingsView.alpha = 1.0
@@ -485,6 +492,7 @@ class ViewController: UIViewController {
         self.settingsView.alpha = 0.0
         self.settingsView.hidden = true
         self.videoControlls.alpha = 1.0
+        focus.hidden = false
     }
 
     @IBAction func Quallity(sender: AnyObject) {

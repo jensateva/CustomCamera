@@ -58,7 +58,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, saveOriginal : Bool)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, saveOriginal : Bool, uploadVideo : Bool)
     {
         lockFrameRate(frameRate)
 
@@ -72,6 +72,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setValue(logo, forKey: "logo")
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
+        self.defaults.setBool(uploadVideo, forKey: "uploadVideo")
 
 
 
