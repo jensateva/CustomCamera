@@ -58,7 +58,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
 
 
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, brandColour: UIColor, saveOriginal : Bool)
+    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, saveOriginal : Bool)
     {
         lockFrameRate(frameRate)
 
@@ -70,7 +70,6 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
         self.defaults.setValue(logo, forKey: "logo")
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
-        self.defaults.setValue(brandColour, forKey: "brandColour")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
 
         let parameters: [String: AnyObject] =

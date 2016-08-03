@@ -643,8 +643,8 @@ class ViewController: UIViewController {
             // player.moviePlayer.shouldAutoplay = false
             player.view.sizeToFit()
             player.moviePlayer.scalingMode = .AspectFit
-            player.moviePlayer.view.backgroundColor = defaults.valueForKey("brandColour") as? UIColor
-            player.moviePlayer.backgroundView.backgroundColor = defaults.valueForKey("brandColour") as? UIColor
+            player.moviePlayer.view.backgroundColor = UIColor.blackColor()
+            player.moviePlayer.backgroundView.backgroundColor = UIColor.blackColor()
             player.moviePlayer.controlStyle = .None
             self.playbackContainer.addSubview(player.view)
         }
