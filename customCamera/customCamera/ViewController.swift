@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         Engine.startSession()
 
-        let image = defaults.valueForKey("LOGO") as! String
+        let image = defaults.valueForKey("logo") as! String
         self.logoImage.image = UIImage(named:image)
 
         Engine.blockCompletionProgress = { progress in
