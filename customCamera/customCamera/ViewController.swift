@@ -51,7 +51,6 @@ class ViewController: UIViewController {
     let Engine = CameraEngine()
     let defaults = NSUserDefaults()
 
-
     var moviePlayer : MPMoviePlayerViewController?
 
     override func viewDidLoad() {
@@ -332,7 +331,8 @@ class ViewController: UIViewController {
         }
         else
         {
-           // SEND URL TO VIEW
+            let NOTIFICATIONS = NSNotificationCenter.defaultCenter()
+            NOTIFICATIONS.postNotificationName("VideoRecorded", object: lastRecordedMovie)
         }
 
         if defaults.boolForKey("multirecord")
@@ -392,7 +392,7 @@ class ViewController: UIViewController {
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-                        print("Uploading :\(Int(totalBytesRead) / Int(totalBytesExpectedToRead) * 100)")
+                        print("Uploading :\(Int32(totalBytesRead) / Int32(totalBytesExpectedToRead) * 100)")
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
