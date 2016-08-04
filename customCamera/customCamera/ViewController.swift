@@ -580,6 +580,32 @@ class ViewController: UIViewController {
         focus.hidden = false
     }
 
+    @IBAction func changeQuallity(sender: AnyObject) {
+
+        if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1280x720
+        {
+            self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
+            let buttonImage = UIImage(named: "icon_hd.png")
+            self.buttonQuallity.setImage(buttonImage, forState: .Normal)
+        }
+        else  if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
+        {
+            self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset3840x2160
+            let buttonImage = UIImage(named: "icon_4k.png")
+            self.buttonQuallity.setImage(buttonImage, forState: .Normal)
+        }
+        else
+        {
+        self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1280x720
+            let buttonImage = UIImage(named: "icon_sd.png")
+            self.buttonQuallity.setImage(buttonImage, forState: .Normal)
+        }
+
+        print("Video Resolution is: :\(self.Engine.videoEncoderPresset)")
+    }
+
+
+
     @IBAction func Quallity(sender: AnyObject) {
 
         let pressetCompatible = Engine.compatibleVideoEncoderPresset()

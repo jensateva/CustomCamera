@@ -61,7 +61,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_hd.png"/>
                                                         <connections>
-                                                            <action selector="Quallity:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="cgq-Ey-aZ2"/>
+                                                            <action selector="changeQuallity:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="8dB-8u-PeX"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xES-dX-ghP">
@@ -336,9 +336,6 @@
                                                 <state key="normal" title="Video Size">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="Quallity:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="Zzw-gS-qmp"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -393,7 +390,6 @@
                         <outlet property="torchMode" destination="MYU-nE-yqp" id="wUi-v1-zIH"/>
                         <outlet property="uploadProgress" destination="0bE-wr-4Uw" id="KLH-fc-Ptb"/>
                         <outlet property="videoControlls" destination="a6Q-iA-qEH" id="Pwo-Up-k3A"/>
-                        <outlet property="videoResolutionButton" destination="Gaz-07-nj5" id="gzd-Vr-sQO"/>
                         <outlet property="videoView" destination="ywb-Xw-I0d" id="T98-p9-ncZ"/>
                     </connections>
                 </viewController>
