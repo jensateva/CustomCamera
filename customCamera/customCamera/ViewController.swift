@@ -59,6 +59,10 @@ class ViewController: UIViewController {
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
     let defaults = NSUserDefaults()
+    
+    var FRAMERATE = Int()
+    let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
+    let palImage = UIImage(named: "icon_pal.png") as UIImage!
 
     var moviePlayer : MPMoviePlayerViewController?
 
@@ -171,40 +175,36 @@ class ViewController: UIViewController {
 
     @IBAction func changeRegion(sender: UIButton) {
 
-        let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
-        let palImage = UIImage(named: "icon_pal.png") as UIImage?
-        let defaults = NSUserDefaults()
-        if defaults.integerForKey("frameRate") > 25
+        if FRAMERATE > 25
         {
             print("NTSC 30")
             self.Engine.changeFrameRate(25)
-            defaults.setInteger(25, forKey: "frameRate")
+            FRAMERATE = 25
             self.buttonRegion.setImage(ntscImage, forState: UIControlState.Normal)
         }
         else
         {
             print("PAL 25")
             self.Engine.changeFrameRate(30)
-            defaults.setInteger(30, forKey: "frameRate")
+            FRAMERATE = 30
             self.buttonRegion.setImage(palImage, forState: UIControlState.Normal)
         }
-        defaults.synchronize()
     }
 
 
     func setUpView(){
 
         let defaults = NSUserDefaults()
+        FRAMERATE = defaults.integerForKey("frameRate")
 
-         let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
-         let palImage = UIImage(named: "icon_pal.png") as UIImage?
-
-        if defaults.integerForKey("frameRate") > 25
+        if FRAMERATE > 25
         {
+            print(FRAMERATE)
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
         }
         else
         {
+             print(FRAMERATE)
              self.buttonRegion.setImage(palImage, forState: .Normal)
         }
 

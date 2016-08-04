@@ -46,7 +46,7 @@
                                                         <state key="normal" image="icon_focus_auto.png"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyn-eb-EmS">
-                                                        <rect key="frame" x="105" y="10" width="30" height="30"/>
+                                                        <rect key="frame" x="100" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_ntsc.png"/>
                                                         <connections>
@@ -354,7 +354,7 @@
                         <outlet property="buttonFocus" destination="xES-dX-ghP" id="ShB-hP-F3r"/>
                         <outlet property="buttonFocusmode" destination="Ulf-EG-swh" id="0VD-GM-NN5"/>
                         <outlet property="buttonQuallity" destination="9QL-o6-L87" id="wcg-fB-fs9"/>
-                        <outlet property="buttonRegion" destination="zyn-eb-EmS" id="dyf-0s-p1q"/>
+                        <outlet property="buttonRegion" destination="zyn-eb-EmS" id="qEe-LA-Nba"/>
                         <outlet property="customSettingsContainer" destination="L53-XM-FCz" id="jJ3-BO-AfO"/>
                         <outlet property="doneButton" destination="RQi-Qt-drc" id="CDc-pd-B2n"/>
                         <outlet property="exitCameraButton" destination="S2M-xM-PqS" id="3fR-TV-GFy"/>
