@@ -332,11 +332,11 @@ class ViewController: UIViewController {
     func hideCustomSettingsShowTimer(){
 
         self.labelDuration.alpha = 0.0
-        self.labelDuration.hidden = false
         self.labelDuration.frame = CGRectMake(0, 50, self.view.frame.size.width, 50)
 
-        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
+        self.labelDuration.hidden = false
         self.labelDuration.alpha = 1.0
         self.labelDuration.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
         self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
@@ -615,19 +615,17 @@ class ViewController: UIViewController {
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
              let image = UIImage(named: "icon_focus_continious", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
-            print("Change to continious")
+
+            print("Continiour Focus")
         }
 
          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.ContinuousAutoFocus
 
         {
             Engine.cameraFocus = CameraEngineCameraFocus.Locked
-
-
-            let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
-
-              print("Change to Locked Focus")
+              print("Locked Focus")
 
         }
 
@@ -635,10 +633,9 @@ class ViewController: UIViewController {
 
         {
             Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
-            let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
-
-              print("Change to Auto FOcus")
+              print("Auto Focus")
 
         }
         else
