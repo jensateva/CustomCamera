@@ -57,12 +57,9 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
 
 
-
-    public func connectToForscene(username: String, password: String, accountName: String, folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, saveOriginal : Bool, uploadVideo : Bool)
+    public func setUpCamera(folderName: String, identifier: String, multirecord: Bool, frameRate : Int, showCustomSettings : Bool, hideExitButton : Bool, logo : String, saveOriginal : Bool, uploadVideo : Bool)
     {
         lockFrameRate(frameRate)
-
-        self.defaults.setValue(accountName, forKey: "accountName")
         self.defaults.setValue(identifier, forKey: "identifier")
         self.defaults.setValue(folderName, forKey: "folderName")
         self.defaults.setBool(multirecord, forKey: "multirecord")
@@ -73,6 +70,23 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
         self.defaults.setBool(uploadVideo, forKey: "uploadVideo")
+    }
+
+    public func connectToForscene(username: String, password: String, accountName: String)
+    {
+        lockFrameRate(frameRate)
+
+        self.defaults.setValue(accountName, forKey: "accountName")
+//        self.defaults.setValue(identifier, forKey: "identifier")
+//        self.defaults.setValue(folderName, forKey: "folderName")
+//        self.defaults.setBool(multirecord, forKey: "multirecord")
+//        self.defaults.setInteger(frameRate, forKey: "frameRate")
+//        self.defaults.setValue(showCustomSettings, forKey: "showCustomSettings")
+//        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
+//        self.defaults.setValue(logo, forKey: "logo")
+//        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
+//        self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
+//        self.defaults.setBool(uploadVideo, forKey: "uploadVideo")
 
 
 
