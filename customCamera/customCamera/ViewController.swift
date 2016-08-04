@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
     let defaults = NSUserDefaults()
-    
+
     var FRAMERATE = Int()
     let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
     let palImage = UIImage(named: "icon_pal.png") as UIImage!
@@ -180,14 +180,15 @@ class ViewController: UIViewController {
             print("NTSC 30")
             self.Engine.changeFrameRate(25)
             FRAMERATE = 25
-            self.buttonRegion.setImage(ntscImage, forState: UIControlState.Normal)
+            self.buttonRegion.setImage(ntscImage, forState: .Normal)
+             self.buttonRegion.setTitle("25", forState: .Normal)
         }
         else
         {
             print("PAL 25")
             self.Engine.changeFrameRate(30)
             FRAMERATE = 30
-            self.buttonRegion.setImage(palImage, forState: UIControlState.Normal)
+            self.buttonRegion.setImage(palImage, forState: .Normal)
         }
     }
 
@@ -200,11 +201,14 @@ class ViewController: UIViewController {
         if FRAMERATE > 25
         {
             print(FRAMERATE)
+            print(ntscImage)
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
+            self.buttonRegion.setTitle("25", forState: .Normal)
         }
         else
         {
              print(FRAMERATE)
+                print(palImage)
              self.buttonRegion.setImage(palImage, forState: .Normal)
         }
 
