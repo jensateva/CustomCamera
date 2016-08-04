@@ -610,28 +610,35 @@ class ViewController: UIViewController {
 
         print(Engine.cameraFocus.description)
 
-        if self.Engine.cameraFocus == CameraEngineCameraFocus.AutoFocus
+        if Engine.captureDevice?.focusMode == AVCaptureFocusMode.AutoFocus
         {
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
              let image = UIImage(named: "icon_focus_continious", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
+            print("Change to continious")
         }
 
-         else if self.Engine.cameraFocus == CameraEngineCameraFocus.ContinuousAutoFocus
+         else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.ContinuousAutoFocus
 
         {
-            Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
+            Engine.cameraFocus = CameraEngineCameraFocus.Locked
+
+
             let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
 
+              print("Change to Locked Focus")
+
         }
 
-          else if self.Engine.cameraFocus == CameraEngineCameraFocus.Locked
+          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.Locked
 
         {
             Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
             let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
+
+              print("Change to Auto FOcus")
 
         }
         else
