@@ -17,12 +17,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="ed2-se-pBC">
-                                        <rect key="frame" x="0.0" y="448" width="320" height="146"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.12847521549999999" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" id="khR-8l-jBX">
+                                    <view contentMode="scaleToFill" id="khR-8l-jBX" userLabel="TOP CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -41,12 +36,12 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ulf-EG-swh">
-                                                        <rect key="frame" x="20" y="5" width="30" height="30"/>
+                                                        <rect key="frame" x="20" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_focus_auto.png"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyn-eb-EmS">
-                                                        <rect key="frame" x="105" y="5" width="30" height="30"/>
+                                                        <rect key="frame" x="105" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_ntsc.png"/>
                                                         <connections>
@@ -54,12 +49,12 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9QL-o6-L87">
-                                                        <rect key="frame" x="190" y="5" width="30" height="30"/>
+                                                        <rect key="frame" x="190" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_hd.png"/>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xES-dX-ghP">
-                                                        <rect key="frame" x="270" y="5" width="30" height="30"/>
+                                                        <rect key="frame" x="270" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_flash_auto.png"/>
                                                     </button>

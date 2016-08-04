@@ -176,14 +176,14 @@ class ViewController: UIViewController {
         {
             self.Engine.changeFrameRate(25)
             defaults.setInteger(25, forKey: "frameRate")
-            let ntscImage = UIImage(named: "icon_ntsc.png")
+            let ntscImage = UIImage(named: "icon_ntsc")
             buttonRegion.setImage(ntscImage, forState: .Normal)
         }
         else
         {
             self.Engine.changeFrameRate(30)
             defaults.setInteger(30, forKey: "frameRate")
-            let palImage = UIImage(named: "icon_pal.png")
+            let palImage = UIImage(named: "icon_pal")
             buttonRegion.setImage(palImage, forState: .Normal)
         }
         defaults.synchronize()
@@ -196,12 +196,12 @@ class ViewController: UIViewController {
 
         if defaults.integerForKey("frameRate") > 25
         {
-            let ntscImage = UIImage(named: "icon_ntsc.png")
+            let ntscImage = UIImage(named: "icon_ntsc")
             buttonRegion.setImage(ntscImage, forState: .Normal)
         }
         else
         {
-             let palImage = UIImage(named: "icon_pal.png")
+             let palImage = UIImage(named: "icon_pal")
              buttonRegion.setImage(palImage, forState: .Normal)
         }
 
@@ -550,7 +550,7 @@ class ViewController: UIViewController {
 
             self.settingsView.alpha = 1.0
             self.settingsView.hidden = false
-            self.videoControlls.alpha = 0.0
+            self.videoControlls.hidden = true
 
             }, completion: { finished in
 
@@ -562,7 +562,7 @@ class ViewController: UIViewController {
         self.blurOff()
         self.settingsView.alpha = 0.0
         self.settingsView.hidden = true
-        self.videoControlls.alpha = 1.0
+        self.videoControlls.hidden = false
         focus.hidden = false
     }
 
