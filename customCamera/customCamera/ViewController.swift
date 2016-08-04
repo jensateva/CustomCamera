@@ -197,12 +197,12 @@ class ViewController: UIViewController {
         if defaults.integerForKey("frameRate") > 25
         {
             let ntscImage = UIImage(named: "icon_ntsc.png")
-            buttonRegion.setImage(ntscImage, forState: <#T##UIControlState#>)
+            buttonRegion.setImage(ntscImage, forState: .Normal)
         }
         else
         {
              let palImage = UIImage(named: "icon_pal.png")
-             buttonRegion.setImage(palImage, forState: <#T##UIControlState#>)
+             buttonRegion.setImage(palImage, forState: .Normal)
         }
 
         if defaults.boolForKey("showCustomSettings")
