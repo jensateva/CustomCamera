@@ -40,7 +40,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         }
     }
 
-    public func openCustomCamera(targetVC: UIViewController, animated:Bool){
+    public func launchCamera(targetVC: UIViewController, animated:Bool){
 
         currentView = targetVC
         // Find the storyboard
@@ -70,13 +70,13 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
         self.defaults.setBool(uploadVideo, forKey: "uploadVideo")
+        lockFrameRate(frameRate)
+
     }
 
     public func connectToForscene(username: String, password: String, accountName: String)
     {
-        lockFrameRate(frameRate)
-
-        self.defaults.setValue(accountName, forKey: "accountName")
+ //       self.defaults.setValue(accountName, forKey: "accountName")
 //        self.defaults.setValue(identifier, forKey: "identifier")
 //        self.defaults.setValue(folderName, forKey: "folderName")
 //        self.defaults.setBool(multirecord, forKey: "multirecord")
