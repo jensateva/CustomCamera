@@ -425,6 +425,8 @@ class ViewController: UIViewController {
 
     @IBAction func approve(sender: UIButton) {
 
+        self.moviePlayer?.moviePlayer.stop()
+
         print("Video approved")
 
         if defaults.boolForKey("uploadVideo")
