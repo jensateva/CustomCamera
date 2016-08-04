@@ -20,7 +20,7 @@
                                     <view contentMode="scaleToFill" id="rXs-fa-Up2" userLabel="BOTTOM CONTAINER">
                                         <rect key="frame" x="0.0" y="450" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.32373383620000001" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="khR-8l-jBX" userLabel="TOP CONTAINER">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -64,7 +64,7 @@
                                                         <state key="normal" image="icon_flash_auto.png"/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.32373383620000001" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
