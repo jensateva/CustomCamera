@@ -201,20 +201,13 @@ class ViewController: UIViewController {
 
         if FRAMERATE > 25
         {
-            print(FRAMERATE)
             let ntscImage = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
-            print(ntscImage)
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
             self.buttonRegion.setTitle("25", forState: .Normal)
         }
         else
         {
-             print(FRAMERATE)
-
              let palImage = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
-                print(palImage)
              self.buttonRegion.setImage(palImage, forState: .Normal)
         }
 
@@ -222,7 +215,6 @@ class ViewController: UIViewController {
         {
             self.labelDuration.hidden = true
             self.settingsIcon.hidden = true
-            
             self.customSettingsContainer.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
             self.customSettingsContainer.hidden = false
             self.customSettingsContainer.alpha = 1.0
@@ -409,13 +401,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func backToRecord(sender: UIButton) {
+        self.moviePlayer?.moviePlayer.stop()
+        self.moviePlayer = nil
         self.animateBackTorecord()
     }
 
     @IBAction func approve(sender: UIButton) {
 
         print("Video approved")
-       // print(lastRecordedMovie)
 
         if defaults.boolForKey("uploadVideo")
         {
@@ -615,31 +608,35 @@ class ViewController: UIViewController {
 
     @IBAction func changeFocusmode(sender: UIButton) {
 
+        print(Engine.cameraFocus.description)
+
         if self.Engine.cameraFocus == CameraEngineCameraFocus.AutoFocus
         {
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
-
              let image = UIImage(named: "icon_focus_continious", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
-
         }
+
          else if self.Engine.cameraFocus == CameraEngineCameraFocus.ContinuousAutoFocus
+
         {
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
-
             let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
 
         }
 
           else if self.Engine.cameraFocus == CameraEngineCameraFocus.Locked
+
         {
-
             Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
-
             let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
 
+        }
+        else
+        {
+            print("NO MATCHING FOCUS MODE")
         }
 
     }
