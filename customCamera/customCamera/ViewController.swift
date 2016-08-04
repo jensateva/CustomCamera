@@ -167,7 +167,7 @@ class ViewController: UIViewController {
 
             }, completion: { finished in
 
-                UIView.animateWithDuration(0.3, delay: 0.5, options: .CurveEaseOut, animations: {
+                UIView.animateWithDuration(0.25, delay: 0.4, options: .CurveEaseOut, animations: {
 
                     self.userMessage.alpha = 0.0
 
