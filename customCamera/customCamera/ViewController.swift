@@ -196,16 +196,16 @@ class ViewController: UIViewController {
 
         let defaults = NSUserDefaults()
 
-        if defaults.integerForKey("frameRate") > 25
-        {
-            let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
-            self.buttonRegion.setImage(ntscImage, forState: .Normal)
-        }
-        else
-        {
-             let palImage = UIImage(named: "icon_pal.png") as UIImage?
-             self.buttonRegion.setImage(palImage, forState: .Normal)
-        }
+//        if defaults.integerForKey("frameRate") > 25
+//        {
+//            let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
+//            self.buttonRegion.setImage(ntscImage, forState: .Normal)
+//        }
+//        else
+//        {
+//             let palImage = UIImage(named: "icon_pal.png") as UIImage?
+//             self.buttonRegion.setImage(palImage, forState: .Normal)
+//        }
 
         if defaults.boolForKey("showCustomSettings")
         {
@@ -825,10 +825,6 @@ class ViewController: UIViewController {
  })
 })
    }
-        else
-        {
-            print("FOcus point outside area supported")
-        }
 }
 
     
