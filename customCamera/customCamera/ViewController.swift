@@ -155,6 +155,9 @@ class ViewController: UIViewController {
 
 
     func showMessage(message:String){
+
+        dispatch_async(dispatch_get_main_queue())
+        {
         self.userMessage.alpha = 0.0
         self.userMessage.text = message
 
@@ -164,14 +167,14 @@ class ViewController: UIViewController {
 
             }, completion: { finished in
 
-                UIView.animateWithDuration(0.3, delay: 1.0, options: .CurveEaseOut, animations: {
+                UIView.animateWithDuration(0.3, delay: 0.5, options: .CurveEaseOut, animations: {
 
                     self.userMessage.alpha = 0.0
 
                     }, completion: { finished in
-                self.userMessage.text = ""
         })
    })
+  }
 }
 
 
