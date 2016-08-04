@@ -150,23 +150,23 @@ class ViewController: UIViewController {
 
 
     func setupPortraitView(){
-        let bounds = UIScreen.mainScreen().bounds
-        let width = bounds.size.width
-        let height = bounds.size.height
-
-        self.settingsContainer.frame = CGRectMake(50, height / 2  - width / 2, width - 100  , width )
-        let buttonHeight = width / 6
-        self.faceDetection.frame = CGRectMake(buttonHeight, 0, self.view.frame.size.width - buttonHeight, buttonHeight)
-        self.torchMode.frame = CGRectMake(buttonHeight, buttonHeight * 1, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-        self.focusModeButton.frame = CGRectMake(buttonHeight, buttonHeight * 2, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-        self.frameRateButton.frame = CGRectMake(buttonHeight, buttonHeight * 3, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-        self.videoResolutionButton.frame = CGRectMake(buttonHeight, buttonHeight * 4, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-
-        self.iconDetection.frame = CGRectMake(0, 0, buttonHeight, buttonHeight)
-        self.iconTorch.frame = CGRectMake(0, buttonHeight, buttonHeight, buttonHeight)
-        self.iconFocus.frame = CGRectMake(0, buttonHeight * 2, buttonHeight, buttonHeight)
-        self.iconFramerate.frame = CGRectMake(0, buttonHeight * 3, buttonHeight, buttonHeight)
-        self.iconResolution.frame = CGRectMake(0, buttonHeight * 4, buttonHeight, buttonHeight)
+//        let bounds = UIScreen.mainScreen().bounds
+//        let width = bounds.size.width
+//        let height = bounds.size.height
+//
+//        self.settingsContainer.frame = CGRectMake(50, height / 2  - width / 2, width - 100  , width )
+//        let buttonHeight = width / 6
+//        self.faceDetection.frame = CGRectMake(buttonHeight, 0, self.view.frame.size.width - buttonHeight, buttonHeight)
+//        self.torchMode.frame = CGRectMake(buttonHeight, buttonHeight * 1, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
+//        self.focusModeButton.frame = CGRectMake(buttonHeight, buttonHeight * 2, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
+//        self.frameRateButton.frame = CGRectMake(buttonHeight, buttonHeight * 3, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
+//        self.videoResolutionButton.frame = CGRectMake(buttonHeight, buttonHeight * 4, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
+//
+//        self.iconDetection.frame = CGRectMake(0, 0, buttonHeight, buttonHeight)
+//        self.iconTorch.frame = CGRectMake(0, buttonHeight, buttonHeight, buttonHeight)
+//        self.iconFocus.frame = CGRectMake(0, buttonHeight * 2, buttonHeight, buttonHeight)
+//        self.iconFramerate.frame = CGRectMake(0, buttonHeight * 3, buttonHeight, buttonHeight)
+//        self.iconResolution.frame = CGRectMake(0, buttonHeight * 4, buttonHeight, buttonHeight)
 
     }
 
@@ -605,6 +605,25 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func changeFocusmode(sender: UIButton) {
+
+        let currentFocus = Engine.cameraFocus.description()
+
+        if currentFocus == "AutoFocus"
+        {
+            print("AutoFocus")
+        }
+        else
+        {
+            print("currentFocus")
+        }
+    }
+
+
+
+
+
+// customCamera.CameraEngineCameraFocus.Locked, customCamera.CameraEngineCameraFocus.AutoFocus, customCamera.CameraEngineCameraFocus.ContinuousAutoFocus
 
     @IBAction func Quallity(sender: AnyObject) {
 
@@ -698,6 +717,11 @@ class ViewController: UIViewController {
     }
 
 
+
+
+
+
+
     @IBAction func changeFocusCamera(sender: AnyObject) {
         let focusCompatible = self.Engine.compatibleCameraFocus()
 
@@ -717,6 +741,11 @@ class ViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+
+
+
+
+
 
 
     @IBAction func changeFrameRate(sender: AnyObject) {

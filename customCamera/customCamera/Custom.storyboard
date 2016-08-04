@@ -45,7 +45,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_focus_auto.png"/>
                                                         <connections>
-                                                            <action selector="changeFocusCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="4rK-T4-Tht"/>
+                                                            <action selector="changeFocusmode:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="dXu-Gm-GnW"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyn-eb-EmS">
@@ -383,7 +383,6 @@
                         <outlet property="playerStartStopButton" destination="iCd-bb-f0N" id="5os-kx-RNl"/>
                         <outlet property="recordButton" destination="lFr-fV-Ou8" id="lbv-vZ-b1A"/>
                         <outlet property="recordButtonBlurView" destination="uDp-1e-qsK" id="5dV-ed-7X0"/>
-                        <outlet property="settingsContainer" destination="PMM-zl-lkC" id="TGR-3T-edN"/>
                         <outlet property="settingsIcon" destination="jM1-Kw-7kR" id="kcb-yr-BAy"/>
                         <outlet property="settingsView" destination="mj2-jW-dFC" id="MGg-Na-SKl"/>
                         <outlet property="switchButton" destination="tQP-zU-dCb" id="MNR-on-ybm"/>
