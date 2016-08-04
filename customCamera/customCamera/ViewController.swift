@@ -171,14 +171,12 @@ class ViewController: UIViewController {
 
 
     @IBAction func changeRegion(sender: UIButton) {
-        let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
-        let palImage = UIImage(named: "icon_pal.png") as UIImage!
-
         if FRAMERATE > 25
         {
             print("NTSC 30")
             self.Engine.changeFrameRate(25)
             FRAMERATE = 25
+             let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
              self.buttonRegion.setTitle("25", forState: .Normal)
         }
@@ -187,6 +185,7 @@ class ViewController: UIViewController {
             print("PAL 25")
             self.Engine.changeFrameRate(30)
             FRAMERATE = 30
+            let palImage = UIImage(named: "icon_pal.png") as UIImage?
             self.buttonRegion.setImage(palImage, forState: .Normal)
         }
     }
@@ -196,12 +195,11 @@ class ViewController: UIViewController {
 
         let defaults = NSUserDefaults()
         FRAMERATE = defaults.integerForKey("frameRate")
-        let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
-        let palImage = UIImage(named: "icon_pal.png") as UIImage!
 
         if FRAMERATE > 25
         {
             print(FRAMERATE)
+            let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
             print(ntscImage)
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
             self.buttonRegion.setTitle("25", forState: .Normal)
@@ -209,6 +207,7 @@ class ViewController: UIViewController {
         else
         {
              print(FRAMERATE)
+             let palImage = UIImage(named: "icon_pal.png") as UIImage?
                 print(palImage)
              self.buttonRegion.setImage(palImage, forState: .Normal)
         }
