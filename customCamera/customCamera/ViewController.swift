@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonRegion: UIButton!
     @IBOutlet weak var buttonQuallity: UIButton!
     @IBOutlet weak var buttonTorchmode: UIButton!
+    @IBOutlet weak var userMessage: UILabel!
 
 
 
@@ -150,25 +151,29 @@ class ViewController: UIViewController {
 
 
     func setupPortraitView(){
-//        let bounds = UIScreen.mainScreen().bounds
-//        let width = bounds.size.width
-//        let height = bounds.size.height
-//
-//        self.settingsContainer.frame = CGRectMake(50, height / 2  - width / 2, width - 100  , width )
-//        let buttonHeight = width / 6
-//        self.faceDetection.frame = CGRectMake(buttonHeight, 0, self.view.frame.size.width - buttonHeight, buttonHeight)
-//        self.torchMode.frame = CGRectMake(buttonHeight, buttonHeight * 1, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-//        self.focusModeButton.frame = CGRectMake(buttonHeight, buttonHeight * 2, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-//        self.frameRateButton.frame = CGRectMake(buttonHeight, buttonHeight * 3, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-//        self.videoResolutionButton.frame = CGRectMake(buttonHeight, buttonHeight * 4, self.settingsContainer.frame.size.width - buttonHeight, buttonHeight)
-//
-//        self.iconDetection.frame = CGRectMake(0, 0, buttonHeight, buttonHeight)
-//        self.iconTorch.frame = CGRectMake(0, buttonHeight, buttonHeight, buttonHeight)
-//        self.iconFocus.frame = CGRectMake(0, buttonHeight * 2, buttonHeight, buttonHeight)
-//        self.iconFramerate.frame = CGRectMake(0, buttonHeight * 3, buttonHeight, buttonHeight)
-//        self.iconResolution.frame = CGRectMake(0, buttonHeight * 4, buttonHeight, buttonHeight)
-
     }
+
+
+    func showMessage(message:String){
+        self.userMessage.alpha = 0.0
+        self.userMessage.text = message
+
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseOut, animations: {
+
+            self.userMessage.alpha = 1.0
+
+            }, completion: { finished in
+
+                UIView.animateWithDuration(0.5, delay: 1.5, options: .CurveEaseOut, animations: {
+
+                    self.userMessage.alpha = 0.0
+
+                    }, completion: { finished in
+                self.userMessage.text = ""
+        })
+   })
+}
+
 
 
     @IBAction func changeRegion(sender: UIButton) {
@@ -177,6 +182,8 @@ class ViewController: UIViewController {
             print("PAL 25")
             self.Engine.changeFrameRate(25)
             FRAMERATE = 25
+
+            self.showMessage("25 fps")
 
             let PALIMAGE = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonRegion.setImage(PALIMAGE, forState: .Normal)
@@ -187,6 +194,8 @@ class ViewController: UIViewController {
             print("NTSC 30")
             self.Engine.changeFrameRate(30)
             FRAMERATE = 30
+
+             self.showMessage("30 fps")
 
             let NTSCIMAGE = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonRegion.setImage(NTSCIMAGE, forState: .Normal)
@@ -242,7 +251,7 @@ class ViewController: UIViewController {
 
     func hideLogo(){
 
-        UIView.animateWithDuration(0.3, delay: 0.2, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.3, delay: 0.35, options: .CurveEaseOut, animations: {
 
             self.logoImage.frame = CGRectMake(-100, -80, self.view.frame.size.width + 200 , self.view.frame.size.height + 160)
             self.logoImage.alpha = 0.0
@@ -581,6 +590,7 @@ class ViewController: UIViewController {
    let buttonImage = UIImage(named: "icon_hd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
+             self.showMessage("1080p")
         }
         else  if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
         {
@@ -590,6 +600,7 @@ class ViewController: UIViewController {
 
 
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
+             self.showMessage("4k")
         }
         else
         {
@@ -597,6 +608,7 @@ class ViewController: UIViewController {
    let buttonImage = UIImage(named: "icon_sd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
+             self.showMessage("720p")
         }
 
         print("Video Resolution is: :\(self.Engine.videoEncoderPresset)")
@@ -617,6 +629,7 @@ class ViewController: UIViewController {
             self.buttonFocusmode.setImage(image, forState: .Normal)
 
             print("Continiour Focus")
+             self.showMessage("Continious")
         }
 
          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.ContinuousAutoFocus
@@ -626,6 +639,7 @@ class ViewController: UIViewController {
             let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
               print("Locked Focus")
+             self.showMessage("Locked")
 
         }
 
@@ -636,6 +650,7 @@ class ViewController: UIViewController {
             let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonFocusmode.setImage(image, forState: .Normal)
               print("Auto Focus")
+             self.showMessage("Auto")
 
         }
         else
@@ -671,6 +686,7 @@ class ViewController: UIViewController {
             self.Engine.torchMode = .On
             let torchImage = UIImage(named: "icon_flash_on", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonTorchmode.setImage(torchImage, forState: .Normal)
+             self.showMessage("Torch on")
         }
 
         else if self.Engine.torchMode ==  AVCaptureTorchMode.On
@@ -678,6 +694,7 @@ class ViewController: UIViewController {
             self.Engine.torchMode = .Auto
             let torchImage = UIImage(named: "icon_flash_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonTorchmode.setImage(torchImage, forState: .Normal)
+            self.showMessage("Torch auto")
         }
         else
         {
@@ -686,6 +703,7 @@ class ViewController: UIViewController {
             self.Engine.torchMode = .Off
             let torchImage = UIImage(named: "icon_flash_off", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonTorchmode.setImage(torchImage, forState: .Normal)
+            self.showMessage("Torch off")
             
         }
     }
