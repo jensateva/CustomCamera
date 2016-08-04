@@ -13,12 +13,20 @@ import Foundation
 
 class ViewController: UIViewController {
 
+
+    @IBOutlet weak var buttonFocusmode: UIButton!
+    @IBOutlet weak var buttonRegion: UIButton!
+    @IBOutlet weak var buttonQuallity: UIButton!
+    @IBOutlet weak var buttonFocus: UIButton!
+
+
+
     @IBOutlet weak var customSettingsContainer: UIView!
     @IBOutlet weak var focus: UIImageView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     @IBOutlet weak var exitCameraButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
+
     @IBOutlet weak var iconDetection: UIImageView!
     @IBOutlet weak var iconTorch: UIImageView!
     @IBOutlet weak var iconFocus: UIImageView!
@@ -166,7 +174,6 @@ class ViewController: UIViewController {
         if defaults.boolForKey("showCustomSettings")
         {
             self.labelDuration.hidden = true
-            self.settingsButton.hidden = false
             self.settingsIcon.hidden = true
             
             self.customSettingsContainer.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
@@ -191,7 +198,6 @@ class ViewController: UIViewController {
         self.playButtonBlurView.layer.cornerRadius = self.recordButtonBlurView.frame.size.width / 2
         self.playButtonBlurView.layer.masksToBounds = true
         self.switchButton.alpha = 1.0
-        self.settingsButton.alpha = 1.0
         self.setupPortraitView()
     }
 
@@ -275,7 +281,6 @@ class ViewController: UIViewController {
         UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.switchButton.alpha = 0.0
-            self.settingsButton.alpha = 0.0
             self.settingsIcon.alpha = 0.0
             self.exitCameraButton.alpha = 0.0
 
@@ -347,7 +352,6 @@ class ViewController: UIViewController {
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.switchButton.alpha = 0.0
-            self.settingsButton.alpha = 0.0
             self.videoView.alpha = 1.0
             self.videoView.hidden = false
 
@@ -485,7 +489,6 @@ class ViewController: UIViewController {
             self.videoView.hidden = false
             self.switchButton.alpha = 1.0
             self.exitCameraButton.alpha = 1.0
-            self.settingsButton.alpha = 1.0
             self.videoControlls.alpha = 1.0
             self.videoControlls.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
             self.approveButtonsVIew.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 140)
