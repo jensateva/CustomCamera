@@ -174,20 +174,22 @@ class ViewController: UIViewController {
     @IBAction func changeRegion(sender: UIButton) {
         if FRAMERATE > 25
         {
-            print("NTSC 30")
+            print("PAL 25")
             self.Engine.changeFrameRate(25)
             FRAMERATE = 25
-             let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
-            self.buttonRegion.setImage(ntscImage, forState: .Normal)
+
+            let PALIMAGE = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonRegion.setImage(PALIMAGE, forState: .Normal)
 
         }
         else
         {
-            print("PAL 25")
+            print("NTSC 30")
             self.Engine.changeFrameRate(30)
             FRAMERATE = 30
-            let palImage = UIImage(named: "icon_pal.png") as UIImage?
-            self.buttonRegion.setImage(palImage, forState: .Normal)
+
+            let NTSCIMAGE = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonRegion.setImage(NTSCIMAGE, forState: .Normal)
         }
     }
 
@@ -202,8 +204,6 @@ class ViewController: UIViewController {
             print(FRAMERATE)
             let ntscImage = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
-
-           // let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
             print(ntscImage)
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
             self.buttonRegion.setTitle("25", forState: .Normal)
@@ -214,7 +214,6 @@ class ViewController: UIViewController {
 
              let palImage = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
-            // let palImage = UIImage(named: "icon_pal.png") as UIImage?
                 print(palImage)
              self.buttonRegion.setImage(palImage, forState: .Normal)
         }
@@ -585,19 +584,27 @@ class ViewController: UIViewController {
         if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1280x720
         {
             self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
-            let buttonImage = UIImage(named: "icon_hd.png")
+
+   let buttonImage = UIImage(named: "icon_hd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+
+//            let buttonImage = UIImage(named: "icon_hd.png")
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
         }
         else  if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
         {
             self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset3840x2160
-            let buttonImage = UIImage(named: "icon_4k.png")
+
+   let buttonImage = UIImage(named: "icon_4k.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+
+            // let buttonImage = UIImage(named: "icon_4k.png")
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
         }
         else
         {
         self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1280x720
-            let buttonImage = UIImage(named: "icon_sd.png")
+   let buttonImage = UIImage(named: "icon_sd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+
+            //let buttonImage = UIImage(named: "icon_sd.png")
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
         }
 
