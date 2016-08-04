@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonFocusmode: UIButton!
     @IBOutlet weak var buttonRegion: UIButton!
     @IBOutlet weak var buttonQuallity: UIButton!
-    @IBOutlet weak var buttonFocus: UIButton!
+    @IBOutlet weak var buttonTorchmode: UIButton!
+
 
 
 
@@ -178,7 +179,7 @@ class ViewController: UIViewController {
             FRAMERATE = 25
              let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
-             self.buttonRegion.setTitle("25", forState: .Normal)
+
         }
         else
         {
@@ -586,14 +587,27 @@ class ViewController: UIViewController {
 
         for currentPresset in pressetCompatible {
             alertController.addAction(UIAlertAction(title: currentPresset.description(), style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+
                 self.Engine.videoEncoderPresset = currentPresset
+
                 let size = String(currentPresset).stringByReplacingOccurrencesOfString("Preset", withString: "")
+
+                print(pressetCompatible)
+                print(currentPresset)
+
                 self.videoResolutionButton.setTitle(size, forState: UIControlState.Normal)
+
+
             }))
         }
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+
+
+
+
+
 
 
     func setAllSettingValues () {
@@ -617,15 +631,25 @@ class ViewController: UIViewController {
 
         alertController.addAction(UIAlertAction(title: "On", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
             self.Engine.torchMode = .On
-            self.torchMode.setTitle("Torch On", forState: .Normal)
+           // self.torchMode.setTitle("Torch On", forState: .Normal)
+
+            let torchImage = UIImage(named: "icon_flash_on")
+            self.buttonTorchmode.setImage(torchImage, forState: .Normal)
         }))
         alertController.addAction(UIAlertAction(title: "Off", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
             self.Engine.torchMode = .Off
-            self.torchMode.setTitle("Torch Off", forState: .Normal)
+           // self.torchMode.setTitle("Torch Off", forState: .Normal)
+
+            let torchImage = UIImage(named: "icon_flash_off")
+            self.buttonTorchmode.setImage(torchImage, forState: .Normal)
         }))
         alertController.addAction(UIAlertAction(title: "Auto", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
             self.Engine.torchMode = .Auto
-            self.torchMode.setTitle("Torch Auto", forState: .Normal)
+          //  self.torchMode.setTitle("Torch Auto", forState: .Normal)
+
+            let torchImage = UIImage(named: "icon_flash_auto")
+            self.buttonTorchmode.setImage(torchImage, forState: .Normal)
+
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -656,6 +680,10 @@ class ViewController: UIViewController {
         for currentFocusMode in focusCompatible {
             alertController.addAction(UIAlertAction(title: currentFocusMode.description(), style: UIAlertActionStyle.Default, handler: { (_) -> Void in
                 self.Engine.cameraFocus = currentFocusMode
+
+                print(focusCompatible)
+                print(currentFocusMode)
+
                 let focusModeString = String(currentFocusMode)
                 self.focusModeButton.setTitle(focusModeString, forState: .Normal)
             }))

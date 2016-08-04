@@ -44,6 +44,9 @@
                                                         <rect key="frame" x="20" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_focus_auto.png"/>
+                                                        <connections>
+                                                            <action selector="changeFocusCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="4rK-T4-Tht"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zyn-eb-EmS">
                                                         <rect key="frame" x="100" y="10" width="30" height="30"/>
@@ -57,11 +60,17 @@
                                                         <rect key="frame" x="190" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_hd.png"/>
+                                                        <connections>
+                                                            <action selector="Quallity:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="cgq-Ey-aZ2"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xES-dX-ghP">
                                                         <rect key="frame" x="270" y="10" width="30" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="icon_flash_auto.png"/>
+                                                        <connections>
+                                                            <action selector="changeTorchMode:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="57E-lB-kUI"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -351,10 +360,10 @@
                     </view>
                     <connections>
                         <outlet property="approveButtonsVIew" destination="YTP-lI-50O" id="guj-W1-rky"/>
-                        <outlet property="buttonFocus" destination="xES-dX-ghP" id="ShB-hP-F3r"/>
                         <outlet property="buttonFocusmode" destination="Ulf-EG-swh" id="0VD-GM-NN5"/>
                         <outlet property="buttonQuallity" destination="9QL-o6-L87" id="wcg-fB-fs9"/>
                         <outlet property="buttonRegion" destination="zyn-eb-EmS" id="qEe-LA-Nba"/>
+                        <outlet property="buttonTorchmode" destination="xES-dX-ghP" id="9TU-dc-6dl"/>
                         <outlet property="customSettingsContainer" destination="L53-XM-FCz" id="jJ3-BO-AfO"/>
                         <outlet property="doneButton" destination="RQi-Qt-drc" id="CDc-pd-B2n"/>
                         <outlet property="exitCameraButton" destination="S2M-xM-PqS" id="3fR-TV-GFy"/>
