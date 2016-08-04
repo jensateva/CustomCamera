@@ -587,7 +587,6 @@ class ViewController: UIViewController {
 
    let buttonImage = UIImage(named: "icon_hd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
-//            let buttonImage = UIImage(named: "icon_hd.png")
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
         }
         else  if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
@@ -596,7 +595,7 @@ class ViewController: UIViewController {
 
    let buttonImage = UIImage(named: "icon_4k.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
-            // let buttonImage = UIImage(named: "icon_4k.png")
+
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
         }
         else
@@ -604,7 +603,6 @@ class ViewController: UIViewController {
         self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1280x720
    let buttonImage = UIImage(named: "icon_sd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
-            //let buttonImage = UIImage(named: "icon_sd.png")
             self.buttonQuallity.setImage(buttonImage, forState: .Normal)
         }
 
@@ -612,52 +610,39 @@ class ViewController: UIViewController {
     }
 
 
+
+
+
     @IBAction func changeFocusmode(sender: UIButton) {
 
-        let currentFocus = Engine.cameraFocus.description()
-
-        if currentFocus == "AutoFocus"
+        if self.Engine.cameraFocus == CameraEngineCameraFocus.AutoFocus
         {
-            print("AutoFocus")
+            Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
+
+             let image = UIImage(named: "icon_focus_continious", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonFocusmode.setImage(image, forState: .Normal)
+
         }
-        else
+         else if self.Engine.cameraFocus == CameraEngineCameraFocus.ContinuousAutoFocus
         {
-            print("currentFocus")
+            Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
+
+            let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonFocusmode.setImage(image, forState: .Normal)
+
         }
-    }
 
+          else if self.Engine.cameraFocus == CameraEngineCameraFocus.Locked
+        {
 
+            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
 
+            let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonFocusmode.setImage(image, forState: .Normal)
 
-
-// customCamera.CameraEngineCameraFocus.Locked, customCamera.CameraEngineCameraFocus.AutoFocus, customCamera.CameraEngineCameraFocus.ContinuousAutoFocus
-
-    @IBAction func Quallity(sender: AnyObject) {
-
-        let pressetCompatible = Engine.compatibleVideoEncoderPresset()
-        let alertController = UIAlertController(title: "Video Resolution", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-
-        for currentPresset in pressetCompatible {
-            alertController.addAction(UIAlertAction(title: currentPresset.description(), style: UIAlertActionStyle.Default, handler: { (_) -> Void in
-
-                self.Engine.videoEncoderPresset = currentPresset
-
-                let size = String(currentPresset).stringByReplacingOccurrencesOfString("Preset", withString: "")
-
-                print(pressetCompatible)
-                print(currentPresset)
-
-                self.videoResolutionButton.setTitle(size, forState: UIControlState.Normal)
-
-
-            }))
         }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+
     }
-
-
-
 
 
 
@@ -679,33 +664,35 @@ class ViewController: UIViewController {
 
 
     @IBAction func changeTorchMode(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Torch mode", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
 
-        alertController.addAction(UIAlertAction(title: "On", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+        if self.Engine.torchMode ==  AVCaptureTorchMode.Off
+        {
             self.Engine.torchMode = .On
-           // self.torchMode.setTitle("Torch On", forState: .Normal)
-
-            let torchImage = UIImage(named: "icon_flash_on")
+            let torchImage = UIImage(named: "icon_flash_on", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonTorchmode.setImage(torchImage, forState: .Normal)
-        }))
-        alertController.addAction(UIAlertAction(title: "Off", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
-            self.Engine.torchMode = .Off
-           // self.torchMode.setTitle("Torch Off", forState: .Normal)
+        }
 
-            let torchImage = UIImage(named: "icon_flash_off")
-            self.buttonTorchmode.setImage(torchImage, forState: .Normal)
-        }))
-        alertController.addAction(UIAlertAction(title: "Auto", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+        else if self.Engine.torchMode ==  AVCaptureTorchMode.On
+        {
             self.Engine.torchMode = .Auto
-          //  self.torchMode.setTitle("Torch Auto", forState: .Normal)
-
-            let torchImage = UIImage(named: "icon_flash_auto")
+            let torchImage = UIImage(named: "icon_flash_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
             self.buttonTorchmode.setImage(torchImage, forState: .Normal)
+        }
+        else
+        {
 
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+
+            self.Engine.torchMode = .Off
+            let torchImage = UIImage(named: "icon_flash_off", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.buttonTorchmode.setImage(torchImage, forState: .Normal)
+            
+        }
     }
+    
+    
+
+
+
 
 
     @IBAction func changeDetectionMode(sender: AnyObject) {
