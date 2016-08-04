@@ -168,9 +168,43 @@ class ViewController: UIViewController {
 
     }
 
+
+    @IBAction func changeRegion(sender: UIButton) {
+
+        let defaults = NSUserDefaults()
+        if defaults.integerForKey("frameRate") > 25
+        {
+            self.Engine.changeFrameRate(25)
+            defaults.setInteger(25, forKey: "frameRate")
+            let ntscImage = UIImage(named: "icon_ntsc.png")
+            buttonRegion.setImage(ntscImage, forState: .Normal)
+        }
+        else
+        {
+            self.Engine.changeFrameRate(30)
+            defaults.setInteger(30, forKey: "frameRate")
+            let palImage = UIImage(named: "icon_pal.png")
+            buttonRegion.setImage(palImage, forState: .Normal)
+        }
+        defaults.synchronize()
+    }
+
+
     func setUpView(){
 
         let defaults = NSUserDefaults()
+
+        if defaults.integerForKey("frameRate") > 25
+        {
+            let ntscImage = UIImage(named: "icon_ntsc.png")
+            buttonRegion.setImage(ntscImage, forState: <#T##UIControlState#>)
+        }
+        else
+        {
+             let palImage = UIImage(named: "icon_pal.png")
+             buttonRegion.setImage(palImage, forState: <#T##UIControlState#>)
+        }
+
         if defaults.boolForKey("showCustomSettings")
         {
             self.labelDuration.hidden = true
@@ -301,9 +335,10 @@ class ViewController: UIViewController {
         self.labelDuration.alpha = 1.0
         self.labelDuration.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
         self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+        self.customSettingsContainer.alpha = 0.0
 
             }, completion: { finished in
-                self.customSettingsContainer.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+
         })
     }
 
@@ -547,9 +582,11 @@ class ViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+
     func setAllSettingValues () {
         let defaults = NSUserDefaults()
         if defaults.objectForKey("frameRate") != nil{
+
             let frameRate = defaults.valueForKey("frameRate") as! String
             self.frameRateButton.setTitle(frameRate, forState: .Normal)
             let rate = Int32(frameRate)! as Int32
