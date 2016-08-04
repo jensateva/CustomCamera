@@ -158,13 +158,13 @@ class ViewController: UIViewController {
         self.userMessage.alpha = 0.0
         self.userMessage.text = message
 
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.userMessage.alpha = 1.0
 
             }, completion: { finished in
 
-                UIView.animateWithDuration(0.5, delay: 1.5, options: .CurveEaseOut, animations: {
+                UIView.animateWithDuration(0.3, delay: 1.0, options: .CurveEaseOut, animations: {
 
                     self.userMessage.alpha = 0.0
 
