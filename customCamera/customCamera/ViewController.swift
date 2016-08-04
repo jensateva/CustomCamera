@@ -231,6 +231,11 @@ class ViewController: UIViewController {
             self.customSettingsContainer.hidden = false
             self.customSettingsContainer.alpha = 1.0
         }
+        else
+        {
+            self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+            self.customSettingsContainer.hidden = true
+        }
 
         if defaults.boolForKey("hideExitButton")
         {
@@ -525,6 +530,11 @@ class ViewController: UIViewController {
         {
             self.showCustomSettingsHideTimer()
         }
+        else
+        {
+          self.labelDuration.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+          self.labelDuration.alpha = 0.0
+        }
 
         if defaults.boolForKey("hideExitButton")
         {
@@ -624,6 +634,7 @@ class ViewController: UIViewController {
     @IBAction func changeFocusmode(sender: UIButton) {
 
         print(Engine.cameraFocus.description)
+        // THIS IS WRONG ITS CHECKING CURRENT STATUS AND WE CANT SET IT LIKE THIS
 
         if Engine.captureDevice?.focusMode == AVCaptureFocusMode.AutoFocus
         {
