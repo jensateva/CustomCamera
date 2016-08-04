@@ -199,7 +199,10 @@ class ViewController: UIViewController {
         if FRAMERATE > 25
         {
             print(FRAMERATE)
-            let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
+            let ntscImage = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+
+
+           // let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
             print(ntscImage)
             self.buttonRegion.setImage(ntscImage, forState: .Normal)
             self.buttonRegion.setTitle("25", forState: .Normal)
@@ -207,7 +210,10 @@ class ViewController: UIViewController {
         else
         {
              print(FRAMERATE)
-             let palImage = UIImage(named: "icon_pal.png") as UIImage?
+
+             let palImage = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+
+            // let palImage = UIImage(named: "icon_pal.png") as UIImage?
                 print(palImage)
              self.buttonRegion.setImage(palImage, forState: .Normal)
         }
