@@ -13,6 +13,7 @@ import Foundation
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var customSettingsContainer: UIView!
     @IBOutlet weak var focus: UIImageView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
@@ -167,14 +168,20 @@ class ViewController: UIViewController {
             self.labelDuration.hidden = true
             self.settingsButton.hidden = false
             self.settingsIcon.hidden = true
+            
+            self.customSettingsContainer.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+            self.customSettingsContainer.hidden = false
+            self.customSettingsContainer.alpha = 1.0
         }
 
         if defaults.boolForKey("hideExitButton")
         {
             self.labelDuration.hidden = false
-            self.settingsButton.hidden = true
             self.settingsIcon.hidden = false
             self.exitCameraButton.hidden = true
+            self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+            self.customSettingsContainer.hidden = true
+            self.customSettingsContainer.alpha = 0.0
         }
 
 
@@ -262,9 +269,6 @@ class ViewController: UIViewController {
 
     func animateRecording(){
 
-        self.labelDuration.hidden = false
-        self.settingsButton.hidden = true
-
         let image = UIImage(named: "record_recording.png") as UIImage?
         self.recordButton.setImage(image, forState: .Normal)
 
@@ -276,8 +280,44 @@ class ViewController: UIViewController {
             self.exitCameraButton.alpha = 0.0
 
             }, completion: { finished in
+                self.hideCustomSettingsShowTimer()
         })
     }
+
+
+    func hideCustomSettingsShowTimer(){
+
+        self.labelDuration.alpha = 0.0
+        self.labelDuration.hidden = false
+        self.labelDuration.frame = CGRectMake(0, 50, self.view.frame.size.width, 50)
+
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+
+        self.labelDuration.alpha = 1.0
+        self.labelDuration.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+        self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+
+            }, completion: { finished in
+                self.customSettingsContainer.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+        })
+    }
+
+    func showCustomSettingsHideTimer(){
+
+        self.labelDuration.alpha = 0.0
+        self.labelDuration.hidden = false
+        self.labelDuration.frame = CGRectMake(0, 50, self.view.frame.size.width, 50)
+
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+
+            self.customSettingsContainer.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+            self.customSettingsContainer.alpha = 1.0
+
+            }, completion: { finished in
+
+        })
+    }
+
 
     func animateStopRecording(){
 
@@ -423,23 +463,16 @@ class ViewController: UIViewController {
         self.blurOff()
 
         let defaults = NSUserDefaults()
-        if defaults.boolForKey("showCustomSettings")
-        {
-            self.labelDuration.hidden = true
-            self.settingsButton.hidden = false
-        }
 
         if defaults.boolForKey("showCustomSettings")
         {
-            self.labelDuration.hidden = true
-            self.settingsButton.hidden = false
-            self.settingsIcon.hidden = true
+            self.showCustomSettingsHideTimer()
         }
 
         if defaults.boolForKey("hideExitButton")
         {
             self.labelDuration.hidden = false
-            self.settingsButton.hidden = true
+            self.customSettingsContainer.hidden = true
             self.settingsIcon.hidden = false
             self.exitCameraButton.hidden = true
         }
