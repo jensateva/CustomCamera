@@ -61,9 +61,6 @@ class ViewController: UIViewController {
     let defaults = NSUserDefaults()
 
     var FRAMERATE = Int()
-    let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
-    let palImage = UIImage(named: "icon_pal.png") as UIImage!
-
     var moviePlayer : MPMoviePlayerViewController?
 
     override func viewDidLoad() {
@@ -174,6 +171,8 @@ class ViewController: UIViewController {
 
 
     @IBAction func changeRegion(sender: UIButton) {
+        let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
+        let palImage = UIImage(named: "icon_pal.png") as UIImage!
 
         if FRAMERATE > 25
         {
@@ -197,6 +196,8 @@ class ViewController: UIViewController {
 
         let defaults = NSUserDefaults()
         FRAMERATE = defaults.integerForKey("frameRate")
+        let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage!
+        let palImage = UIImage(named: "icon_pal.png") as UIImage!
 
         if FRAMERATE > 25
         {
