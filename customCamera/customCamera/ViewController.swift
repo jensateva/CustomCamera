@@ -178,7 +178,7 @@ class ViewController: UIViewController {
             self.Engine.changeFrameRate(25)
             defaults.setInteger(25, forKey: "frameRate")
             let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
-            buttonRegion.setImage(ntscImage, forState: .Normal)
+            self.buttonRegion.setImage(ntscImage, forState: .Normal)
         }
         else
         {
@@ -186,7 +186,7 @@ class ViewController: UIViewController {
             self.Engine.changeFrameRate(30)
             defaults.setInteger(30, forKey: "frameRate")
             let palImage = UIImage(named: "icon_pal.png") as UIImage?
-            buttonRegion.setImage(palImage, forState: .Normal)
+            self.buttonRegion.setImage(palImage, forState: .Normal)
         }
         defaults.synchronize()
     }
@@ -199,12 +199,12 @@ class ViewController: UIViewController {
         if defaults.integerForKey("frameRate") > 25
         {
             let ntscImage = UIImage(named: "icon_ntsc.png") as UIImage?
-            buttonRegion.setImage(ntscImage, forState: .Normal)
+            self.buttonRegion.setImage(ntscImage, forState: .Normal)
         }
         else
         {
              let palImage = UIImage(named: "icon_pal.png") as UIImage?
-             buttonRegion.setImage(palImage, forState: .Normal)
+             self.buttonRegion.setImage(palImage, forState: .Normal)
         }
 
         if defaults.boolForKey("showCustomSettings")
