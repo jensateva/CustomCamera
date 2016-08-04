@@ -807,6 +807,9 @@ class ViewController: UIViewController {
 
        self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
 
+        if position.y > 50 && position.y < self.view.frame.height - 100
+        {
+
         UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 4.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
 
          self.focus.alpha = 1.0
@@ -820,8 +823,12 @@ class ViewController: UIViewController {
         }), completion: { finished in
 
  })
- })
-
+})
+   }
+        else
+        {
+            print("FOcus point outside area supported")
+        }
 }
 
     
