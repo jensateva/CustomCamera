@@ -30,12 +30,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     @IBOutlet weak var exitCameraButton: UIButton!
-
-    @IBOutlet weak var iconDetection: UIImageView!
-    @IBOutlet weak var iconTorch: UIImageView!
-    @IBOutlet weak var iconFocus: UIImageView!
-    @IBOutlet weak var iconFramerate: UIImageView!
-    @IBOutlet weak var iconResolution: UIImageView!
     @IBOutlet weak var playbackBlur: UIVisualEffectView!
     @IBOutlet weak var approveButtonsVIew: UIView!
     @IBOutlet weak var switchButton: UIButton!
@@ -65,6 +59,7 @@ class ViewController: UIViewController {
     let defaults = NSUserDefaults()
 
     var FRAMERATE = Int()
+    var FOCUSMODE = String()
     var moviePlayer : MPMoviePlayerViewController?
 
     override func viewDidLoad() {
@@ -157,24 +152,24 @@ class ViewController: UIViewController {
 
         dispatch_async(dispatch_get_main_queue())
         {
-        self.userMessage.alpha = 0.0
-        self.userMessage.text = message
+            self.userMessage.alpha = 0.0
+            self.userMessage.text = message
 
-        UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
+            UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
 
-            self.userMessage.alpha = 1.0
+                self.userMessage.alpha = 1.0
 
-            }, completion: { finished in
+                }, completion: { finished in
 
-                UIView.animateWithDuration(0.25, delay: 0.4, options: .CurveEaseOut, animations: {
+                    UIView.animateWithDuration(0.25, delay: 0.4, options: .CurveEaseOut, animations: {
 
-                    self.userMessage.alpha = 0.0
+                        self.userMessage.alpha = 0.0
 
-                    }, completion: { finished in
-        })
-   })
-  }
-}
+                        }, completion: { finished in
+                    })
+            })
+        }
+    }
 
 
 
@@ -194,14 +189,10 @@ class ViewController: UIViewController {
             print("NTSC 30")
             self.Engine.changeFrameRate(30)
             FRAMERATE = 30
-
-             self.showMessage("30 fps")
-
-           // let NTSCIMAGE = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+            self.showMessage("30 fps")
             self.buttonRegion.setImage(getUIImage("icon_ntsc.png"), forState: .Normal)
         }
     }
-
 
     func setUpView(){
 
@@ -215,7 +206,7 @@ class ViewController: UIViewController {
         }
         else
         {
-             self.buttonRegion.setImage(getUIImage("icon_pal.png"), forState: .Normal)
+            self.buttonRegion.setImage(getUIImage("icon_pal.png"), forState: .Normal)
         }
 
         if defaults.boolForKey("showCustomSettings")
@@ -242,7 +233,6 @@ class ViewController: UIViewController {
             self.customSettingsContainer.alpha = 0.0
         }
 
-
         self.labelDuration.text = "00:00"
         self.recordButtonBlurView.layer.cornerRadius = self.recordButtonBlurView.frame.size.width / 2
         self.recordButtonBlurView.layer.masksToBounds = true
@@ -260,9 +250,7 @@ class ViewController: UIViewController {
             self.logoImage.alpha = 0.0
 
             }, completion: { finished in
-
-           self.logoImage.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-
+                self.logoImage.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
         })
     }
 
@@ -271,7 +259,6 @@ class ViewController: UIViewController {
 
             self.overlayBlur.alpha = 0.0
             }, completion: { finished in
-
         })
     }
 
@@ -280,7 +267,6 @@ class ViewController: UIViewController {
 
             self.overlayBlur.alpha = 1.0
             }, completion: { finished in
-
         })
     }
 
@@ -318,17 +304,17 @@ class ViewController: UIViewController {
         })
     }
 
+
     @IBAction func exitCamera(sender: UIButton) {
         self.dismissViewControllerAnimated(true) {
             print("Forscene Camera Dismissed")
         }
     }
 
+
+
     func animateRecording(){
-
-       // let image = UIImage(named: "record_recording.png") as UIImage?
         self.recordButton.setImage(getUIImage("record_recording.png"), forState: .Normal)
-
         UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.switchButton.alpha = 0.0
@@ -348,11 +334,11 @@ class ViewController: UIViewController {
 
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
-        self.labelDuration.hidden = false
-        self.labelDuration.alpha = 1.0
-        self.labelDuration.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
-        self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
-        self.customSettingsContainer.alpha = 0.0
+            self.labelDuration.hidden = false
+            self.labelDuration.alpha = 1.0
+            self.labelDuration.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+            self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+            self.customSettingsContainer.alpha = 0.0
 
             }, completion: { finished in
 
@@ -378,8 +364,8 @@ class ViewController: UIViewController {
 
     func animateStopRecording(){
 
-       // self.blurOn()
-        self.PlayPreviewMoview(self.lastRecordedMovie)
+        // self.blurOn()
+        //self.PlayPreviewMoview(self.lastRecordedMovie)
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
 
@@ -393,7 +379,7 @@ class ViewController: UIViewController {
             }, completion: { finished in
 
                 self.animateShowPreview()
-//                self.PlayPreviewMoview(self.lastRecordedMovie)
+                self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
 
@@ -402,7 +388,7 @@ class ViewController: UIViewController {
     }
 
     func animateShowPreview(){
-        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.videoView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
             self.cameraView.frame = CGRectMake( -self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
@@ -412,7 +398,7 @@ class ViewController: UIViewController {
             self.videoView.hidden = false
 
             }, completion: { finished in
-               // self.blurOff()
+                // self.blurOff()
         })
     }
 
@@ -469,6 +455,8 @@ class ViewController: UIViewController {
         startStopMovie()
     }
 
+
+
     func startStopMovie(){
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
         {
@@ -489,19 +477,20 @@ class ViewController: UIViewController {
 
     @IBAction func backToRecord(sender: UIButton) {
         self.moviePlayer?.moviePlayer.stop()
-        self.moviePlayer = nil
         self.animateBackTorecord()
     }
+
+
+
 
     @IBAction func approve(sender: UIButton) {
 
         self.moviePlayer?.moviePlayer.stop()
-
         print("Video approved")
 
         if defaults.boolForKey("uploadVideo")
         {
-        self.UploadVideo(lastRecordedMovie)
+            self.UploadVideo(lastRecordedMovie)
         }
         else
         {
@@ -572,8 +561,6 @@ class ViewController: UIViewController {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
                         }
                     }
-
-                    //TODO: Check Json response correctly
                     upload.responseJSON { response in
 
                         print("Successfully uploaded!")
@@ -604,8 +591,8 @@ class ViewController: UIViewController {
         }
         else
         {
-          self.labelDuration.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
-          self.labelDuration.alpha = 0.0
+            self.labelDuration.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+            self.labelDuration.alpha = 0.0
         }
 
         if defaults.boolForKey("hideExitButton")
@@ -619,7 +606,7 @@ class ViewController: UIViewController {
         self.labelDuration.text = "00:00"
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
-            self.videoView.frame = CGRectMake(0, self.view.frame.size.width, self.view.frame.size.width, self.view.frame.size.height)
+            self.videoView.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
             self.cameraView.frame = CGRectMake( 0, 0, self.view.frame.size.width, self.view.frame.size.height)
 
             self.settingsIcon.alpha = 1.0
@@ -632,204 +619,121 @@ class ViewController: UIViewController {
             self.approveButtonsVIew.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 140)
             self.approveButtonsVIew.alpha = 0.0
             }, completion: { finished in
-
         })
-
     }
+
+
 
     @IBAction func switchCamera(sender: AnyObject) {
         self.Engine.switchCurrentDevice()
 
         UIView.animateWithDuration(0.35, animations:{
-           self.switchButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI));
+            self.switchButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI));
         })
     }
 
-    @IBAction func revealSettings(sender: UIButton) {
-        blurOn()
 
-        focus.hidden = true
-        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
-            self.settingsView.alpha = 1.0
-            self.settingsView.hidden = false
-            self.videoControlls.hidden = true
-
-            }, completion: { finished in
-
-        })
-    }
-
-    @IBAction func hideSettings(sender: UIButton)
-    {
-        self.blurOff()
-        self.settingsView.alpha = 0.0
-        self.settingsView.hidden = true
-        self.videoControlls.hidden = false
-        focus.hidden = false
-    }
 
     @IBAction func changeQuallity(sender: AnyObject) {
 
         if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1280x720
         {
             self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
-
-   //let buttonImage = UIImage(named: "icon_hd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonQuallity.setImage(getUIImage("icon_hd.png"), forState: .Normal)
-             self.showMessage("1080p")
+            self.showMessage("1080p")
         }
         else  if self.Engine.videoEncoderPresset == CameraEngineVideoEncoderEncoderSettings.Preset1920x1080
         {
             self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset3840x2160
-
-   //let buttonImage = UIImage(named: "icon_4k.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
-
             self.buttonQuallity.setImage(getUIImage("icon_4k.png"), forState: .Normal)
-             self.showMessage("4k")
+            self.showMessage("4k")
         }
         else
         {
-        self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1280x720
-  // let buttonImage = UIImage(named: "icon_sd.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
+            self.Engine.videoEncoderPresset = CameraEngineVideoEncoderEncoderSettings.Preset1280x720
             self.buttonQuallity.setImage(getUIImage("icon_sd.png"), forState: .Normal)
-             self.showMessage("720p")
+            self.showMessage("720p")
         }
 
         print("Video Resolution is: :\(self.Engine.videoEncoderPresset)")
     }
 
 
-
-
-
-    @IBAction func changeFocusmode(sender: UIButton) {
-
-        print(Engine.cameraFocus.description)
-        // THIS IS WRONG ITS CHECKING CURRENT STATUS AND WE CANT SET IT LIKE THIS
-
-        if Engine.captureDevice?.focusMode == AVCaptureFocusMode.AutoFocus
+    @IBAction func changeFocusmode(sender: UIButton)
+    {
+        if FOCUSMODE = "AUTO"
         {
-            Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
             self.buttonFocusmode.setImage(getUIImage("icon_focus_continious"), forState: .Normal)
-            print("Continiour Focus")
-             self.showMessage("Continious")
+            Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
+            self.showMessage("Continious")
+            FOCUSMODE = "CONTINIOUS"
         }
-
-         else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.ContinuousAutoFocus
-
+        else if FOCUSMODE = "CONTINIOUS"
         {
-            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
-            self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
-             self.showMessage("Auto Focus")
-
+            self.buttonFocusmode.setImage(getUIImage("icon_focus_locked"), forState: .Normal)
+            Engine.cameraFocus = CameraEngineCameraFocus.Locked
+            self.showMessage("Focus locked")
+            FOCUSMODE = "LOCKED"
         }
-
-//          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.Locked
-//
-//        {
-//            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
-//          //  let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-//
-//            self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
-//              print("Auto Focus")
-//             self.showMessage("Auto")
-//
-//        }
-//        else
-//        {
-//            print("NO MATCHING FOCUS MODE")
-//        }
-
-
+        else if FOCUSMODE = "LOCKED"
+        {
+            self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
+            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
+            self.showMessage("Auto focus")
+            FOCUSMODE = "AUTO"
+        }
+        else
+        {
+            self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
+            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
+            self.showMessage("Auto focus")
+            FOCUSMODE = "AUTO"
+        }
     }
 
 
 
-
-    func setAllSettingValues () {
-//        let defaults = NSUserDefaults()
-//        if defaults.objectForKey("frameRate") != nil{
-//
-//            let frameRate = defaults.valueForKey("frameRate") as! String
-//            self.frameRateButton.setTitle(frameRate, forState: .Normal)
-//            let rate = Int32(frameRate)! as Int32
-//            self.Engine.changeFrameRate(rate)
-//        }
-//        else {
-//            self.frameRateButton.setTitle("30", forState: .Normal)
-//
-//        }
-    }
-
-
-    @IBAction func changeTorchMode(sender: AnyObject) {
-
+    @IBAction func changeTorchMode(sender: AnyObject)
+    {
         if self.Engine.torchMode ==  AVCaptureTorchMode.Off
         {
             self.Engine.torchMode = .On
-           // let torchImage = UIImage(named: "icon_flash_on", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
-
             self.buttonTorchmode.setImage(getUIImage("icon_flash_on"), forState: .Normal)
-             self.showMessage("Torch on")
+            self.showMessage("Torch on")
         }
 
         else if self.Engine.torchMode ==  AVCaptureTorchMode.On
         {
             self.Engine.torchMode = .Auto
-          //  let torchImage = UIImage(named: "icon_flash_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
-
             self.buttonTorchmode.setImage(getUIImage("icon_flash_auto"), forState: .Normal)
             self.showMessage("Torch auto")
         }
         else
         {
-
-
             self.Engine.torchMode = .Off
-          //  let torchImage = UIImage(named: "icon_flash_off", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonTorchmode.setImage(getUIImage("icon_flash_off"), forState: .Normal)
             self.showMessage("Torch off")
             
         }
     }
-    
-    
 
 
-
-
-
-    @IBAction func changeDetectionMode(sender: AnyObject) {
-        let detectionCompatible = self.Engine.compatibleDetectionMetadata()
-        let alertController = UIAlertController(title: "Camera detection", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-
-        for currentDetectionMode in detectionCompatible {
-            alertController.addAction(UIAlertAction(title: currentDetectionMode.description(), style: UIAlertActionStyle.Default, handler: { (_) -> Void in
-                self.Engine.metadataDetection = currentDetectionMode
-                let detectionMode = String(currentDetectionMode)
-                self.faceDetection.setTitle(detectionMode, forState: .Normal)
-            }))
-        }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
+    @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
+        print("LONGPRESS")
+        self.buttonFocusmode.setImage(getUIImage("icon_focus_locked"), forState: .Normal)
+        Engine.cameraFocus = CameraEngineCameraFocus.Locked
+        self.showMessage("Focus locked")
+        FOCUSMODE = "LOCKED"
     }
 
 
 
 
-
-
-
-    @IBAction func changeFocusCamera(sender: AnyObject) {
+    // ORIGINAL
+    @IBAction func changeFocusCamera(sender: AnyObject)
+    {
         let focusCompatible = self.Engine.compatibleCameraFocus()
-
         let alertController = UIAlertController(title: "Camera focus", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
 
         for currentFocusMode in focusCompatible {
@@ -879,6 +783,10 @@ class ViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+
+
+
+
     @IBAction func startRecord(sender: UIButton)
     {
         print("Recording video...")
@@ -900,7 +808,7 @@ class ViewController: UIViewController {
             }
 
             Engine.startRecordingVideo(url, blockCompletion: { (url, error) -> (Void) in
-               // print("url movie : \(url)")
+                // print("url movie : \(url)")
 
                 self.lastRecordedMovie = url!
 
@@ -920,59 +828,59 @@ class ViewController: UIViewController {
             }
         }
     }
-
-
+    
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = event!.allTouches()!.first {
             let position = touch.locationInView(self.view)
-
+            
             Engine.focus(position)
             self.showTouch(position)
         }
     }
-
+    
     
     func showTouch(position : CGPoint){
-
-       self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
-
+        
+        self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
+        
         if position.y > 50 && position.y < self.view.frame.height - 100
         {
-
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 4.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
-
-         self.focus.alpha = 1.0
-         self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
-    }), completion: { finished in
-
-        UIView.animateWithDuration(0.35, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
-
-            self.focus.alpha = 0.0
-            self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
-        }), completion: { finished in
- })
-})
- }
-}
-
+            
+            UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 4.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+                
+                self.focus.alpha = 1.0
+                self.focus.frame = CGRectMake(position.x - 40, position.y - 40, 80, 80)
+            }), completion: { finished in
+                
+                UIView.animateWithDuration(0.35, delay: 0.6, usingSpringWithDamping: 0.3, initialSpringVelocity: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: ({
+                    
+                    self.focus.alpha = 0.0
+                    self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
+                }), completion: { finished in
+                })
+            })
+        }
+    }
+    
     
     @objc func onTwoFingerPinch(recognizer: UIPinchGestureRecognizer) {
         let maxZoom: CGFloat = 6.0
         let pinchVelocityDividerFactor: CGFloat = 5.0
         if recognizer.state == .Changed {
-             self.focus.alpha = 0.0
+            self.focus.alpha = 0.0
             let desiredZoomFactor = min(maxZoom, Engine.cameraZoomFactor + atan2(recognizer.velocity, pinchVelocityDividerFactor))
             Engine.cameraZoomFactor = desiredZoomFactor
         }
     }
-
+    
     func getUIImage(image : String) -> UIImage
     {
         let image = UIImage(named: image, inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
         return image!
     }
-
-
+    
+    
 }
 

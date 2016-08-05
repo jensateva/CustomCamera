@@ -109,9 +109,6 @@
                                         <state key="normal" image="settigns.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="revealSettings:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="KH0-js-wNt"/>
-                                        </connections>
                                     </button>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" id="uDp-1e-qsK">
                                         <rect key="frame" x="115" y="465" width="90" height="90"/>
@@ -143,6 +140,10 @@
                                     </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ack-2E-b5u" appends="YES" id="T3r-Ih-jEv"/>
+                                </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b6j-cT-VDo">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -155,7 +156,7 @@
                                 <size key="shadowOffset" width="2" height="1"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
-                                <rect key="frame" x="0.0" y="568" width="320" height="568"/>
+                                <rect key="frame" x="320" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="ScV-vK-xdK">
@@ -199,7 +200,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" id="rvu-cA-gPC">
                                 <rect key="frame" x="-29" y="-28" width="372" height="620"/>
@@ -252,112 +253,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1419989224" colorSpace="calibratedRGB"/>
                             </view>
-                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="mj2-jW-dFC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" id="RQi-Qt-drc">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.26142241379999998" colorSpace="calibratedWhite"/>
-                                        <state key="normal">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hideSettings:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="dbQ-bS-WNS"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" id="PMM-zl-lkC">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_detection.png" id="6sc-WK-Eek">
-                                                <rect key="frame" x="40" y="220" width="60" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_torch.png" id="1BG-TR-wWV">
-                                                <rect key="frame" x="130" y="254" width="60" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_focusmode.png" id="0b8-5B-Yu8">
-                                                <rect key="frame" x="130" y="254" width="60" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_framerate.png" id="miM-iG-niV">
-                                                <rect key="frame" x="130" y="254" width="60" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_resolution.png" id="6DA-bk-wHm">
-                                                <rect key="frame" x="130" y="254" width="60" height="60"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="z8o-Wl-uSq">
-                                                <rect key="frame" x="82" y="235" width="141" height="53"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                                <state key="normal" title="Detect Faces">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="0.034455818970000003" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="changeDetectionMode:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="T0y-1z-YeF"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="MFO-M4-Q2D">
-                                                <rect key="frame" x="8" y="326" width="320" height="111"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                                <state key="normal" title="Focus Mode">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="0.034455818970000003" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="changeFocusCamera:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="8x1-2E-sJQ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="MYU-nE-yqp">
-                                                <rect key="frame" x="-26" y="125" width="320" height="122"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                                <state key="normal" title="Torch Mode">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="0.034455818970000003" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="changeTorchMode:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="Rww-d2-QQ3"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="y79-01-Y9A">
-                                                <rect key="frame" x="0.0" y="396" width="320" height="69"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                                <state key="normal" title="30">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="0.034455818970000003" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="changeFrameRate:" destination="YZi-Ck-Mx6" eventType="touchUpInside" id="Rgk-YX-xeH"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Gaz-07-nj5">
-                                                <rect key="frame" x="13" y="161" width="299" height="392"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                                <state key="normal" title="Video Size">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.049946120689999998" colorSpace="calibratedWhite"/>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SLu-lB-Uj5">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -378,17 +273,8 @@
                         <outlet property="buttonTorchmode" destination="xES-dX-ghP" id="9TU-dc-6dl"/>
                         <outlet property="cameraView" destination="7nT-Ef-Sgd" id="C27-Le-vHf"/>
                         <outlet property="customSettingsContainer" destination="L53-XM-FCz" id="jJ3-BO-AfO"/>
-                        <outlet property="doneButton" destination="RQi-Qt-drc" id="CDc-pd-B2n"/>
                         <outlet property="exitCameraButton" destination="S2M-xM-PqS" id="3fR-TV-GFy"/>
-                        <outlet property="faceDetection" destination="z8o-Wl-uSq" id="IUt-8J-4uX"/>
                         <outlet property="focus" destination="qCl-u1-7JV" id="7QB-hI-jSS"/>
-                        <outlet property="focusModeButton" destination="MFO-M4-Q2D" id="khC-J8-nMq"/>
-                        <outlet property="frameRateButton" destination="y79-01-Y9A" id="a8D-2P-TFI"/>
-                        <outlet property="iconDetection" destination="6sc-WK-Eek" id="lRs-mN-ukr"/>
-                        <outlet property="iconFocus" destination="0b8-5B-Yu8" id="nAg-Un-jwf"/>
-                        <outlet property="iconFramerate" destination="miM-iG-niV" id="e95-Ez-pzM"/>
-                        <outlet property="iconResolution" destination="6DA-bk-wHm" id="Zy8-0A-Qi3"/>
-                        <outlet property="iconTorch" destination="1BG-TR-wWV" id="dlW-Bd-SUD"/>
                         <outlet property="labelDuration" destination="q8u-00-lsf" id="kqr-Ns-4Mt"/>
                         <outlet property="logoImage" destination="SLu-lB-Uj5" id="tVT-wZ-eve"/>
                         <outlet property="overlayBlur" destination="rvu-cA-gPC" id="lDo-N5-5e1"/>
@@ -400,9 +286,7 @@
                         <outlet property="recordButton" destination="lFr-fV-Ou8" id="lbv-vZ-b1A"/>
                         <outlet property="recordButtonBlurView" destination="uDp-1e-qsK" id="5dV-ed-7X0"/>
                         <outlet property="settingsIcon" destination="jM1-Kw-7kR" id="kcb-yr-BAy"/>
-                        <outlet property="settingsView" destination="mj2-jW-dFC" id="MGg-Na-SKl"/>
                         <outlet property="switchButton" destination="tQP-zU-dCb" id="MNR-on-ybm"/>
-                        <outlet property="torchMode" destination="MYU-nE-yqp" id="wUi-v1-zIH"/>
                         <outlet property="uploadProgress" destination="0bE-wr-4Uw" id="KLH-fc-Ptb"/>
                         <outlet property="userMessage" destination="b6j-cT-VDo" id="EBk-sc-PjP"/>
                         <outlet property="videoControlls" destination="a6Q-iA-qEH" id="Pwo-Up-k3A"/>
@@ -410,6 +294,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQC-O0-i38" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ack-2E-b5u">
+                    <connections>
+                        <action selector="handleLongPress:" destination="YZi-Ck-Mx6" id="TdK-1b-yG4"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="204" y="346"/>
         </scene>
@@ -419,15 +308,10 @@
         <image name="exitCamera.png" width="90" height="90"/>
         <image name="flip.png" width="90" height="90"/>
         <image name="focus.png" width="640" height="640"/>
-        <image name="icon_detection.png" width="128" height="128"/>
         <image name="icon_flash_auto.png" width="150" height="150"/>
         <image name="icon_focus_auto.png" width="150" height="150"/>
-        <image name="icon_focusmode.png" width="128" height="128"/>
-        <image name="icon_framerate.png" width="128" height="128"/>
         <image name="icon_hd.png" width="150" height="150"/>
         <image name="icon_ntsc.png" width="150" height="150"/>
-        <image name="icon_resolution.png" width="128" height="128"/>
-        <image name="icon_torch.png" width="128" height="128"/>
         <image name="play.png" width="240" height="240"/>
         <image name="record_start.png" width="240" height="240"/>
         <image name="settigns.png" width="90" height="90"/>
