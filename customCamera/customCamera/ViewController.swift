@@ -89,12 +89,12 @@ class ViewController: UIViewController {
 
         // SETUP VIEW
         setUpView()
-        dispatch_async(dispatch_get_main_queue()){
-        let layer = self.Engine.previewLayer
-        layer.frame = self.view.bounds
-        self.cameraView.layer.insertSublayer(layer, atIndex: 0)
-        self.cameraView.layer.masksToBounds = true
-        }
+//        dispatch_async(dispatch_get_main_queue()){
+//        let layer = self.Engine.previewLayer
+//        layer.frame = self.view.bounds
+//        self.cameraView.layer.insertSublayer(layer, atIndex: 0)
+//        self.cameraView.layer.masksToBounds = true
+//        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -468,8 +468,11 @@ class ViewController: UIViewController {
     // MARK - IBActions
 
     @IBAction func backToRecord(sender: UIButton) {
-        self.timer.invalidate()
+
         self.moviePlayer?.moviePlayer.stop()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ViewController.MPMoviePlayerPlaybackStateDidChange, object: nil)
+        self.moviePlayer?.view.removeFromSuperview()
+
         self.animateBackTorecord()
     }
 
