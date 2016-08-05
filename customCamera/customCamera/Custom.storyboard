@@ -161,7 +161,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" id="ScV-vK-xdK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" id="TSO-P5-rvg">
