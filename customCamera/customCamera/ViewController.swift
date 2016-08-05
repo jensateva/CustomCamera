@@ -415,6 +415,7 @@ class ViewController: UIViewController {
             print("playing")
             self.playerStartStopButton.setImage(getUIImage("stop.png"), forState: .Normal)
             self.overlayBlur.alpha = 0.0
+            self.playbackBlur.alpha = 0.0
             self.playbackContainer.hidden = false
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
