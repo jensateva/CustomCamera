@@ -311,6 +311,7 @@ class ViewController: UIViewController {
         }
 
         self.labelDuration.text = "00:00"
+        self.playbackContainer.hidden = true
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
             self.settingsIcon.alpha = 1.0
@@ -325,6 +326,7 @@ class ViewController: UIViewController {
             }, completion: { finished in
 
                 self.playbackBlur.alpha = 0.0
+
         })
     }
 
@@ -415,6 +417,7 @@ class ViewController: UIViewController {
             print("playing")
             self.playerStartStopButton.setImage(getUIImage("stop.png"), forState: .Normal)
             self.overlayBlur.alpha = 0.0
+            self.playbackContainer.hidden = false
             self.playbackBlurOff()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
