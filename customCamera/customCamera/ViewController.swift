@@ -386,8 +386,8 @@ class ViewController: UIViewController {
 
     func animateStopRecording(){
 
-        self.blurOn()
-      //  let image = UIImage(named: "record_start.png") as UIImage?
+       // self.blurOn()
+        self.PlayPreviewMoview(self.lastRecordedMovie)
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
 
@@ -401,7 +401,7 @@ class ViewController: UIViewController {
             }, completion: { finished in
 
                 self.animateShowPreview()
-                self.PlayPreviewMoview(self.lastRecordedMovie)
+//                self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
 
@@ -417,9 +417,80 @@ class ViewController: UIViewController {
             self.videoView.hidden = false
 
             }, completion: { finished in
-                self.blurOff()
+               // self.blurOff()
         })
     }
+
+    func PlayPreviewMoview (url : NSURL){
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
+            name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
+
+        self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
+        if let player = self.moviePlayer {
+            player.view.frame = self.view.bounds
+            player.view.sizeToFit()
+            player.moviePlayer.scalingMode = .AspectFit
+            player.moviePlayer.view.backgroundColor = UIColor.blackColor()
+            player.moviePlayer.backgroundView.backgroundColor = UIColor.blackColor()
+            player.moviePlayer.controlStyle = .None
+            self.playbackContainer.addSubview(player.view)
+        }
+    }
+
+
+    func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
+    {
+        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
+        {
+            print("playing")
+            self.playerStartStopButton.setImage(getUIImage("stop.png"), forState: .Normal)
+            self.overlayBlur.alpha = 0.0
+            self.playbackBlurOff()
+        }
+        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
+        {
+            print("stopped")
+            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
+            self.playbackBlurOn()
+        }
+        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
+        {
+            print("paused")
+            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
+            self.playbackBlurOn()
+        }
+        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
+        {
+            print("interupted")
+            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
+            self.playbackBlurOn()
+        }
+    }
+
+
+    @IBAction func playMovie(sender: UIButton) {
+        startStopMovie()
+    }
+
+    func startStopMovie(){
+        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
+        {
+            self.moviePlayer?.moviePlayer.play()
+        }
+        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
+        {
+            self.moviePlayer?.moviePlayer.play()
+        }
+        else{
+            self.moviePlayer?.moviePlayer.pause()
+        }
+    }
+
+
+
+
 
     @IBAction func backToRecord(sender: UIButton) {
         self.moviePlayer?.moviePlayer.stop()
@@ -657,30 +728,30 @@ class ViewController: UIViewController {
          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.ContinuousAutoFocus
 
         {
-            Engine.cameraFocus = CameraEngineCameraFocus.Locked
+            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
            // let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
 
-            self.buttonFocusmode.setImage(getUIImage("icon_focus_locked"), forState: .Normal)
-              print("Locked Focus")
-             self.showMessage("Locked")
-
-        }
-
-          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.Locked
-
-        {
-            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
-          //  let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
-              print("Auto Focus")
-             self.showMessage("Auto")
+             self.showMessage("Auto Focus")
 
         }
-        else
-        {
-            print("NO MATCHING FOCUS MODE")
-        }
+
+//          else if Engine.captureDevice?.focusMode == AVCaptureFocusMode.Locked
+//
+//        {
+//            Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
+//          //  let image = UIImage(named: "icon_focus_auto", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+//
+//            self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
+//              print("Auto Focus")
+//             self.showMessage("Auto")
+//
+//        }
+//        else
+//        {
+//            print("NO MATCHING FOCUS MODE")
+//        }
+
 
     }
 
@@ -858,77 +929,7 @@ class ViewController: UIViewController {
         }
     }
 
-    func PlayPreviewMoview (url : NSURL){
 
-        NSNotificationCenter.defaultCenter().addObserver(
-            self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
-            name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
-
-        self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
-        if let player = self.moviePlayer {
-            player.view.frame = self.view.bounds
-            player.view.sizeToFit()
-            player.moviePlayer.scalingMode = .AspectFit
-            player.moviePlayer.view.backgroundColor = UIColor.blackColor()
-            player.moviePlayer.backgroundView.backgroundColor = UIColor.blackColor()
-            player.moviePlayer.controlStyle = .None
-            self.playbackContainer.addSubview(player.view)
-        }
-    }
-
-
-    func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
-    {
-        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
-        {
-            print("playing")
-          //  let image = UIImage(named: "stop.png") as UIImage?
-            self.playerStartStopButton.setImage(getUIImage("stop.png"), forState: .Normal)
-            self.overlayBlur.alpha = 0.0
-            self.playbackBlurOff()
-        }
-        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
-        {
-            print("stopped")
-          //  let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
-            self.playbackBlurOn()
-        }
-        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
-        {
-            print("paused")
-          //  let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
-            self.playbackBlurOn()
-        }
-        else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
-        {
-            print("interupted")
-          //  let image = UIImage(named: "play.png") as UIImage?
-
-            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
-            self.playbackBlurOn()
-        }
-    }
-    
-
-    @IBAction func playMovie(sender: UIButton) {
-        startStopMovie()
-    }
-    
-    func startStopMovie(){
-        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
-        {
-            self.moviePlayer?.moviePlayer.play()
-        }
-        if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
-        {
-            self.moviePlayer?.moviePlayer.play()
-        }
-        else{
-            self.moviePlayer?.moviePlayer.pause()
-        }
-    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = event!.allTouches()!.first {
