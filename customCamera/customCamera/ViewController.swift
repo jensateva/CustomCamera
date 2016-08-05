@@ -38,11 +38,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playerStartStopButton: UIButton!
     @IBOutlet weak var uploadProgress: UIProgressView!
+    @IBOutlet weak var circleProgress: KDCircularProgress!
 
     var lastRecordedMovie = NSURL()
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
     let defaults = NSUserDefaults()
+
+    var timer = NSTimer()
 
     var FRAMERATE = Int()
     var FOCUSMODE = String()
@@ -360,7 +363,6 @@ class ViewController: UIViewController {
     func animateStopRecording(){
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
-//        self.videoView.hidden = false
         self.playbackBlur.alpha = 1.0
 
         UIView.animateWithDuration(0.4, delay: 0.2, options: .CurveEaseOut, animations: {
@@ -413,6 +415,7 @@ class ViewController: UIViewController {
             print("stopped")
             self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
             self.playbackBlurOn()
+            self.timer.invalidate()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
         {
@@ -435,23 +438,32 @@ class ViewController: UIViewController {
     func startStopMovie(){
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
         {
+
             self.moviePlayer?.moviePlayer.play()
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
+
         }
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
         {
             self.moviePlayer?.moviePlayer.play()
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
         }
-        else{
+        else
+        {
             self.moviePlayer?.moviePlayer.pause()
+            self.timer.invalidate()
         }
     }
 
-
+    func UpdateProgressUI(){
+        self.circleProgress.angle = (self.moviePlayer?.moviePlayer.playableDuration)! / (self.moviePlayer?.moviePlayer.duration)!
+    }
 
 
     // MARK - IBActions
 
     @IBAction func backToRecord(sender: UIButton) {
+        self.timer.invalidate()
         self.moviePlayer?.moviePlayer.stop()
         self.animateBackTorecord()
     }

@@ -34,6 +34,7 @@
 		202F3C301D4F705E0055F9A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F3C2F1D4F705E0055F9A6 /* ViewController.swift */; };
 		202F3C321D4F70B80055F9A6 /* Custom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202F3C311D4F70B80055F9A6 /* Custom.storyboard */; };
 		202F3C3A1D4F7E3D0055F9A6 /* exitCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 202F3C391D4F7E3D0055F9A6 /* exitCamera.png */; };
+		20321EF61D54DEE800521E45 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20321EF51D54DEE800521E45 /* KDCircularProgress.swift */; };
 		20399FD41D5483B40054FAF6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20399FD31D5483B40054FAF6 /* Helper.swift */; };
 		20773C191D47803A005186D7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20773C181D47803A005186D7 /* NetworkManager.swift */; };
 		20773C381D478F0F005186D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20773C2B1D478ED6005186D7 /* Alamofire.framework */; };
@@ -143,6 +144,7 @@
 		202F3C2F1D4F705E0055F9A6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		202F3C311D4F70B80055F9A6 /* Custom.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Custom.storyboard; sourceTree = "<group>"; };
 		202F3C391D4F7E3D0055F9A6 /* exitCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitCamera.png; sourceTree = "<group>"; };
+		20321EF51D54DEE800521E45 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		20399FD31D5483B40054FAF6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = customCamera/Helper.swift; sourceTree = "<group>"; };
 		20773C181D47803A005186D7 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		20773C201D478ED6005186D7 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				202F3C121D4F70330055F9A6 /* icons */,
 				202F3BFD1D4F6FEF0055F9A6 /* CameraEngine */,
 				202F3C2F1D4F705E0055F9A6 /* ViewController.swift */,
+				20321EF51D54DEE800521E45 /* KDCircularProgress.swift */,
 				202F3C311D4F70B80055F9A6 /* Custom.storyboard */,
 				20773C181D47803A005186D7 /* NetworkManager.swift */,
 				20F4F2AC1D4644F0007B5CEF /* ForsceneCamera.swift */,
@@ -509,6 +512,7 @@
 				20F4F2AD1D4644F0007B5CEF /* ForsceneCamera.swift in Sources */,
 				202F3C0B1D4F6FF00055F9A6 /* CameraEngineDevice.swift in Sources */,
 				202F3C301D4F705E0055F9A6 /* ViewController.swift in Sources */,
+				20321EF61D54DEE800521E45 /* KDCircularProgress.swift in Sources */,
 				202F3C0E1D4F6FF00055F9A6 /* CameraEngineGifEncoder.swift in Sources */,
 				202F3C101D4F6FF00055F9A6 /* CameraEngineVideoEncoder.swift in Sources */,
 				202F3C0A1D4F6FF00055F9A6 /* CameraEngineCaptureOutput.swift in Sources */,
