@@ -388,7 +388,7 @@ class ViewController: UIViewController {
             self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
             name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
 
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
         if let player = self.moviePlayer {
