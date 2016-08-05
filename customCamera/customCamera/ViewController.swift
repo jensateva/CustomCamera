@@ -384,11 +384,11 @@ class ViewController: UIViewController {
 
     func PlayPreviewMoview (url : NSURL){
 
+        startTimer()
+
         NSNotificationCenter.defaultCenter().addObserver(
             self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
             name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
-
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
 
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
         if let player = self.moviePlayer {
@@ -400,6 +400,10 @@ class ViewController: UIViewController {
             player.moviePlayer.controlStyle = .None
             self.playbackContainer.addSubview(player.view)
         }
+    }
+
+    func startTimer(){
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
     }
 
     func UpdateProgressUI(){
