@@ -294,8 +294,8 @@ class ViewController: UIViewController {
 
         if defaults.boolForKey("hideExitButton")
         {
-            self.labelDuration.hidden = false
-            self.customSettingsContainer.hidden = true
+           // self.labelDuration.hidden = false
+           // self.customSettingsContainer.hidden = true
             self.exitCameraButton.hidden = true
         }
 
