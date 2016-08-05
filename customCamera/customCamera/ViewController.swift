@@ -470,7 +470,7 @@ class ViewController: UIViewController {
     @IBAction func backToRecord(sender: UIButton) {
 
         self.moviePlayer?.moviePlayer.stop()
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ViewController.MPMoviePlayerPlaybackStateDidChange, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ViewController.MPMoviePlayerPlaybackStateDidChange", object: nil)
         self.moviePlayer?.view.removeFromSuperview()
 
         self.animateBackTorecord()
