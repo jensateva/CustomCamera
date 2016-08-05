@@ -209,7 +209,7 @@ class ViewController: UIViewController {
 
     func hideLogo(){
 
-        UIView.animateWithDuration(0.3, delay: 0.35, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.3, delay: 0.6, options: .CurveEaseOut, animations: {
 
             self.logoImage.frame = CGRectMake(-100, -80, self.view.frame.size.width + 200 , self.view.frame.size.height + 160)
             self.logoImage.alpha = 0.0
