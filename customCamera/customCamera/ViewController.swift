@@ -13,18 +13,12 @@ import Foundation
 
 class ViewController: UIViewController {
 
-
     @IBOutlet weak var buttonFocusmode: UIButton!
     @IBOutlet weak var buttonRegion: UIButton!
     @IBOutlet weak var buttonQuallity: UIButton!
     @IBOutlet weak var buttonTorchmode: UIButton!
     @IBOutlet weak var userMessage: UILabel!
-
     @IBOutlet weak var cameraView: UIView!
-
-
-
-
     @IBOutlet weak var customSettingsContainer: UIView!
     @IBOutlet weak var focus: UIImageView!
     @IBOutlet weak var logoImage: UIImageView!
@@ -35,15 +29,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var switchButton: UIButton!
     @IBOutlet weak var recordButtonBlurView: UIVisualEffectView!
     @IBOutlet weak var videoControlls: UIView!
-    @IBOutlet weak var faceDetection: UIButton!
-    @IBOutlet weak var settingsContainer: UIView!
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var torchMode: UIButton!
-    @IBOutlet weak var frameRateButton: UIButton!
-    @IBOutlet weak var focusModeButton: UIButton!
-    @IBOutlet weak var settingsView: UIView!
+//    @IBOutlet weak var faceDetection: UIButton!
+//    @IBOutlet weak var settingsContainer: UIView!
+//    @IBOutlet weak var doneButton: UIButton!
+//    @IBOutlet weak var torchMode: UIButton!
+//    @IBOutlet weak var frameRateButton: UIButton!
+//    @IBOutlet weak var focusModeButton: UIButton!
+//    @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var playButtonBlurView: UIVisualEffectView!
-    @IBOutlet weak var videoResolutionButton: UIButton!
+//    @IBOutlet weak var videoResolutionButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var labelDuration: UILabel!
     @IBOutlet weak var videoView: UIView!
@@ -377,7 +371,7 @@ class ViewController: UIViewController {
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
 
-        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.4, delay: 0.2, options: .CurveEaseOut, animations: {
 
             self.videoControlls.alpha = 0.0
             self.approveButtonsVIew.frame = CGRectMake(0, self.view.frame.size.height - 120, self.view.frame.size.width, 140)
@@ -394,7 +388,7 @@ class ViewController: UIViewController {
 
             }, completion: { finished in
 
-//                self.PlayPreviewMoview(self.lastRecordedMovie)
+                self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
 
@@ -693,7 +687,7 @@ class ViewController: UIViewController {
         else
         { Engine.stopRecordingVideo()
             dispatch_async(dispatch_get_main_queue()){
-                self.PlayPreviewMoview(self.lastRecordedMovie)
+               // self.PlayPreviewMoview(self.lastRecordedMovie)
                 self.animateStopRecording()
             }
         }
