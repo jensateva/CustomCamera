@@ -13,6 +13,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="7nT-Ef-Sgd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" id="a6Q-iA-qEH" userLabel="Video Controlls">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,7 +155,7 @@
                                 <size key="shadowOffset" width="2" height="1"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="320" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="ScV-vK-xdK">
@@ -371,6 +376,7 @@
                         <outlet property="buttonQuallity" destination="9QL-o6-L87" id="wcg-fB-fs9"/>
                         <outlet property="buttonRegion" destination="zyn-eb-EmS" id="qEe-LA-Nba"/>
                         <outlet property="buttonTorchmode" destination="xES-dX-ghP" id="9TU-dc-6dl"/>
+                        <outlet property="cameraView" destination="7nT-Ef-Sgd" id="C27-Le-vHf"/>
                         <outlet property="customSettingsContainer" destination="L53-XM-FCz" id="jJ3-BO-AfO"/>
                         <outlet property="doneButton" destination="RQi-Qt-drc" id="CDc-pd-B2n"/>
                         <outlet property="exitCameraButton" destination="S2M-xM-PqS" id="3fR-TV-GFy"/>

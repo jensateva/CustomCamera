@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonTorchmode: UIButton!
     @IBOutlet weak var userMessage: UILabel!
 
+    @IBOutlet weak var cameraView: UIView!
+
 
 
 
@@ -107,16 +109,16 @@ class ViewController: UIViewController {
         // Add Camera View Here As Well Loads Quicker then
         let layer = Engine.previewLayer
         layer.frame = self.view.bounds
-        self.view.layer.insertSublayer(layer, atIndex: 0)
-        self.view.layer.masksToBounds = true
+        self.videoView.layer.insertSublayer(layer, atIndex: 0)
+        self.videoView.layer.masksToBounds = true
 
     }
 
     override func viewDidLayoutSubviews() {
         let layer = Engine.previewLayer
         layer.frame = self.view.bounds
-        self.view.layer.insertSublayer(layer, atIndex: 0)
-        self.view.layer.masksToBounds = true
+        self.videoView.layer.insertSublayer(layer, atIndex: 0)
+        self.videoView.layer.masksToBounds = true
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -412,6 +414,9 @@ class ViewController: UIViewController {
     func animateShowPreview(){
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
 
+            self.videoView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+            self.cameraView.frame = CGRectMake( -self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
+
             self.switchButton.alpha = 0.0
             self.videoView.alpha = 1.0
             self.videoView.hidden = false
@@ -623,6 +628,9 @@ class ViewController: UIViewController {
 
         self.labelDuration.text = "00:00"
         UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+
+            self.videoView.frame = CGRectMake(0, self.view.frame.size.width, self.view.frame.size.width, self.view.frame.size.height)
+            self.cameraView.frame = CGRectMake( 0, 0, self.view.frame.size.width, self.view.frame.size.height)
 
             self.settingsIcon.alpha = 1.0
             self.videoView.alpha = 0.0
