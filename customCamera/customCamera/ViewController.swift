@@ -662,21 +662,21 @@ class ViewController: UIViewController {
 
     @IBAction func changeFocusmode(sender: UIButton)
     {
-        if FOCUSMODE = "AUTO"
+        if FOCUSMODE == "AUTO"
         {
             self.buttonFocusmode.setImage(getUIImage("icon_focus_continious"), forState: .Normal)
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
             self.showMessage("Continious")
             FOCUSMODE = "CONTINIOUS"
         }
-        else if FOCUSMODE = "CONTINIOUS"
+        else if FOCUSMODE == "CONTINIOUS"
         {
             self.buttonFocusmode.setImage(getUIImage("icon_focus_locked"), forState: .Normal)
             Engine.cameraFocus = CameraEngineCameraFocus.Locked
             self.showMessage("Focus locked")
             FOCUSMODE = "LOCKED"
         }
-        else if FOCUSMODE = "LOCKED"
+        else if FOCUSMODE == "LOCKED"
         {
             self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
             Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
