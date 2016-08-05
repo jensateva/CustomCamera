@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Foundation
 
 class Helper{
 
 //    static func getUIImage(image : String) -> UIImage
 //    {
-//        let image = UIImage(named: image, inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+//        let image = UIImage(named: image, inBundle: NSBundle(forClass: ViewController.dynamicType), compatibleWithTraitCollection: nil)
 //        return image!
 //    }
  }
