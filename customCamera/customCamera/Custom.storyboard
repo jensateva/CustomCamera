@@ -156,7 +156,7 @@
                                 <size key="shadowOffset" width="2" height="1"/>
                             </label>
                             <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
-                                <rect key="frame" x="0.0" y="200" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="ScV-vK-xdK">

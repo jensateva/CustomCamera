@@ -370,6 +370,7 @@ class ViewController: UIViewController {
     func animateStopRecording(){
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
+        self.videoView.hidden = false
 
         UIView.animateWithDuration(0.4, delay: 0.2, options: .CurveEaseOut, animations: {
 
@@ -378,17 +379,13 @@ class ViewController: UIViewController {
             self.approveButtonsVIew.alpha = 1.0
             self.videoControlls.frame = CGRectMake(0, -120, self.view.frame.size.width, self.view.frame.size.height)
 
-            self.videoView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-            self.cameraView.frame = CGRectMake(0, -200, self.view.frame.size.width, self.view.frame.size.height)
-
-            self.switchButton.alpha = 0.0
             self.videoView.alpha = 1.0
-            self.videoView.hidden = false
+
 
 
             }, completion: { finished in
 
-              //  self.PlayPreviewMoview(self.lastRecordedMovie)
+                self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
 
@@ -676,7 +673,6 @@ class ViewController: UIViewController {
                 self.lastRecordedMovie = url!
                 print(url)
 
-
                 if self.defaults.boolForKey("saveOriginal") {
 
                     CameraEngineFileManager.saveVideo(url!, blockCompletion: { (success, error) -> (Void) in
@@ -690,7 +686,9 @@ class ViewController: UIViewController {
 
         { Engine.stopRecordingVideo()
 
+            dispatch_async(dispatch_get_main_queue()){
                 self.animateStopRecording()
+       }
 
         }
     }
