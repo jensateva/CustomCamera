@@ -29,15 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var switchButton: UIButton!
     @IBOutlet weak var recordButtonBlurView: UIVisualEffectView!
     @IBOutlet weak var videoControlls: UIView!
-//    @IBOutlet weak var faceDetection: UIButton!
-//    @IBOutlet weak var settingsContainer: UIView!
-//    @IBOutlet weak var doneButton: UIButton!
-//    @IBOutlet weak var torchMode: UIButton!
-//    @IBOutlet weak var frameRateButton: UIButton!
-//    @IBOutlet weak var focusModeButton: UIButton!
-//    @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var playButtonBlurView: UIVisualEffectView!
-//    @IBOutlet weak var videoResolutionButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var labelDuration: UILabel!
     @IBOutlet weak var videoView: UIView!
@@ -316,7 +308,7 @@ class ViewController: UIViewController {
 
             self.settingsIcon.alpha = 1.0
             self.videoView.alpha = 0.0
-            self.videoView.hidden = false
+      //      self.videoView.hidden = false
             self.switchButton.alpha = 1.0
             self.exitCameraButton.alpha = 1.0
             self.videoControlls.alpha = 1.0
@@ -369,7 +361,7 @@ class ViewController: UIViewController {
     func animateStopRecording(){
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
-        self.videoView.hidden = false
+//        self.videoView.hidden = false
         self.playbackBlur.alpha = 1.0
 
         UIView.animateWithDuration(0.4, delay: 0.2, options: .CurveEaseOut, animations: {
@@ -379,9 +371,7 @@ class ViewController: UIViewController {
             self.approveButtonsVIew.alpha = 1.0
             self.videoControlls.frame = CGRectMake(0, -120, self.view.frame.size.width, self.view.frame.size.height)
 
-           // self.videoView.alpha = 1.0
-
-
+            self.videoView.alpha = 1.0
 
             }, completion: { finished in
                 self.PlayPreviewMoview(self.lastRecordedMovie)
