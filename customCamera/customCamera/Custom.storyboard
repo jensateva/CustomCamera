@@ -155,7 +155,7 @@
                                 <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="2" height="1"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
+                            <view alpha="0.0" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
