@@ -388,7 +388,7 @@ class ViewController: UIViewController {
 
             }, completion: { finished in
 
-                self.PlayPreviewMoview(self.lastRecordedMovie)
+              //  self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
 
@@ -672,7 +672,9 @@ class ViewController: UIViewController {
 
             Engine.startRecordingVideo(url, blockCompletion: { (url, error) -> (Void) in
 
+                /// CHECK FOR URL BEFORE PLAYING????
                 self.lastRecordedMovie = url!
+                print(url)
 
 
                 if self.defaults.boolForKey("saveOriginal") {
@@ -685,11 +687,11 @@ class ViewController: UIViewController {
             })
         }
         else
+
         { Engine.stopRecordingVideo()
-            dispatch_async(dispatch_get_main_queue()){
-               // self.PlayPreviewMoview(self.lastRecordedMovie)
+
                 self.animateStopRecording()
-            }
+
         }
     }
 

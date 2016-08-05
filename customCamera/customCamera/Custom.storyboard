@@ -155,14 +155,14 @@
                                 <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="2" height="1"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
-                                <rect key="frame" x="320" y="0.0" width="320" height="568"/>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="ywb-Xw-I0d" userLabel="Playback View">
+                                <rect key="frame" x="0.0" y="200" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="ScV-vK-xdK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" id="TSO-P5-rvg">
                                         <rect key="frame" x="-25" y="-19" width="367" height="618"/>
