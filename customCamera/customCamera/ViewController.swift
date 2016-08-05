@@ -388,6 +388,8 @@ class ViewController: UIViewController {
             self, selector: #selector(ViewController.MPMoviePlayerPlaybackStateDidChange(_:)),
             name: MPMoviePlayerPlaybackStateDidChangeNotification, object: nil)
 
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
+
         self.moviePlayer = MPMoviePlayerViewController(contentURL: url )
         if let player = self.moviePlayer {
             player.view.frame = self.view.bounds
@@ -400,6 +402,11 @@ class ViewController: UIViewController {
         }
     }
 
+    func UpdateProgressUI(){
+        self.circleProgress.angle = (self.moviePlayer?.moviePlayer.playableDuration)! / (self.moviePlayer?.moviePlayer.duration)! * 360
+
+        print(self.circleProgress.angle)
+    }
 
     func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
     {
@@ -415,7 +422,7 @@ class ViewController: UIViewController {
             print("stopped")
             self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
             self.playbackBlurOn()
-            self.timer.invalidate()
+           // self.timer.invalidate()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
         {
@@ -438,26 +445,19 @@ class ViewController: UIViewController {
     func startStopMovie(){
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
         {
-
             self.moviePlayer?.moviePlayer.play()
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
-
         }
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
         {
             self.moviePlayer?.moviePlayer.play()
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
         }
         else
         {
             self.moviePlayer?.moviePlayer.pause()
-            self.timer.invalidate()
         }
     }
 
-    func UpdateProgressUI(){
-        self.circleProgress.angle = (self.moviePlayer?.moviePlayer.playableDuration)! / (self.moviePlayer?.moviePlayer.duration)!
-    }
+
 
 
     // MARK - IBActions
