@@ -89,16 +89,10 @@ class ViewController: UIViewController {
 
         // SETUP VIEW
         setUpView()
-//        dispatch_async(dispatch_get_main_queue()){
-//        let layer = self.Engine.previewLayer
-//        layer.frame = self.view.bounds
-//        self.cameraView.layer.insertSublayer(layer, atIndex: 0)
-//        self.cameraView.layer.masksToBounds = true
-//        }
     }
 
     override func viewDidLayoutSubviews() {
-          dispatch_async(dispatch_get_main_queue()){
+        dispatch_async(dispatch_get_main_queue()){
         let layer = self.Engine.previewLayer
         layer.frame = self.view.bounds
         self.cameraView.layer.insertSublayer(layer, atIndex: 0)
@@ -192,11 +186,11 @@ class ViewController: UIViewController {
 
         if defaults.boolForKey("hideExitButton")
         {
-            self.labelDuration.hidden = false
+         //   self.labelDuration.hidden = false
             self.exitCameraButton.hidden = true
-            self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
-            self.customSettingsContainer.hidden = true
-            self.customSettingsContainer.alpha = 0.0
+         //   self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+         //   self.customSettingsContainer.hidden = true
+         //   self.customSettingsContainer.alpha = 0.0
         }
 
         self.labelDuration.text = "00:00"
