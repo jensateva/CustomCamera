@@ -308,7 +308,6 @@ class ViewController: UIViewController {
 
             self.settingsIcon.alpha = 1.0
             self.videoView.alpha = 0.0
-      //      self.videoView.hidden = false
             self.switchButton.alpha = 1.0
             self.exitCameraButton.alpha = 1.0
             self.videoControlls.alpha = 1.0
@@ -408,7 +407,6 @@ class ViewController: UIViewController {
             self.playerStartStopButton.setImage(getUIImage("stop.png"), forState: .Normal)
             self.overlayBlur.alpha = 0.0
             self.playbackContainer.hidden = false
-            self.playbackBlurOff()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
         {
