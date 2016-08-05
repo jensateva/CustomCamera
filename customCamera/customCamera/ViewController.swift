@@ -641,7 +641,9 @@ class ViewController: UIViewController {
         if Engine.captureDevice?.focusMode == AVCaptureFocusMode.AutoFocus
         {
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
+
              let image = UIImage(named: "icon_focus_continious", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+
             self.buttonFocusmode.setImage(image, forState: .Normal)
 
             print("Continiour Focus")
@@ -891,8 +893,9 @@ class ViewController: UIViewController {
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
         {
             print("interupted")
-            let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
+          //  let image = UIImage(named: "play.png") as UIImage?
+
+            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
             self.playbackBlurOn()
         }
     }
@@ -959,6 +962,12 @@ class ViewController: UIViewController {
             let desiredZoomFactor = min(maxZoom, Engine.cameraZoomFactor + atan2(recognizer.velocity, pinchVelocityDividerFactor))
             Engine.cameraZoomFactor = desiredZoomFactor
         }
+    }
+
+    func getUIImage(image : String) -> UIImage
+    {
+         let image = UIImage(named: image, inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        return image!
     }
 }
 
