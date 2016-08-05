@@ -104,21 +104,18 @@ class ViewController: UIViewController {
         }
         // SETUP VIEW
         setUpView()
-
-
-        // Add Camera View Here As Well Loads Quicker then
         let layer = Engine.previewLayer
         layer.frame = self.view.bounds
-        self.videoView.layer.insertSublayer(layer, atIndex: 0)
-        self.videoView.layer.masksToBounds = true
+        self.cameraView.layer.insertSublayer(layer, atIndex: 0)
+        self.cameraView.layer.masksToBounds = true
 
     }
 
     override func viewDidLayoutSubviews() {
         let layer = Engine.previewLayer
         layer.frame = self.view.bounds
-        self.videoView.layer.insertSublayer(layer, atIndex: 0)
-        self.videoView.layer.masksToBounds = true
+        self.cameraView.layer.insertSublayer(layer, atIndex: 0)
+        self.cameraView.layer.masksToBounds = true
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -189,9 +186,6 @@ class ViewController: UIViewController {
             FRAMERATE = 25
 
             self.showMessage("25 fps")
-
-         //   let PALIMAGE = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonRegion.setImage(getUIImage("icon_pal.png"), forState: .Normal)
 
         }
@@ -216,15 +210,11 @@ class ViewController: UIViewController {
 
         if FRAMERATE > 25
         {
-            //let ntscImage = UIImage(named: "icon_ntsc.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonRegion.setImage(getUIImage("icon_ntsc.png"), forState: .Normal)
             self.buttonRegion.setTitle("25", forState: .Normal)
         }
         else
         {
-            // let palImage = UIImage(named: "icon_pal.png", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
              self.buttonRegion.setImage(getUIImage("icon_pal.png"), forState: .Normal)
         }
 
@@ -724,11 +714,7 @@ class ViewController: UIViewController {
         if Engine.captureDevice?.focusMode == AVCaptureFocusMode.AutoFocus
         {
             Engine.cameraFocus = CameraEngineCameraFocus.ContinuousAutoFocus
-
-            // let image = UIImage(named: "icon_focus_continious", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonFocusmode.setImage(getUIImage("icon_focus_continious"), forState: .Normal)
-
             print("Continiour Focus")
              self.showMessage("Continious")
         }
@@ -737,8 +723,6 @@ class ViewController: UIViewController {
 
         {
             Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
-           // let image = UIImage(named: "icon_focus_locked", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
-
             self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
              self.showMessage("Auto Focus")
 
