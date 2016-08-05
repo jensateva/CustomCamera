@@ -312,7 +312,7 @@ class ViewController: UIViewController {
 
         self.labelDuration.text = "00:00"
         self.playbackContainer.hidden = true
-        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.4, delay: 0.1, options: .CurveEaseOut, animations: {
 
             self.settingsIcon.alpha = 1.0
             self.videoView.alpha = 0.0
@@ -379,7 +379,7 @@ class ViewController: UIViewController {
             self.approveButtonsVIew.alpha = 1.0
             self.videoControlls.frame = CGRectMake(0, -120, self.view.frame.size.width, self.view.frame.size.height)
 
-            self.videoView.alpha = 1.0
+           // self.videoView.alpha = 1.0
 
 
 
