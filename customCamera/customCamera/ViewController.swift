@@ -871,23 +871,23 @@ class ViewController: UIViewController {
         if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Playing
         {
             print("playing")
-            let image = UIImage(named: "stop.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
+          //  let image = UIImage(named: "stop.png") as UIImage?
+            self.playerStartStopButton.setImage(getUIImage("stop.png"), forState: .Normal)
             self.overlayBlur.alpha = 0.0
             self.playbackBlurOff()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Stopped
         {
             print("stopped")
-            let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
+          //  let image = UIImage(named: "play.png") as UIImage?
+            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
             self.playbackBlurOn()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Paused
         {
             print("paused")
-            let image = UIImage(named: "play.png") as UIImage?
-            self.playerStartStopButton.setImage(image, forState: .Normal)
+          //  let image = UIImage(named: "play.png") as UIImage?
+            self.playerStartStopButton.setImage(getUIImage("play.png"), forState: .Normal)
             self.playbackBlurOn()
         }
         else if moviePlayer?.moviePlayer.playbackState == MPMoviePlaybackState.Interrupted
@@ -947,10 +947,9 @@ class ViewController: UIViewController {
             self.focus.alpha = 0.0
             self.focus.frame = CGRectMake(position.x - 10 , position.y - 10, 20, 20)
         }), completion: { finished in
-
  })
 })
-   }
+ }
 }
 
     
@@ -966,8 +965,10 @@ class ViewController: UIViewController {
 
     func getUIImage(image : String) -> UIImage
     {
-         let image = UIImage(named: image, inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: image, inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
         return image!
     }
+
+
 }
 
