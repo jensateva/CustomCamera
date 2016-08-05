@@ -326,6 +326,46 @@ class ViewController: UIViewController {
         })
     }
 
+    func animateBackTorecord(){
+
+        self.blurOff()
+        let defaults = NSUserDefaults()
+        if defaults.boolForKey("showCustomSettings")
+        {
+            self.showCustomSettingsHideTimer()
+        }
+        else
+        {
+            self.labelDuration.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
+            self.labelDuration.alpha = 0.0
+        }
+
+        if defaults.boolForKey("hideExitButton")
+        {
+            self.labelDuration.hidden = false
+            self.customSettingsContainer.hidden = true
+            self.settingsIcon.hidden = false
+            self.exitCameraButton.hidden = true
+        }
+
+        self.labelDuration.text = "00:00"
+        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+
+            self.videoView.frame = CGRectMake(0, -200, self.view.frame.size.width, self.view.frame.size.height)
+            self.cameraView.frame = CGRectMake( 0, 0, self.view.frame.size.width, self.view.frame.size.height)
+
+            self.settingsIcon.alpha = 1.0
+            self.videoView.alpha = 0.0
+            self.videoView.hidden = false
+            self.switchButton.alpha = 1.0
+            self.exitCameraButton.alpha = 1.0
+            self.videoControlls.alpha = 1.0
+            self.videoControlls.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+            self.approveButtonsVIew.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 140)
+            self.approveButtonsVIew.alpha = 0.0
+            }, completion: { finished in
+        })
+    }
 
     func hideCustomSettingsShowTimer(){
 
@@ -362,10 +402,12 @@ class ViewController: UIViewController {
     }
 
 
-    func animateStopRecording(){
+    @IBAction func showPreview(sender: UIButton) {
+        startStopMovie()
+    }
 
-        // self.blurOn()
-        //self.PlayPreviewMoview(self.lastRecordedMovie)
+
+    func animateStopRecording(){
 
         self.recordButton.setImage(getUIImage("record_start.png"), forState: .Normal)
 
@@ -376,31 +418,36 @@ class ViewController: UIViewController {
             self.approveButtonsVIew.alpha = 1.0
             self.videoControlls.frame = CGRectMake(0, -120, self.view.frame.size.width, self.view.frame.size.height)
 
-            }, completion: { finished in
-
-                self.animateShowPreview()
-                self.PlayPreviewMoview(self.lastRecordedMovie)
-        })
-    }
-
-    @IBAction func showPreview(sender: UIButton) {
-        startStopMovie()
-    }
-
-    func animateShowPreview(){
-        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
-
             self.videoView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-            self.cameraView.frame = CGRectMake( -self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
+            self.cameraView.frame = CGRectMake(0, -200, self.view.frame.size.width, self.view.frame.size.height)
 
             self.switchButton.alpha = 0.0
             self.videoView.alpha = 1.0
             self.videoView.hidden = false
 
+
             }, completion: { finished in
-                // self.blurOff()
+
+                //self.animateShowPreview()
+//                self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
+
+
+//    func animateShowPreview(){
+//        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+//
+//            self.videoView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+//            self.cameraView.frame = CGRectMake( -self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
+//
+//            self.switchButton.alpha = 0.0
+//            self.videoView.alpha = 1.0
+//            self.videoView.hidden = false
+//
+//            }, completion: { finished in
+//                // self.blurOff()
+//        })
+//    }
 
     func PlayPreviewMoview (url : NSURL){
 
@@ -579,48 +626,6 @@ class ViewController: UIViewController {
     }
 
 
-    func animateBackTorecord(){
-
-        self.blurOff()
-
-        let defaults = NSUserDefaults()
-
-        if defaults.boolForKey("showCustomSettings")
-        {
-            self.showCustomSettingsHideTimer()
-        }
-        else
-        {
-            self.labelDuration.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
-            self.labelDuration.alpha = 0.0
-        }
-
-        if defaults.boolForKey("hideExitButton")
-        {
-            self.labelDuration.hidden = false
-            self.customSettingsContainer.hidden = true
-            self.settingsIcon.hidden = false
-            self.exitCameraButton.hidden = true
-        }
-
-        self.labelDuration.text = "00:00"
-        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
-
-            self.videoView.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
-            self.cameraView.frame = CGRectMake( 0, 0, self.view.frame.size.width, self.view.frame.size.height)
-
-            self.settingsIcon.alpha = 1.0
-            self.videoView.alpha = 0.0
-            self.videoView.hidden = false
-            self.switchButton.alpha = 1.0
-            self.exitCameraButton.alpha = 1.0
-            self.videoControlls.alpha = 1.0
-            self.videoControlls.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-            self.approveButtonsVIew.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 140)
-            self.approveButtonsVIew.alpha = 0.0
-            }, completion: { finished in
-        })
-    }
 
 
 
@@ -785,8 +790,6 @@ class ViewController: UIViewController {
 
 
 
-
-
     @IBAction func startRecord(sender: UIButton)
     {
         print("Recording video...")
@@ -801,16 +804,15 @@ class ViewController: UIViewController {
             dateFormatter.dateFormat = "dd-MM-yyyy_HH:mm:ss"
             let dateStr = dateFormatter.stringFromDate(date)
             let videoFileName =  dateStr + "_Forscene.mp4"
-            // print(videoFileName)
 
             guard let url = CameraEngineFileManager.documentPath(videoFileName) else {
                 return
             }
 
             Engine.startRecordingVideo(url, blockCompletion: { (url, error) -> (Void) in
-                // print("url movie : \(url)")
 
                 self.lastRecordedMovie = url!
+                self.PlayPreviewMoview(self.lastRecordedMovie)
 
                 if self.defaults.boolForKey("saveOriginal") {
 
