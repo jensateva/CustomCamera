@@ -97,20 +97,24 @@ class ViewController: UIViewController {
         Engine.blockCompletionCodeDetection = { codeObject in
             print("code object value : \(codeObject.stringValue)")
         }
+
         // SETUP VIEW
         setUpView()
-        let layer = Engine.previewLayer
+        dispatch_async(dispatch_get_main_queue()){
+        let layer = self.Engine.previewLayer
         layer.frame = self.view.bounds
         self.cameraView.layer.insertSublayer(layer, atIndex: 0)
         self.cameraView.layer.masksToBounds = true
-
+        }
     }
 
     override func viewDidLayoutSubviews() {
-        let layer = Engine.previewLayer
+          dispatch_async(dispatch_get_main_queue()){
+        let layer = self.Engine.previewLayer
         layer.frame = self.view.bounds
         self.cameraView.layer.insertSublayer(layer, atIndex: 0)
         self.cameraView.layer.masksToBounds = true
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -144,10 +148,6 @@ class ViewController: UIViewController {
     }
 
 
-    func setupPortraitView(){
-    }
-
-
     func showMessage(message:String){
 
         dispatch_async(dispatch_get_main_queue())
@@ -171,28 +171,6 @@ class ViewController: UIViewController {
         }
     }
 
-
-
-    @IBAction func changeRegion(sender: UIButton) {
-        if FRAMERATE > 25
-        {
-            print("PAL 25")
-            self.Engine.changeFrameRate(25)
-            FRAMERATE = 25
-
-            self.showMessage("25 fps")
-            self.buttonRegion.setImage(getUIImage("icon_pal.png"), forState: .Normal)
-
-        }
-        else
-        {
-            print("NTSC 30")
-            self.Engine.changeFrameRate(30)
-            FRAMERATE = 30
-            self.showMessage("30 fps")
-            self.buttonRegion.setImage(getUIImage("icon_ntsc.png"), forState: .Normal)
-        }
-    }
 
     func setUpView(){
 
@@ -226,7 +204,6 @@ class ViewController: UIViewController {
         if defaults.boolForKey("hideExitButton")
         {
             self.labelDuration.hidden = false
-            self.settingsIcon.hidden = false
             self.exitCameraButton.hidden = true
             self.customSettingsContainer.frame = CGRectMake(0, -50, self.view.frame.size.width, 50)
             self.customSettingsContainer.hidden = true
@@ -239,7 +216,6 @@ class ViewController: UIViewController {
         self.playButtonBlurView.layer.cornerRadius = self.recordButtonBlurView.frame.size.width / 2
         self.playButtonBlurView.layer.masksToBounds = true
         self.switchButton.alpha = 1.0
-        self.setupPortraitView()
     }
 
     func hideLogo(){
@@ -305,11 +281,6 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func exitCamera(sender: UIButton) {
-        self.dismissViewControllerAnimated(true) {
-            print("Forscene Camera Dismissed")
-        }
-    }
 
 
 
@@ -344,7 +315,6 @@ class ViewController: UIViewController {
         {
             self.labelDuration.hidden = false
             self.customSettingsContainer.hidden = true
-            self.settingsIcon.hidden = false
             self.exitCameraButton.hidden = true
         }
 
@@ -402,10 +372,6 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func showPreview(sender: UIButton) {
-        startStopMovie()
-    }
-
 
     func animateStopRecording(){
 
@@ -428,26 +394,12 @@ class ViewController: UIViewController {
 
             }, completion: { finished in
 
-                //self.animateShowPreview()
 //                self.PlayPreviewMoview(self.lastRecordedMovie)
         })
     }
 
 
-//    func animateShowPreview(){
-//        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
-//
-//            self.videoView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-//            self.cameraView.frame = CGRectMake( -self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)
-//
-//            self.switchButton.alpha = 0.0
-//            self.videoView.alpha = 1.0
-//            self.videoView.hidden = false
-//
-//            }, completion: { finished in
-//                // self.blurOff()
-//        })
-//    }
+    // MARK - Player
 
     func PlayPreviewMoview (url : NSURL){
 
@@ -498,9 +450,6 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func playMovie(sender: UIButton) {
-        startStopMovie()
-    }
 
 
 
@@ -521,6 +470,7 @@ class ViewController: UIViewController {
 
 
 
+    // MARK - IBActions
 
     @IBAction func backToRecord(sender: UIButton) {
         self.moviePlayer?.moviePlayer.stop()
@@ -528,7 +478,9 @@ class ViewController: UIViewController {
     }
 
 
-
+    @IBAction func playMovie(sender: UIButton) {
+        startStopMovie()
+    }
 
     @IBAction func approve(sender: UIButton) {
 
@@ -567,64 +519,29 @@ class ViewController: UIViewController {
 
 
 
-    private func UploadVideo(urlString:NSURL)
-    {
-        print("Starting upload...")
-        uploadProgress.hidden = false
-        uploadProgress.alpha = 1.0
-
-        let TOKEN = defaults.valueForKey("token") as! String
-        let UPLOADURL = defaults.valueForKey("uploadurl") as! String
-        let FOLDER = defaults.valueForKey("folderName") as! String
-        let HEADERS = ["X-Auth-Kestrel":TOKEN]
-
-        let today = NSDate.distantPast()
-        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
-
-        let task = NetworkManager.sharedManager.backgroundTask
-        task.upload(
-
-            .POST,UPLOADURL,
-            headers: HEADERS,
-            multipartFormData: { multipartFormData in
-
-                multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
-                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
-                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-                multipartFormData.appendBodyPart(data: FOLDER .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
-
-            },
-
-            encodingCompletion: { encodingResult in
-
-                switch encodingResult {
-                case .Success(let upload,  _,  _):
-
-                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
-
-                        print("Uploading :\(Int32(totalBytesRead) / Int32(totalBytesExpectedToRead) * 100)")
-                        dispatch_async(dispatch_get_main_queue())
-                        {
-                            self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
-                        }
-                    }
-                    upload.responseJSON { response in
-
-                        print("Successfully uploaded!")
-                        self.uploadProgress.progress = 0.0
-                        self.uploadProgress.alpha = 0.0
-                    }
-                case .Failure(let encodingError):
-
-                    print(encodingError)
-                    self.uploadProgress.progress = 0.0
-                    self.uploadProgress.alpha = 0.0
-
-                }
-            }
-        )
+    @IBAction func changeRegion(sender: UIButton) {
+        if FRAMERATE > 25
+        {
+            print("PAL 25")
+            self.Engine.changeFrameRate(25)
+            FRAMERATE = 25
+            self.showMessage("25 fps")
+            self.buttonRegion.setImage(getUIImage("icon_pal.png"), forState: .Normal)
+        }
+        else
+        {
+            print("NTSC 30")
+            self.Engine.changeFrameRate(30)
+            FRAMERATE = 30
+            self.showMessage("30 fps")
+            self.buttonRegion.setImage(getUIImage("icon_ntsc.png"), forState: .Normal)
+        }
     }
 
+
+    @IBAction func showPreview(sender: UIButton) {
+        startStopMovie()
+    }
 
 
 
@@ -638,6 +555,11 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func exitCamera(sender: UIButton) {
+        self.dismissViewControllerAnimated(true) {
+            print("Forscene Camera Dismissed")
+        }
+    }
 
 
     @IBAction func changeQuallity(sender: AnyObject) {
@@ -735,61 +657,6 @@ class ViewController: UIViewController {
 
 
 
-    // ORIGINAL
-    @IBAction func changeFocusCamera(sender: AnyObject)
-    {
-        let focusCompatible = self.Engine.compatibleCameraFocus()
-        let alertController = UIAlertController(title: "Camera focus", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-
-        for currentFocusMode in focusCompatible {
-            alertController.addAction(UIAlertAction(title: currentFocusMode.description(), style: UIAlertActionStyle.Default, handler: { (_) -> Void in
-                self.Engine.cameraFocus = currentFocusMode
-
-                print(focusCompatible)
-                print(currentFocusMode)
-
-                let focusModeString = String(currentFocusMode)
-                self.focusModeButton.setTitle(focusModeString, forState: .Normal)
-            }))
-        }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
-
-
-
-
-
-
-    @IBAction func changeFrameRate(sender: AnyObject) {
-
-        let defaults = NSUserDefaults()
-        let alertController = UIAlertController(title: "Frame rate", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-
-        let ntsc = UIAlertAction(title: "30 fps", style: UIAlertActionStyle.Default) {
-            UIAlertAction in
-            self.Engine.changeFrameRate(30)
-            self.frameRateButton.setTitle("30 fps", forState: .Normal)
-            defaults.setValue("30", forKey: "frameRate")
-        }
-        alertController.addAction(ntsc)
-
-        let pal = UIAlertAction(title: "25 fps", style: UIAlertActionStyle.Default) {
-            UIAlertAction in
-            self.Engine.changeFrameRate(25)
-            self.frameRateButton.setTitle("25 fps", forState: .Normal)
-            defaults.setValue("25", forKey: "frameRate")
-
-        }
-        defaults.synchronize()
-        alertController.addAction(pal)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
-
-
     @IBAction func startRecord(sender: UIButton)
     {
         print("Recording video...")
@@ -812,7 +679,7 @@ class ViewController: UIViewController {
             Engine.startRecordingVideo(url, blockCompletion: { (url, error) -> (Void) in
 
                 self.lastRecordedMovie = url!
-                self.PlayPreviewMoview(self.lastRecordedMovie)
+
 
                 if self.defaults.boolForKey("saveOriginal") {
 
@@ -826,13 +693,79 @@ class ViewController: UIViewController {
         else
         { Engine.stopRecordingVideo()
             dispatch_async(dispatch_get_main_queue()){
+                self.PlayPreviewMoview(self.lastRecordedMovie)
                 self.animateStopRecording()
             }
         }
     }
+
+
+
+
+    // MARK - APIs
+
+    private func UploadVideo(urlString:NSURL)
+    {
+        print("Starting upload...")
+        uploadProgress.hidden = false
+        uploadProgress.alpha = 1.0
+
+        let TOKEN = defaults.valueForKey("token") as! String
+        let UPLOADURL = defaults.valueForKey("uploadurl") as! String
+        let FOLDER = defaults.valueForKey("folderName") as! String
+        let HEADERS = ["X-Auth-Kestrel":TOKEN]
+
+        let today = NSDate.distantPast()
+        NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
+
+        let task = NetworkManager.sharedManager.backgroundTask
+        task.upload(
+
+            .POST,UPLOADURL,
+            headers: HEADERS,
+            multipartFormData: { multipartFormData in
+
+                multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
+                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
+                multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
+                multipartFormData.appendBodyPart(data: FOLDER .dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+
+            },
+
+            encodingCompletion: { encodingResult in
+
+                switch encodingResult {
+                case .Success(let upload,  _,  _):
+
+                    upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
+
+                        print("Uploading :\(Int32(totalBytesRead) / Int32(totalBytesExpectedToRead) * 100)")
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+                        }
+                    }
+                    upload.responseJSON { response in
+
+                        print("Successfully uploaded!")
+                        self.uploadProgress.progress = 0.0
+                        self.uploadProgress.alpha = 0.0
+                    }
+                case .Failure(let encodingError):
+
+                    print(encodingError)
+                    self.uploadProgress.progress = 0.0
+                    self.uploadProgress.alpha = 0.0
+                    
+                }
+            }
+        )
+    }
     
+
     
-    
+    // MARK - Gestures
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = event!.allTouches()!.first {
             let position = touch.locationInView(self.view)
