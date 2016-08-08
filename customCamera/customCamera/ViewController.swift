@@ -733,7 +733,7 @@ class ViewController: UIViewController {
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-                        print("Uploading :\(Int8(totalBytesRead) / Int8(totalBytesExpectedToRead) * 100)")
+                       // print("Uploading :\(Float(totalBytesRead) / Float(totalBytesExpectedToRead) * 100)")
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
