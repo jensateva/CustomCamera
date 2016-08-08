@@ -719,7 +719,8 @@ class ViewController: UIViewController {
                 multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-                multipartFormData.appendBodyPart(data: FOLDER.dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+             //   multipartFormData.appendBodyPart(data: FOLDER.dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+                  multipartFormData.appendBodyPart(data: "X Factor UGC".dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
 
             },
 
