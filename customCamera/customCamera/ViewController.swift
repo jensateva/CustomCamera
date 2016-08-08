@@ -157,13 +157,17 @@ class ViewController: UIViewController {
 
     func setUpView(){
 
+        self.buttonFocusmode.setImage(getUIImage("icon_focus_auto"), forState: .Normal)
+        Engine.cameraFocus = CameraEngineCameraFocus.AutoFocus
+        self.showMessage("Auto focus")
+        FOCUSMODE = "AUTO"
+
         let defaults = NSUserDefaults()
         FRAMERATE = defaults.integerForKey("frameRate")
 
         if FRAMERATE > 25
         {
             self.buttonRegion.setImage(getUIImage("icon_ntsc.png"), forState: .Normal)
-            self.buttonRegion.setTitle("25", forState: .Normal)
         }
         else
         {

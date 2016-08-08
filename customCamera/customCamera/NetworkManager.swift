@@ -9,9 +9,9 @@
 import Foundation
 import Alamofire
 
-class NetworkManager: NSObject {
+public class NetworkManager: NSObject {
 
-    class var sharedManager:NetworkManager
+    public class var sharedManager:NetworkManager
     {
         struct Static
         {
