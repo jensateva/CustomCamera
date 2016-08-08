@@ -478,6 +478,9 @@ class ViewController: UIViewController {
 
     @IBAction func approve(sender: UIButton) {
 
+        let NOTIFICATIONS = NSNotificationCenter.defaultCenter()
+        NOTIFICATIONS.postNotificationName("VideoRecorded", object: lastRecordedMovie)
+
         self.moviePlayer?.moviePlayer.stop()
         print("Video approved")
 
@@ -485,12 +488,6 @@ class ViewController: UIViewController {
         {
             self.UploadVideo(lastRecordedMovie)
         }
-        else
-        {
-            let NOTIFICATIONS = NSNotificationCenter.defaultCenter()
-            NOTIFICATIONS.postNotificationName("VideoRecorded", object: lastRecordedMovie)
-        }
-
         if defaults.boolForKey("multirecord")
         {
             print("Multirecord is set to True we will display upload bar on Camera UI")
