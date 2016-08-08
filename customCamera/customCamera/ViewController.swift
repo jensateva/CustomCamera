@@ -737,7 +737,10 @@ class ViewController: UIViewController {
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
-                            self.CameraLibrary.uploadProgress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+                           // self.CameraLibrary.uploadProgress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+
+                            let NOTIFICATIONS = NSNotificationCenter.defaultCenter()
+                            NOTIFICATIONS.postNotificationName("Progress", object: (Float(totalBytesRead) / Float(totalBytesExpectedToRead)))
                         }
                     }
                     upload.responseJSON { response in
