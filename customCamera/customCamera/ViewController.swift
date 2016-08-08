@@ -44,9 +44,7 @@ class ViewController: UIViewController {
     let CameraLibrary = ForsceneCamera()
     let Engine = CameraEngine()
     let defaults = NSUserDefaults()
-
     var timer = NSTimer()
-
     var FRAMERATE = Int()
     var FOCUSMODE = String()
     var moviePlayer : MPMoviePlayerViewController?
@@ -738,10 +736,11 @@ class ViewController: UIViewController {
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-                        print("Uploading :\(Int32(totalBytesRead) / Int32(totalBytesExpectedToRead) * 100)")
+                        print("Uploading :\(Int8(totalBytesRead) / Int8(totalBytesExpectedToRead) * 100)")
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
+                            self.CameraLibrary.uploadProgress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
                         }
                     }
                     upload.responseJSON { response in
@@ -760,7 +759,42 @@ class ViewController: UIViewController {
             }
         )
     }
+
+ 
     
+// MARK - ALERTS
+//
+//    func successAlert()
+//    {
+//            if UIApplication.sharedApplication().applicationState == UIApplicationState.Background
+//            {
+//                self.localSuccessMessage()
+//                self.userMessage.text = ""
+//            }
+//
+//            else
+//            {
+//                self.showUserMessage("Success!")
+//        }
+//    }
+//
+//
+//
+//
+//    func localSuccessMessage() {
+//        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+//        if settings!.types == .None {
+//            print("ERROR SCHEDULING NOTIFICATION")
+//        }
+//        let notification = UILocalNotification()
+//        notification.fireDate = NSDate(timeIntervalSinceNow: 3)
+//        notification.alertBody = "Your video has been uploaded and is ready to edit on Forscene.net"
+//        notification.alertAction = "Upload More"
+//        notification.soundName = UILocalNotificationDefaultSoundName
+//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//    }
+
+
 
     
     // MARK - Gestures

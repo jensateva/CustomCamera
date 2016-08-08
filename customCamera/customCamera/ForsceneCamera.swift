@@ -26,6 +26,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
     let Engine = CameraEngine()
        let LOGINURL = "https://forscene.net/api/login"
+    var uploadProgress = Float()
 
     required convenience public init(coder aDecoder: NSCoder) {
         self.init(aDecoder)
@@ -74,22 +75,14 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     }
 
+//    public func uploadProgress(Progress:CGFloat)
+//    {
+//        Manager.
+//        return Progress
+//    }
+
     public func connectToForscene(username: String, password: String, accountName: String)
     {
- //       self.defaults.setValue(accountName, forKey: "accountName")
-//        self.defaults.setValue(identifier, forKey: "identifier")
-//        self.defaults.setValue(folderName, forKey: "folderName")
-//        self.defaults.setBool(multirecord, forKey: "multirecord")
-//        self.defaults.setInteger(frameRate, forKey: "frameRate")
-//        self.defaults.setValue(showCustomSettings, forKey: "showCustomSettings")
-//        self.defaults.setBool(hideExitButton, forKey: "hideExitButton")
-//        self.defaults.setValue(logo, forKey: "logo")
-//        self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
-//        self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
-//        self.defaults.setBool(uploadVideo, forKey: "uploadVideo")
-
-
-
         let parameters: [String: AnyObject] =
             [
                 "persistentLogin":"true",
