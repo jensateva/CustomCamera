@@ -20,14 +20,14 @@ public class NetworkManager: NSObject {
         return Static.instance
     }
 
-    let serverTrustPolicies: [String: ServerTrustPolicy] = [
+    public let serverTrustPolicies: [String: ServerTrustPolicy] = [
         "localhost": .PinCertificates(
             certificates: ServerTrustPolicy.certificatesInBundle(),
             validateCertificateChain: true,
             validateHost: true
         )]
 
-    let backgroundTask: Alamofire.Manager = {
+    public let backgroundTask: Alamofire.Manager = {
         let defaults = NSUserDefaults.standardUserDefaults()
         let identifier = defaults.valueForKey("identifier") as! String
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
