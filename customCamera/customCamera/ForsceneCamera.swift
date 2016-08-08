@@ -113,7 +113,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         let domain = (url[0]).stringByDeletingLastPathComponent
 
-                        let uploadurl = domain + "/" + accountName + "/webupload?resultFormat=json"
+                        let uploadurl = domain + "/forscene/" + accountName + "/webupload?resultFormat=json"
 
                         let token = Dictionary.valueForKey("token")
 

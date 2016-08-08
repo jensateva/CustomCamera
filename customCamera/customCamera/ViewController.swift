@@ -749,7 +749,6 @@ class ViewController: UIViewController {
                     print(encodingError)
                     self.uploadProgress.progress = 0.0
                     self.uploadProgress.alpha = 0.0
-                    
                 }
             }
         )
