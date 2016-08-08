@@ -33,15 +33,15 @@ class cameraSettings: NSObject {
     var url : NSArray = []
     var token : String = ""
 
-    func uplodURL() -> String{
-    let UPLOADURL = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
-    return UPLOADURL
-    }
+//    func uplodURL() -> String{
+//    let UPLOADURL = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
+//    return UPLOADURL
+//    }
 
-    func headers() -> [String : String]{
-       let headers = ["X-Auth-Kesterl" : token]
-        return headers
-    }
+//    func headers() -> [String : String]{
+//       let headers = ["X-Auth-Kesterl" : token]
+//        return headers
+//    }
 
 
 }
