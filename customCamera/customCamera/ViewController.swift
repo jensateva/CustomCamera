@@ -48,6 +48,7 @@ class ViewController: UIViewController {
     var FRAMERATE = Int()
     var FOCUSMODE = String()
     var moviePlayer : MPMoviePlayerViewController?
+    let NOTIFICATIONS = NSNotificationCenter.defaultCenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -733,14 +734,10 @@ class ViewController: UIViewController {
 
                     upload.progress {  bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-                       // print("Uploading :\(Float(totalBytesRead) / Float(totalBytesExpectedToRead) * 100)")
                         dispatch_async(dispatch_get_main_queue())
                         {
                             self.uploadProgress.progress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
-                           // self.CameraLibrary.uploadProgress = (Float(totalBytesRead) / Float(totalBytesExpectedToRead))
-
-                            let NOTIFICATIONS = NSNotificationCenter.defaultCenter()
-                            NOTIFICATIONS.postNotificationName("Progress", object: (Float(totalBytesRead) / Float(totalBytesExpectedToRead)))
+                            self.NOTIFICATIONS.postNotificationName("Progress", object: (Float(totalBytesRead) / Float(totalBytesExpectedToRead)))
                         }
                     }
                     upload.responseJSON { response in
@@ -748,6 +745,7 @@ class ViewController: UIViewController {
                         print("Successfully uploaded!")
                         self.uploadProgress.progress = 0.0
                         self.uploadProgress.alpha = 0.0
+                        self.NOTIFICATIONS.postNotificationName("UploadComplete", object: nil)
                     }
                 case .Failure(let encodingError):
 
