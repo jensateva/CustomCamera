@@ -74,6 +74,9 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         defaults.synchronize()
         lockFrameRate(frameRate)
 
+//        print("App Identifier :\(defaults.valueForKey:"identifier")")
+//        print("Destination Foler :\(defaults.valueForKey:"folderName")")
+
     }
 
     public func GetUploadProgress() -> Float

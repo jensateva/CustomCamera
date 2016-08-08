@@ -401,15 +401,6 @@ class ViewController: UIViewController {
         }
     }
 
-//    func startTimer(){
-//      self.timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target:self, selector: #selector(ViewController.UpdateProgressUI), userInfo: nil, repeats: true)
-//    }
-//
-//    func UpdateProgressUI(){
-//        self.circleProgress.angle = (self.moviePlayer?.moviePlayer.playableDuration)! / (self.moviePlayer?.moviePlayer.duration)! * 360
-//
-//        print(self.circleProgress.angle)
-//    }
 
     func MPMoviePlayerPlaybackStateDidChange(notification: NSNotification)
     {
@@ -708,7 +699,12 @@ class ViewController: UIViewController {
         let TOKEN = defaults.valueForKey("token") as! String
         let UPLOADURL = defaults.valueForKey("uploadurl") as! String
         let FOLDER = defaults.valueForKey("folderName") as! String
+
         let HEADERS = ["X-Auth-Kestrel":TOKEN]
+
+        print("Uploading to Forscene Folder :\(FOLDER)")
+
+      
 
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
