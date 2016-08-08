@@ -697,7 +697,7 @@ class ViewController: UIViewController {
         uploadProgress.alpha = 1.0
 
         let TOKEN = defaults.valueForKey("token") as! String
-        let UPLOADURL = defaults.URLForKey("uploadurl")
+        let UPLOADURL = defaults.valueForKey("uploadurl") as! NSURL
         let FOLDER = defaults.valueForKey("folderName") as! String
         let HEADERS = ["X-Auth-Kestrel":TOKEN]
 
@@ -709,7 +709,7 @@ class ViewController: UIViewController {
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
 
-            .POST,UPLOADURL!,
+            .POST,UPLOADURL,
             headers: HEADERS,
             multipartFormData: { multipartFormData in
 

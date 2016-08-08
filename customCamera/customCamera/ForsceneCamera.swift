@@ -114,15 +114,13 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         let url = Dictionary.valueForKey("urls") as! NSArray
                         let uploadurl = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
-                        let finalurl = NSURL(fileURLWithPath: uploadurl)
                         let token = Dictionary.valueForKey("token")
-                        self.defaults.setURL(finalurl, forKey: "uploadurl")
 
-                       // self.defaults.setValue(uploadurl, forKey: "uploadurl")
+                        self.defaults.setValue(uploadurl, forKey: "uploadurl")
                         self.defaults.setValue(token, forKey: "token")
                         self.defaults.synchronize()
 
-                        print(finalurl)
+                        print(uploadurl)
 
 
                     case ("invalid"):
