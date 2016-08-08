@@ -119,6 +119,8 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         self.defaults.setValue(token, forKey: "token")
                         self.defaults.synchronize()
 
+                        print(uploadurl)
+
 
                     case ("invalid"):
                         print("Iinvalid credentials")
