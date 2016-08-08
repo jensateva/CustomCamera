@@ -75,11 +75,10 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
     }
 
-//    public func uploadProgress(Progress:CGFloat)
-//    {
-//        Manager.
-//        return Progress
-//    }
+    public func GetUploadProgress() -> Float
+    {
+        return uploadProgress
+    }
 
     public func connectToForscene(username: String, password: String, accountName: String)
     {
