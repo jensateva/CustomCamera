@@ -27,7 +27,7 @@ public class NetworkManager: NSObject {
             validateHost: true
         )]
 
-    lazy var backgroundTask: Alamofire.Manager = {
+    let backgroundTask: Alamofire.Manager = {
         let defaults = NSUserDefaults.standardUserDefaults()
         let identifier = defaults.valueForKey("identifier") as! String
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
