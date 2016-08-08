@@ -702,7 +702,9 @@ class ViewController: UIViewController {
         let HEADERS = ["X-Auth-Kestrel":TOKEN]
 
         print("Uploading to Forscene Folder :\(FOLDER)")
-         print("Upload URL :\(UPLOADURL)")
+        print("Upload URL :\(UPLOADURL)")
+        print("Headers :\(HEADERS)")
+        print("File :\(urlString)")
 
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)

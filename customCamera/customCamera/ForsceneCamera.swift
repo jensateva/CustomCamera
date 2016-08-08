@@ -74,9 +74,6 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         defaults.synchronize()
         lockFrameRate(frameRate)
 
-//        print("App Identifier :\(defaults.valueForKey:"identifier")")
-//        print("Destination Foler :\(defaults.valueForKey:"folderName")")
-
     }
 
     public func GetUploadProgress() -> Float
@@ -114,13 +111,15 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
 
                         let url = Dictionary.valueForKey("urls") as! NSArray
 
-                       // https://pro.forscene.net
-                        let uploadurl = "https://pro.forscene.net/" + accountName + "/webupload?resultFormat=json"
-                        //let uploadurl = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
+                        let domain = (url[0]).stringByDeletingLastPathComponent
+
+                        let uploadurl = domain + "/" + accountName + "/webupload?resultFormat=json"
+
                         let token = Dictionary.valueForKey("token")
 
                         self.defaults.setValue(uploadurl, forKey: "uploadurl")
                         self.defaults.setValue(token, forKey: "token")
+
                         self.defaults.synchronize()
 
                         print(uploadurl)
