@@ -71,6 +71,7 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
         self.defaults.setBool(showCustomSettings, forKey: "showCustomSettings")
         self.defaults.setBool(saveOriginal, forKey: "saveOriginal")
         self.defaults.setBool(uploadVideo, forKey: "uploadVideo")
+        defaults.synchronize()
         lockFrameRate(frameRate)
 
     }

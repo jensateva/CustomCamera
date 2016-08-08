@@ -758,42 +758,6 @@ class ViewController: UIViewController {
         )
     }
 
- 
-    
-// MARK - ALERTS
-//
-//    func successAlert()
-//    {
-//            if UIApplication.sharedApplication().applicationState == UIApplicationState.Background
-//            {
-//                self.localSuccessMessage()
-//                self.userMessage.text = ""
-//            }
-//
-//            else
-//            {
-//                self.showUserMessage("Success!")
-//        }
-//    }
-//
-//
-//
-//
-//    func localSuccessMessage() {
-//        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-//        if settings!.types == .None {
-//            print("ERROR SCHEDULING NOTIFICATION")
-//        }
-//        let notification = UILocalNotification()
-//        notification.fireDate = NSDate(timeIntervalSinceNow: 3)
-//        notification.alertBody = "Your video has been uploaded and is ready to edit on Forscene.net"
-//        notification.alertAction = "Upload More"
-//        notification.soundName = UILocalNotificationDefaultSoundName
-//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//    }
-
-
-
     
     // MARK - Gestures
 
