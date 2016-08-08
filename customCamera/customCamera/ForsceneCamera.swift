@@ -113,7 +113,10 @@ public class ForsceneCamera : UIViewController, UINavigationControllerDelegate {
                         print("Connected with success!")
 
                         let url = Dictionary.valueForKey("urls") as! NSArray
-                        let uploadurl = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
+
+                       // https://pro.forscene.net
+                        let uploadurl = "https://pro.forscene.net/" + accountName + "/webupload?resultFormat=json"
+                        //let uploadurl = (url[0]).stringByDeletingLastPathComponent + "/" + accountName + "/webupload?resultFormat=json"
                         let token = Dictionary.valueForKey("token")
 
                         self.defaults.setValue(uploadurl, forKey: "uploadurl")
