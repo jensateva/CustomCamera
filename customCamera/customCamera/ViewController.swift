@@ -653,7 +653,9 @@ class ViewController: UIViewController {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy_HH:mm:ss"
             let dateStr = dateFormatter.stringFromDate(date)
-            let videoFileName =  dateStr + "_Forscene.mp4"
+            //let videoFileName =  dateStr + "_Forscene.mp4"
+
+             let videoFileName =  "Forscene123.mp4"
 
             guard let url = CameraEngineFileManager.documentPath(videoFileName) else {
                 return
