@@ -653,9 +653,7 @@ class ViewController: UIViewController {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy_HH:mm:ss"
             let dateStr = dateFormatter.stringFromDate(date)
-            //let videoFileName =  dateStr + "_Forscene.mp4"
-
-             let videoFileName =  "Forscene123.mp4"
+            let videoFileName =  dateStr + "_Forscene.mp4"
 
             guard let url = CameraEngineFileManager.documentPath(videoFileName) else {
                 return
@@ -699,7 +697,7 @@ class ViewController: UIViewController {
         uploadProgress.alpha = 1.0
 
         let TOKEN = defaults.valueForKey("token") as! String
-        let UPLOADURL = defaults.valueForKey("uploadurl") as! String
+        let UPLOADURL = defaults.URLForKey("uploadurl")
         let FOLDER = defaults.valueForKey("folderName") as! String
         let HEADERS = ["X-Auth-Kestrel":TOKEN]
 
@@ -711,14 +709,14 @@ class ViewController: UIViewController {
         let task = NetworkManager.sharedManager.backgroundTask
         task.upload(
 
-            .POST,UPLOADURL,
+            .POST,UPLOADURL!,
             headers: HEADERS,
             multipartFormData: { multipartFormData in
 
                 multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-               multipartFormData.appendBodyPart(data: "Folder".dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
+               multipartFormData.appendBodyPart(data: FOLDER.dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
             },
 
             encodingCompletion: { encodingResult in
