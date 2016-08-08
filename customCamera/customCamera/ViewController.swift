@@ -699,12 +699,9 @@ class ViewController: UIViewController {
         let TOKEN = defaults.valueForKey("token") as! String
         let UPLOADURL = defaults.valueForKey("uploadurl") as! String
         let FOLDER = defaults.valueForKey("folderName") as! String
-
         let HEADERS = ["X-Auth-Kestrel":TOKEN]
 
         print("Uploading to Forscene Folder :\(FOLDER)")
-
-      
 
         let today = NSDate.distantPast()
         NSHTTPCookieStorage.sharedHTTPCookieStorage().removeCookiesSinceDate(today)
@@ -719,9 +716,7 @@ class ViewController: UIViewController {
                 multipartFormData.appendBodyPart(fileURL: urlString, name: "uploadfile")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "format")
                 multipartFormData.appendBodyPart(data: "auto".dataUsingEncoding(NSUTF8StringEncoding)!, name: "aspect")
-             //   multipartFormData.appendBodyPart(data: FOLDER.dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
-                  multipartFormData.appendBodyPart(data: "X Factor UGC".dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
-
+               multipartFormData.appendBodyPart(data: FOLDER.dataUsingEncoding(NSUTF8StringEncoding)!, name: "location")
             },
 
             encodingCompletion: { encodingResult in
@@ -740,6 +735,8 @@ class ViewController: UIViewController {
                     upload.responseJSON { response in
 
                         print("Successfully uploaded!")
+                        print(response)
+
                         self.uploadProgress.progress = 0.0
                         self.uploadProgress.alpha = 0.0
                         self.NOTIFICATIONS.postNotificationName("UploadComplete", object: nil)
