@@ -19,17 +19,43 @@ extension AVCaptureVideoOrientation {
     static func orientationFromUIDeviceOrientation(orientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
         switch orientation {
 
-         //// ADD SOMETHING HERE MAYBE TO CHECK IF WE ARE USING FRONT OR BACK CAMERA SO THAT THINGS ARE NOT UPSIDE DOWN
-
+        // THIS SETS THE DISPLAY TO SHOW CORRECT VIEW DURING RECORD
         case .Portrait: return .Portrait
         case .LandscapeLeft: return .LandscapeRight
         case .LandscapeRight: return .LandscapeLeft
         case .PortraitUpsideDown: return .PortraitUpsideDown
-
         default: return .Portrait
         }
     }
 }
+
+
+// JENS ADDED
+
+//func returnedOrientation() -> AVCaptureVideoOrientation {
+//    var videoOrientation: AVCaptureVideoOrientation!
+//    let orientation = UIDevice.currentDevice().orientation
+//
+//    switch orientation {
+//    case .Portrait:
+//        videoOrientation = .Portrait
+//       // userDefault.setInteger(0, forKey: "CaptureVideoOrientation")
+//    case .PortraitUpsideDown:
+//        videoOrientation = .PortraitUpsideDown
+//      //  userDefault.setInteger(1, forKey: "CaptureVideoOrientation")
+//    case .LandscapeLeft:
+//        videoOrientation = .LandscapeRight
+//      //  userDefault.setInteger(2, forKey: "CaptureVideoOrientation")
+//    case .LandscapeRight:
+//        videoOrientation = .LandscapeLeft
+//      //  userDefault.setInteger(3, forKey: "CaptureVideoOrientation")
+//   // case .FaceDown, .FaceUp, .Unknown:
+//       // let digit = userDefault.integerForKey("CaptureVideoOrientation")
+//       // videoOrientation = AVCaptureVideoOrientation.init(rawValue: digit)
+//    }
+//    return videoOrientation
+//}
+
 
 class CameraEngineCaptureOutput: NSObject {
     
@@ -46,12 +72,14 @@ class CameraEngineCaptureOutput: NSObject {
     var blockCompletionProgress: blockCompletionProgressRecording?
 	
 	func capturePhotoBuffer(blockCompletion: blockCompletionCapturePhotoBuffer) {
+
 		guard let connectionVideo  = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo) else {
 			blockCompletion(sampleBuffer: nil, error: nil)
 			return
 		}
 		connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
-		
+
+        print("PHOTO OUTPUT ORIENTATION IS SET TO :\(UIDevice.currentDevice().orientation)")
 		self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connectionVideo, completionHandler: blockCompletion)
 	}
 	
@@ -62,6 +90,8 @@ class CameraEngineCaptureOutput: NSObject {
         }
 
         connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+
+        print("PHOTO VIDEO ORIENTATION IS SET TO :\(UIDevice.currentDevice().orientation)")
         
         self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connectionVideo) { (sampleBuffer: CMSampleBuffer!, err: NSError!) -> Void in
             if let err = err {
@@ -83,9 +113,9 @@ class CameraEngineCaptureOutput: NSObject {
         self.videoEncoder.presetSettingEncoder = videoEncoderPresset.configuration()
     }
     
-    func startRecordVideo(blockCompletion: blockCompletionCaptureVideo, url: NSURL) {
+    func startRecordVideo(devicePositing: AVCaptureDevicePosition,blockCompletion: blockCompletionCaptureVideo, url: NSURL) {
         if self.isRecording == false {
-            self.videoEncoder.startWriting(url)
+            self.videoEncoder.startWriting(devicePositing, url: url)
             self.isRecording = true
         }
         else {
@@ -99,7 +129,11 @@ class CameraEngineCaptureOutput: NSObject {
         self.isRecording = false
         self.videoEncoder.stopWriting(self.blockCompletionVideo)
     }
-    
+
+
+
+
+
     func configureCaptureOutput(session: AVCaptureSession, sessionQueue: dispatch_queue_t) {
         if session.canAddOutput(self.captureVideoOutput) {
             session.addOutput(self.captureVideoOutput)
@@ -128,9 +162,23 @@ extension CameraEngineCaptureOutput: AVCaptureVideoDataOutputSampleBufferDelegat
 
 /// THIS WE SET FRAME RATE HERE
 
-       //activeVideoMinFrameDuration.
+        // SET THE ORIENTATION HERE AS WELL 
 
-//     AVVideoMaxKeyFrameIntervalKey
+//        connection.preferredVideoStabilizationMode = .Cinematic
+
+//        let orientation = connectionVideo.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+//
+//        connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight
+
+//        switch orientation {
+//        // THIS SETS THE DISPLAY TO SHOW CORRECT VIEW DURING RECORD
+//        case .Portrait: return .Portrait
+//        case .LandscapeLeft: return .LandscapeRight
+//        case .LandscapeRight: return .LandscapeLeft
+//        case .PortraitUpsideDown: return .PortraitUpsideDown
+//        default: return .Portrait
+//        }
+
 
         self.progressCurrentBuffer(sampleBuffer)
         if let block = self.blockCompletionBuffer {

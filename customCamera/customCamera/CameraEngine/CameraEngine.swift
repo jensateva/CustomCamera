@@ -311,6 +311,8 @@ public class CameraEngine: NSObject {
 			}
             NSNotificationCenter.defaultCenter().addObserverForName(UIDeviceOrientationDidChangeNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (_) -> Void in
                 self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.orientationFromUIDeviceOrientation(UIDevice.currentDevice().orientation)
+
+                print("ORIENATION :\(UIDevice.currentDevice().orientation.rawValue)")
             }
         }
         else {
@@ -435,6 +437,10 @@ public extension CameraEngine {
             let framerate = CMTimeMake(1, framerate)
             currentDevice.activeVideoMaxFrameDuration = framerate
             currentDevice.activeVideoMinFrameDuration = framerate
+            print(currentDevice.activeFormat.videoSupportedFrameRateRanges)
+            print(currentDevice.activeFormat)
+            print(currentDevice.activeVideoMaxFrameDuration)
+            print(currentDevice.activeVideoMinFrameDuration)
             currentDevice.unlockForConfiguration()
         }
 
@@ -443,26 +449,6 @@ public extension CameraEngine {
         }
       }
     }
-
-
-//    public func changeBitRate(framerate :Int32) {
-//
-//        if let currentDevice = self.cameraDevice.currentDevice {
-//
-//            do{
-//                try currentDevice.lockForConfiguration()
-//               // let framerate = CMTimeMake(1, framerate)
-//                currentDevice.
-//                currentDevice.activeVideoMinFrameDuration = framerate
-//                currentDevice.unlockForConfiguration()
-//            }
-//
-//            catch {
-//                fatalError("[CameraEngine] error lock configuration device")
-//            }
-//        }
-//    }
-
 
     
     public func focus(atPoint: CGPoint) {
@@ -515,10 +501,14 @@ public extension CameraEngine {
 		self.cameraOutput.capturePhotoBuffer(blockCompletion)
 	}
     
-    public func startRecordingVideo(url: NSURL, blockCompletion: blockCompletionCaptureVideo) {
+    public func startRecordingVideo(devicePosition: AVCaptureDevicePosition, url: NSURL, blockCompletion: blockCompletionCaptureVideo) {
         if self.isRecording == false {
             dispatch_async(self.sessionQueue, { () -> Void in
-                self.cameraOutput.startRecordVideo(blockCompletion, url: url)
+
+
+                self.cameraOutput.startRecordVideo(devicePosition,blockCompletion: blockCompletion, url: url)
+
+
             })
         }
     }

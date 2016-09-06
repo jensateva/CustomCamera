@@ -33,20 +33,7 @@ public enum CameraEngineVideoEncoderEncoderSettings: String {
         case .Unknow: return nil
         }
     }
-
-
-    //        case .CustomJens:
-    //
-    //            let videoWriterCompressionSettings = Dictionary(dictionaryLiteral:(AVVideoAverageBitRateKey,NSNumber(integer:960000)))
-    //            let videoWriterSettings = Dictionary(dictionaryLiteral:
-    //                (AVVideoCodecKey,AVVideoCodecH264),
-    //                (AVVideoCompressionPropertiesKey,videoWriterCompressionSettings),
-    //                (AVVideoWidthKey,1920),
-    //                (AVVideoHeightKey,1080))
-    //
-    //            return videoWriterSettings
-
-
+    
     func configuration() -> AVOutputSettingsAssistant? {
         if let presetSetting = self.avFoundationPresetString() {
             return AVOutputSettingsAssistant(preset: presetSetting)
@@ -91,12 +78,39 @@ public enum CameraEngineVideoEncoderEncoderSettings: String {
 }
 
 extension UIDevice {
-    static func orientationTransformation() -> CGFloat {
+    static func orientationTransformation(devicePosition:AVCaptureDevicePosition) -> CGFloat {
+        print("Ori :\(UIDevice.currentDevice().orientation.rawValue)")
+
         switch UIDevice.currentDevice().orientation {
+
         case .Portrait: return CGFloat(M_PI / 2)
         case .PortraitUpsideDown: return CGFloat(M_PI / 4)
-        case .LandscapeRight: return CGFloat(M_PI)
-        case .LandscapeLeft: return CGFloat(M_PI * 2)
+
+        case .LandscapeRight:
+
+
+           if devicePosition == AVCaptureDevicePosition.Back
+            {
+             return CGFloat(M_PI)
+            }
+           else
+           {
+            return CGFloat(M_PI * 2)
+           }
+
+
+        case .LandscapeLeft:
+
+            if devicePosition == AVCaptureDevicePosition.Back
+            {
+                return CGFloat(M_PI * 2)
+            }
+            else
+            {
+                return CGFloat(M_PI)
+            }
+
+
         default: return 0
         }
     }
@@ -110,21 +124,18 @@ class CameraEngineVideoEncoder {
     private var startTime: CMTime!
     
     lazy var presetSettingEncoder: AVOutputSettingsAssistant? = {
-
-        // SET BITRATE HERE I THINK
-       // CameraEngineVideoEncoderEncoderSettings
-
         return CameraEngineVideoEncoderEncoderSettings.Preset1920x1080.configuration()
     }()
     
-    private func initVideoEncoder(url: NSURL) {
+    private func initVideoEncoder(devicePositing: AVCaptureDevicePosition, url: NSURL) {
         guard let presetSettingEncoder = self.presetSettingEncoder else {
             print("[Camera engine] presetSettingEncoder = nil")
             return
         }
 
         do {
-            self.assetWriter = try AVAssetWriter(URL: url, fileType: AVFileTypeMPEG4) // Original was AVFileTypeMPEG4
+            self.assetWriter = try AVAssetWriter(URL: url, fileType: AVFileTypeMPEG4)
+//            self.assetWriter.metadata.append(<#T##newElement: Element##Element#>)
         }
         catch {
             fatalError("error init assetWriter")
@@ -142,7 +153,8 @@ class CameraEngineVideoEncoder {
 
         self.videoInputWriter = AVAssetWriterInput(mediaType: AVMediaTypeVideo, outputSettings: videoOutputSettings)
         self.videoInputWriter.expectsMediaDataInRealTime = true
-        self.videoInputWriter.transform = CGAffineTransformMakeRotation(UIDevice.orientationTransformation())
+
+        self.videoInputWriter.transform = CGAffineTransformMakeRotation(UIDevice.orientationTransformation(devicePositing))
         
         self.audioInputWriter = AVAssetWriterInput(mediaType: AVMediaTypeAudio, outputSettings: audioOutputSettings)
         self.audioInputWriter.expectsMediaDataInRealTime = true
@@ -155,9 +167,9 @@ class CameraEngineVideoEncoder {
         }
     }
     
-    func startWriting(url: NSURL) {
+    func startWriting(devicePositing: AVCaptureDevicePosition, url: NSURL) {
         self.startTime = CMClockGetTime(CMClockGetHostTimeClock())
-        self.initVideoEncoder(url)
+        self.initVideoEncoder(devicePositing, url: url)
     }
     
     func stopWriting(blockCompletion: blockCompletionCaptureVideo?) {
