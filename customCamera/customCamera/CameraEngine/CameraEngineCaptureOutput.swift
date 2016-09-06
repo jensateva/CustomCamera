@@ -18,10 +18,14 @@ public typealias blockCompletionProgressRecording = (duration: Float64) -> (Void
 extension AVCaptureVideoOrientation {
     static func orientationFromUIDeviceOrientation(orientation: UIDeviceOrientation) -> AVCaptureVideoOrientation {
         switch orientation {
+
+         //// ADD SOMETHING HERE MAYBE TO CHECK IF WE ARE USING FRONT OR BACK CAMERA SO THAT THINGS ARE NOT UPSIDE DOWN
+
         case .Portrait: return .Portrait
         case .LandscapeLeft: return .LandscapeRight
         case .LandscapeRight: return .LandscapeLeft
         case .PortraitUpsideDown: return .PortraitUpsideDown
+
         default: return .Portrait
         }
     }
