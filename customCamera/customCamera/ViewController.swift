@@ -659,7 +659,8 @@ class ViewController: UIViewController {
                 return
             }
 
-            Engine.startRecordingVideo(url, blockCompletion: { (url, error) -> (Void) in
+
+            Engine.startRecordingVideo((Engine.captureDevice?.position)!, url:url, blockCompletion: { (url, error) -> (Void) in
 
                 /// CHECK FOR URL BEFORE PLAYING????
                 self.lastRecordedMovie = url!
